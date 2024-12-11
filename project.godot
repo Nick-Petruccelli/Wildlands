@@ -14,3 +14,8 @@ config/name="Wildlands"
 run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[navigation]
+
+2d/default_cell_size=32.0
+2d/default_edge_connection_margin=16.0

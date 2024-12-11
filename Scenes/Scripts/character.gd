@@ -1,13 +1,26 @@
 extends CharacterBody2D
 
 @export var speed: int
-var goal_pos = null
+
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@onready var build_manager: Node2D = %BuildManager
+var goal_pos = null
+var cur_block = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connect("mouse_entered", _on_mouse_entered)
 	connect("mouse_exited", _on_mouse_exit)
+	build_manager.build_ordered.connect(_on_build_ordered)
+	
+func _on_build_ordered() -> void:
+	print("build order recived")
+	var next_build = build_manager.get_next_build()
+	if next_build.is_empty():
+		return
+	goal_pos = next_build[0]
+	cur_block = next_build[1]
+	
 	
 func _on_mouse_exit() -> void:
 	%GameControler.remove_from_hovering(self)
@@ -34,3 +47,8 @@ func _physics_process(delta: float) -> void:
 	#print(vel)
 	self.velocity = vel * speed
 	move_and_slide()
+	if navigation_agent_2d.is_navigation_finished():
+		if cur_block != null:
+			build_manager.place_build(goal_pos, cur_block)
+			cur_block = null
+		goal_pos = null

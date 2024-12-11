@@ -4,6 +4,7 @@ var hovered_objs = []
 var selected_obj = null
 var placing_build = false
 @onready var tile_map_layer: TileMapLayer = %TileMapLayer
+@onready var build_manager: Node2D = %BuildManager
 var build_map = {0: Vector2i(1,1)}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,11 +26,7 @@ func _input(event: InputEvent) -> void:
 		if hovered_objs.is_empty():
 			print('hit hov.emp')
 			if placing_build:
-				var mouse_pos = get_global_mouse_position()
-				var tile_size = tile_map_layer.tile_set.tile_size
-				var map_cords = Vector2i(floor(mouse_pos.x/tile_size.x), floor(mouse_pos.y/tile_size.y))
-				tile_map_layer.set_cell(map_cords, 0, selected_obj)
-				print("tile place at: ", map_cords)
+				build_manager.order_build(get_global_mouse_position(), selected_obj)
 				selected_obj = null
 				placing_build = false
 			if selected_obj != null:
@@ -38,7 +35,7 @@ func _input(event: InputEvent) -> void:
 
 func place_object(tile_id: int) -> void:
 	placing_build = true
-	selected_obj = build_map[tile_id]
+	selected_obj = tile_id
 
 func add_to_hovering(obj) -> void:
 	hovered_objs.append(obj)
