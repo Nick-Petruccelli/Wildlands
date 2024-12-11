@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvar6b65bvlfe"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/character.gd" id="1_6f447"]
+[ext_resource type="Texture2D" uid="uid://bh6pfnnxhjx2s" path="res://Assets/dude1.png" id="2_mtje5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qulpi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mtje5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5egs"]
+
+[node name="Character" type="CharacterBody2D"]
+input_pickable = true
+motion_mode = 1
+script = ExtResource("1_6f447")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_qulpi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("CapsuleShape2D_t5egs")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+path_postprocessing = 1
+avoidance_enabled = true
+debug_enabled = true

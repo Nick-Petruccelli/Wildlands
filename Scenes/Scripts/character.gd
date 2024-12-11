@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const speed = 10
+@export var speed: int
 var goal_pos = null
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
