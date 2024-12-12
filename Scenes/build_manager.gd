@@ -32,6 +32,12 @@ func get_map_from_global(glob: Vector2) -> Vector2:
 	var tile_size = tile_map_layer.tile_set.tile_size
 	return Vector2i(floor(glob.x/tile_size.x), floor(glob.y/tile_size.y))
 
+func get_global_from_map(map: Vector2i) -> Vector2i:
+	var tile_size = tile_map_layer.tile_set.tile_size
+	var x_off = tile_size.x/2
+	var y_off = tile_size.y/2
+	return Vector2(map.x*tile_size.x + x_off, map.y*tile_size.y + y_off)
+
 func order_build(down_pos: Vector2, up_pos: Vector2, tile_id: int) -> void:
 	var map_cords = get_map_from_global(up_pos)
 	if placed_build[map_cords.x][map_cords.y] != -1:
@@ -78,8 +84,16 @@ func add_stockpile(down_pos: Vector2, up_pos: Vector2) -> void:
 		var row = []
 		for x in range(top_left.x, bot_right.x+1):
 			var tile_cords = Vector2i(x,y)
-			row.append(tile_cords)
+			row.append([tile_cords, 0])
 			stock_pile_layer.set_cell(tile_cords, 0, Vector2i(0,0))
 		stockpile_area.append(row)
 	active_stockpiles.append(stockpile_area)
 	
+func get_mat(mat: int):
+	for pile in active_stockpiles:
+		for row in pile:
+			for e in row:
+				print(e)
+				if e[1] == mat:
+					return get_global_from_map(e[0])
+	return null

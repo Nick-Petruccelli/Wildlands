@@ -7,8 +7,10 @@ extends CharacterBody2D
 var goal_pos = null
 var cur_block = null
 
-enum Tasks {Building, Minning, Ideling}
+enum Tasks {Building, Minning, Gather, Ideling}
 var cur_task = Tasks.Ideling
+var cur_plan = []
+var inventory = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,9 +34,17 @@ func _on_build_ordered() -> void:
 	var next_build = build_manager.get_next_build()
 	if next_build.is_empty():
 		return
-	cur_task = Tasks.Building
-	goal_pos = next_build[0]
-	cur_block = next_build[1]
+	var build_loc = next_build[0]
+	var build_mat = next_build[1]
+	print("build_ordered")
+	if build_mat in inventory:
+		cur_plan.append([Tasks.Building, build_loc, build_mat])
+	else:
+		var mat_loc = build_manager.get_mat(build_mat)
+		cur_plan.append([Tasks.Gather, build_mat])
+		cur_plan.append([Tasks.Building, build_loc, build_mat])
+		cur_task = Tasks.Gather
+		goal_pos = mat_loc
 	
 	
 func _on_mouse_exit() -> void:
@@ -55,7 +65,6 @@ func _physics_process(delta: float) -> void:
 	var next_pos = navigation_agent_2d.get_next_path_position()
 	var vel = curent_pos.direction_to(next_pos)
 	navigation_agent_2d.set_velocity(vel)
-	#print(vel)
 	self.velocity = vel * speed
 	move_and_slide()
 	if navigation_agent_2d.distance_to_target() < 35:
@@ -64,9 +73,16 @@ func _physics_process(delta: float) -> void:
 				build_manager.place_build(goal_pos, cur_block)
 				cur_block = null
 				cur_task = Tasks.Ideling
+				goal_pos = null
 			Tasks.Minning:
 				build_manager.mine_build(goal_pos)
 				cur_task = Tasks.Ideling
-		goal_pos = null
+				goal_pos = null
+			Tasks.Gather:
+				inventory.append(cur_plan[0][1])
+				cur_plan.pop_front()
+				goal_pos = cur_plan[0][1]
+				cur_task = cur_plan[0][0]
+				cur_block = cur_plan[0][2]
 	if navigation_agent_2d.is_navigation_finished():
 		goal_pos = null
