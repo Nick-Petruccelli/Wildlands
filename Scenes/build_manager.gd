@@ -72,9 +72,11 @@ func add_stockpile(down_pos: Vector2, up_pos: Vector2) -> void:
 	var down_pos_map = get_map_from_global(down_pos)
 	var up_pos_map = get_map_from_global(up_pos)
 	var stockpile_area = []
-	for y in range(down_pos_map.y, up_pos_map.y+1):
+	var top_left = Vector2i(mini(down_pos_map.x, up_pos_map.x), mini(down_pos_map.y, up_pos_map.y))
+	var bot_right = Vector2i(maxi(down_pos_map.x, up_pos_map.x), maxi(down_pos_map.y, up_pos_map.y))
+	for y in range(top_left.y, bot_right.y+1):
 		var row = []
-		for x in range(down_pos_map.x, up_pos_map.x+1):
+		for x in range(top_left.x, bot_right.x+1):
 			var tile_cords = Vector2i(x,y)
 			row.append(tile_cords)
 			stock_pile_layer.set_cell(tile_cords, 0, Vector2i(0,0))
