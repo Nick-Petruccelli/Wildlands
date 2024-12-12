@@ -4,6 +4,7 @@ extends Node2D
 @export var map_width := 500
 @export var map_height := 500
 @onready var tile_map_layer: TileMapLayer = %TileMapLayer
+@onready var scene_manager: Node2D = %SceneManager
 signal build_ordered
 signal minning_ordered
 var placed_build = []
@@ -37,6 +38,8 @@ func mine_build(cords: Vector2) -> void:
 	var map_cords = Vector2i(floor(cords.x/tile_size.x), floor(cords.y/tile_size.y))
 	tile_map_layer.set_cell(map_cords, 0, Vector2i(0, 0))
 	placed_build[map_cords.x][map_cords.y] = -1
+	scene_manager.add_ground_item(map_cords, 0)
+	
 	
 
 func order_build(cords: Vector2i, tile_id: int) -> void:
