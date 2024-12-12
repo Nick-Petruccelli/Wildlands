@@ -1,22 +1,25 @@
 extends Node2D
 
+
+@onready var tile_map_layer: TileMapLayer = %TileMapLayer
+@onready var build_manager: Node2D = %BuildManager
+
+enum CursorMode {Minning, Building, Zoneing}
+
+var build_map = {0: Vector2i(1,1)}
 var hovered_objs = []
 var selected_obj = null
 var placing_build = false
 var minning = false
-@onready var tile_map_layer: TileMapLayer = %TileMapLayer
-@onready var build_manager: Node2D = %BuildManager
-var build_map = {0: Vector2i(1,1)}
+var cur_mouse_action = null
+var cur_mouse_action_args = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	#if selected_obj != null:
-		#print("Selected obj: ", selected_obj)
+func set_mouse_action(fun: Callable) -> void:
+	cur_mouse_action = fun
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
@@ -24,19 +27,14 @@ func _input(event: InputEvent) -> void:
 			selected_obj = hovered_objs[0]
 		
 		if hovered_objs.is_empty():
-			if minning:
-				build_manager.order_minning(get_global_mouse_position())
-				minning = false
-			if placing_build:
-				build_manager.order_build(get_global_mouse_position(), selected_obj)
-				selected_obj = null
-				placing_build = false
-			if selected_obj != null:
-				selected_obj.act_on_loc(get_global_mouse_position())
+			if cur_mouse_action != null:
+				cur_mouse_action.call(get_global_mouse_position())
+				cur_mouse_action = null
 
 func place_object(tile_id: int) -> void:
 	placing_build = true
 	selected_obj = tile_id
+	var minefun = mine_build
 
 func mine_build() -> void:
 	minning = true

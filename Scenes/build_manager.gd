@@ -26,7 +26,7 @@ func init_map() -> void:
 			row.append(-1)
 		placed_build.append(row)
 
-func place_build(cords: Vector2i, tile_id: int) -> void:
+func place_build(cords: Vector2, tile_id: int) -> void:
 	var selected_obj = tile_map[tile_id]
 	var tile_size = tile_map_layer.tile_set.tile_size
 	var map_cords = Vector2i(floor(cords.x/tile_size.x), floor(cords.y/tile_size.y))
@@ -42,7 +42,7 @@ func mine_build(cords: Vector2) -> void:
 	
 	
 
-func order_build(cords: Vector2i, tile_id: int) -> void:
+func order_build(cords: Vector2, tile_id: int) -> void:
 	var tile_size = tile_map_layer.tile_set.tile_size
 	var map_cords = Vector2i(floor(cords.x/tile_size.x), floor(cords.y/tile_size.y))
 	if placed_build[map_cords.x][map_cords.y] != -1:

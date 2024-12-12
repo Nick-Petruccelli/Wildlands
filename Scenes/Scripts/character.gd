@@ -18,6 +18,8 @@ func _ready() -> void:
 	build_manager.minning_ordered.connect(_on_minning_ordered)
 	
 func _on_minning_ordered() -> void:
+	if cur_task != Tasks.Ideling:
+		return
 	var next_minning = build_manager.get_next_minning()
 	if next_minning == null:
 		return
@@ -25,6 +27,8 @@ func _on_minning_ordered() -> void:
 	goal_pos = next_minning
 	
 func _on_build_ordered() -> void:
+	if cur_task != Tasks.Ideling:
+		return
 	var next_build = build_manager.get_next_build()
 	if next_build.is_empty():
 		return
