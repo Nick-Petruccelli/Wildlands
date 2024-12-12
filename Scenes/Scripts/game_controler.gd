@@ -11,6 +11,7 @@ var hovered_objs = []
 var selected_obj = null
 var placing_build = false
 var minning = false
+var mouse_down_at = null
 var cur_mouse_action = null
 var cur_mouse_action_args = null
 # Called when the node enters the scene tree for the first time.
@@ -23,13 +24,16 @@ func set_mouse_action(fun: Callable) -> void:
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
+		mouse_down_at = get_global_mouse_position()
+	if event is InputEventMouseButton and event.is_released():
 		if not hovered_objs.is_empty() and selected_obj == null:
 			selected_obj = hovered_objs[0]
 		
 		if hovered_objs.is_empty():
 			if cur_mouse_action != null:
-				cur_mouse_action.call(get_global_mouse_position())
+				cur_mouse_action.call(mouse_down_at, get_global_mouse_position())
 				cur_mouse_action = null
+		mouse_down_at = null
 
 func place_object(tile_id: int) -> void:
 	placing_build = true

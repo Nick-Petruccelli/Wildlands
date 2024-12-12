@@ -42,12 +42,12 @@ func mine_build(cords: Vector2) -> void:
 	
 	
 
-func order_build(cords: Vector2, tile_id: int) -> void:
+func order_build(down_pos: Vector2, up_pos: Vector2, tile_id: int) -> void:
 	var tile_size = tile_map_layer.tile_set.tile_size
-	var map_cords = Vector2i(floor(cords.x/tile_size.x), floor(cords.y/tile_size.y))
+	var map_cords = Vector2i(floor(up_pos.x/tile_size.x), floor(up_pos.y/tile_size.y))
 	if placed_build[map_cords.x][map_cords.y] != -1:
 		return
-	build_queue.push_back([cords, tile_id])
+	build_queue.push_back([up_pos, tile_id])
 	build_ordered.emit()
 	
 func get_next_build() -> Array:
@@ -55,12 +55,12 @@ func get_next_build() -> Array:
 		return []
 	return build_queue.pop_front()
 	
-func order_minning(cords: Vector2) -> void:
+func order_minning(down_pos: Vector2, up_pos: Vector2) -> void:
 	var tile_size = tile_map_layer.tile_set.tile_size
-	var map_cords = Vector2i(floor(cords.x/tile_size.x), floor(cords.y/tile_size.y))
+	var map_cords = Vector2i(floor(up_pos.x/tile_size.x), floor(up_pos.y/tile_size.y))
 	if placed_build[map_cords.x][map_cords.y] == -1:
 		return
-	minning_queue.push_back(cords)
+	minning_queue.push_back(up_pos)
 	minning_ordered.emit()
 	
 func get_next_minning():

@@ -9,4 +9,4 @@ func _ready() -> void:
 
 
 func _on_click() -> void:
-	game_controler.set_mouse_action(func(pos: Vector2): build_manager.order_build(pos, tile_id))
+	game_controler.set_mouse_action(func(down_pos, up_pos): build_manager.order_build(down_pos, up_pos, tile_id))
