@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="Texture2D" uid="uid://cw3t3l81w56yg" path="res://Assets/tilesheet.png" id="1_7hff7"]
-[ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
+[ext_resource type="PackedScene" path="res://action_state_machine.tscn" id="1_fxhci"]
 [ext_resource type="Script" path="res://Scenes/Scripts/build_manager.gd" id="2_3xt5l"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/action_state_machine.gd" id="2_8ycd8"]
 [ext_resource type="Script" path="res://Scenes/Scripts/scene_manager.gd" id="3_4nqg8"]
@@ -105,9 +105,6 @@ script = ExtResource("3_4nqg8")
 [node name="BuildManager" type="Node2D" parent="SceneManager"]
 unique_name_in_owner = true
 script = ExtResource("2_3xt5l")
-
-[node name="WorkManager" type="Node2D" parent="SceneManager"]
-unique_name_in_owner = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 unique_name_in_owner = true

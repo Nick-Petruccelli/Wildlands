@@ -21,9 +21,8 @@ func update(delta: float) -> void:
 	
 func physics_update(delta: float) -> void:
 	pass
-
+	
 func add_to_hovering(obj) -> void:
 	hovered_objs.append(obj)	
 func remove_from_hovering(obj) -> void:
-	hovered_objs.erase(obj)
 	hovered_objs.erase(obj)

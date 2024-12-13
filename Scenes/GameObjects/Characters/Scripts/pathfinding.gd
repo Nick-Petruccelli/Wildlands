@@ -1,14 +1,17 @@
 extends Node2D
 class_name Pathfinding
 
-var astar = AStarGrid2D.new()
 @onready var character: CharacterBody2D = $".."
+@onready var timer: Timer = $Timer
+
+var astar = AStarGrid2D.new()
 var tile_map = null
 var cur_path: PackedVector2Array
 var path_idx: int
 
 func _ready() -> void:
 	tile_map = character.tile_map_layer
+	timer.timeout.connect(_on_timeout)
 	init_map()
 	
 func _process(delta: float) -> void:
@@ -63,3 +66,8 @@ func _on_map_changed() -> void:
 	for tile in layer_tiles:
 		if tile_map.get_cell_tile_data(tile).get_collision_polygons_count(0) != 0:
 			astar.set_point_solid(tile)
+
+func _on_timeout() -> void:
+	if character.goal_pos == null:
+		return
+	update_path(character.global_position, character.goal_pos)

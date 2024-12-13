@@ -4,14 +4,13 @@ extends CharacterBody2D
 
 @onready var mouse_select_state: MouseSelectState = %MouseSelectState
 @onready var tile_map_layer: TileMapLayer = %TileMapLayer
-
-@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@onready var state_machine: Node2D = $StateMachine
 @onready var build_manager: Node2D = %BuildManager
-@onready var timer: Timer = $Timer
 @onready var pathfinding: Pathfinding = $Pathfinding
 
 var goal_pos = null
 var cur_block = null
+var work_queue = []
 
 enum Tasks {Building, Minning, Gather, Ideling}
 var cur_task = Tasks.Ideling
@@ -25,7 +24,6 @@ var timer_ticked = false
 func _ready() -> void:
 	connect("mouse_entered", _on_mouse_entered)
 	connect("mouse_exited", _on_mouse_exit)
-	timer.timeout.connect(_on_timer_timeout)
 	build_manager.build_ordered.connect(_on_build_ordered)
 	build_manager.minning_ordered.connect(_on_minning_ordered)
 	
@@ -39,21 +37,21 @@ func _on_minning_ordered() -> void:
 	goal_pos = next_minning
 	
 func _on_build_ordered() -> void:
-	if cur_task != Tasks.Ideling:
+	if state_machine.cur_state.name.to_lower() != 'idel':
 		return
 	var next_build = build_manager.get_next_build()
 	if next_build.is_empty():
 		return
 	var build_loc = next_build[0]
 	var build_mat = next_build[1]
+	var work_plan = []
 	if build_mat in inventory:
-		cur_plan.append([Tasks.Building, build_loc, build_mat])
+		work_plan.append([Tasks.Building, build_loc, build_mat])
 	else:
 		var mat_loc = build_manager.get_mat(build_mat)
-		cur_plan.append([Tasks.Gather, build_mat])
-		cur_plan.append([Tasks.Building, build_loc, build_mat])
-		cur_task = Tasks.Gather
-		goal_pos = mat_loc
+		#work_plan.append([Tasks.Gather, mat_loc, build_mat])
+		work_plan.append([$StateMachine/Working/Build, build_loc, build_mat])
+	work_queue.append(work_plan)
 	
 func _on_mouse_exit() -> void:
 	mouse_select_state.remove_from_hovering(self)
@@ -68,9 +66,6 @@ func act_on_loc(loc: Vector2) -> void:
 func _physics_process(delta: float) -> void:
 	if goal_pos == null:
 		return
-	if timer_ticked:
-		timer_ticked = false
-		pathfinding.update_path(global_position, goal_pos)
 	var next_node = pathfinding.next_node(global_position)
 	var vel = global_position.direction_to(next_node)
 	self.velocity = vel * speed
@@ -92,9 +87,5 @@ func _physics_process(delta: float) -> void:
 				inventory.append(cur_plan[0][1])
 				cur_plan.pop_front()
 				goal_pos = cur_plan[0][1]
-				navigation_agent_2d.target_position = goal_pos
 				cur_task = cur_plan[0][0]
 				cur_block = cur_plan[0][2]
-
-func _on_timer_timeout() -> void:
-	timer_ticked = true
