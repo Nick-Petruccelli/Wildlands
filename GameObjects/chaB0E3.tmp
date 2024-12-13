@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvar6b65bvlfe"]
+[gd_scene load_steps=5 format=3 uid="uid://bvar6b65bvlfe"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
 [ext_resource type="Texture2D" uid="uid://bh6pfnnxhjx2s" path="res://Assets/dude1.png" id="2_mtje5"]
-[ext_resource type="Script" path="res://GameObjects/pathfinding.gd" id="3_hknuf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qulpi"]
 animations = [{
@@ -16,8 +15,6 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5egs"]
-radius = 9.5
-height = 29.0
 
 [node name="Character" type="CharacterBody2D"]
 input_pickable = true
@@ -35,13 +32,11 @@ shape = SubResource("CapsuleShape2D_t5egs")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
 path_postprocessing = 1
+simplify_path = true
 avoidance_enabled = true
 radius = 50.4
 debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.578
+wait_time = 0.5
 autostart = true
-
-[node name="Pathfinding" type="Node2D" parent="."]
-script = ExtResource("3_hknuf")

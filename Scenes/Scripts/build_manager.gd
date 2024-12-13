@@ -8,6 +8,7 @@ extends Node2D
 @onready var scene_manager: Node2D = %SceneManager
 signal build_ordered
 signal minning_ordered
+signal build_placed
 var placed_build = []
 var active_stockpiles = []
 var build_queue = []
@@ -69,6 +70,7 @@ func place_build(cords: Vector2, tile_id: int) -> void:
 	var map_cords = get_map_from_global(cords)
 	tile_map_layer.set_cell(map_cords, 0, selected_obj)
 	placed_build[map_cords.x][map_cords.y] = tile_id
+	build_placed.emit()
 	
 func get_next_minning():
 	if minning_queue.is_empty():

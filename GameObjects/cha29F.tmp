@@ -23,6 +23,7 @@ height = 29.0
 input_pickable = true
 motion_mode = 1
 script = ExtResource("1_6f447")
+speed = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)

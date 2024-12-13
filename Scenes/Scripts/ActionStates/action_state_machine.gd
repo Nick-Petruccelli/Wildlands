@@ -26,7 +26,6 @@ func _on_transition(state: State, new_state_name: String) -> void:
 	cur_state = new_state
 	
 func _process(delta: float) -> void:
-	print(cur_state.hovering_ui)
 	if cur_state:
 		cur_state.update(delta)
 		
