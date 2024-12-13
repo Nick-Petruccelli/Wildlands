@@ -5,13 +5,14 @@ var selected = null
 var hovered_objs = []
 func enter() -> void:
 	selected = null
+	hovering_ui = false
 
 func exit() -> void:
 	selected = null
 	hovered_objs = []
 	
 func update(delta: float) -> void:
-	if Input.is_action_just_pressed('click'):
+	if Input.is_action_just_pressed('click') and !hovering_ui:
 		if hovered_objs.is_empty():
 			selected = null
 			return

@@ -2,6 +2,7 @@ extends Node2D
 class_name State
 
 signal transitioned
+var hovering_ui = false
 
 func enter() -> void:
 	pass
