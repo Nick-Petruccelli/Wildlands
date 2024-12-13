@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://c8wbxywbgtw3m"]
+[gd_scene load_steps=24 format=4 uid="uid://c8wbxywbgtw3m"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="Texture2D" uid="uid://cw3t3l81w56yg" path="res://Assets/tilesheet.png" id="1_7hff7"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bvar6b65bvlfe" path="res://GameObjects/character.tscn" id="3_q4bf7"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/place_build_state.gd" id="4_hkeoy"]
 [ext_resource type="Texture2D" uid="uid://lokinw6eqwh0" path="res://Assets/StockpileZone.png" id="5_187ep"]
+[ext_resource type="Script" path="res://Scenes/deconstuction_state.gd" id="5_dhv71"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/mine_btn.gd" id="5_gxxrw"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/stock_pile_btn.gd" id="7_rte21"]
 [ext_resource type="PackedScene" uid="uid://qgc5x5rnnxpv" path="res://Scenes/Wall.tscn" id="8_pbfms"]
@@ -83,6 +84,10 @@ script = ExtResource("3_iu413")
 [node name="PlaceBuildState" type="Node2D" parent="ActionStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("4_hkeoy")
+
+[node name="DeconstuctionState" type="Node2D" parent="ActionStateMachine"]
+unique_name_in_owner = true
+script = ExtResource("5_dhv71")
 
 [node name="GameControler" type="Node2D" parent="."]
 unique_name_in_owner = true

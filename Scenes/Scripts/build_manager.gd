@@ -50,7 +50,7 @@ func get_next_build() -> Array:
 		return []
 	return build_queue.pop_front()
 
-func order_minning(down_pos: Vector2, up_pos: Vector2) -> void:
+func order_deconstuction(down_pos: Vector2, up_pos: Vector2) -> void:
 	var map_cords = get_map_from_global(up_pos)
 	if placed_build[map_cords.x][map_cords.y] == -1:
 		return

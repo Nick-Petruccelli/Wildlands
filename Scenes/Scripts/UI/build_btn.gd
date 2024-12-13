@@ -8,6 +8,4 @@ func _ready() -> void:
 	
 func _on_click() -> void:
 	var asm_cur_state = action_state_machine.cur_state
-	print(asm_cur_state)
 	asm_cur_state.transitioned.emit(asm_cur_state, 'placebuildstate')
-	print(asm_cur_state)

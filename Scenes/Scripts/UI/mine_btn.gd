@@ -1,10 +1,11 @@
 extends Button
 
 
-@onready var game_controler: Node2D = %GameControler
-@onready var build_manager: Node2D = %BuildManager
+@onready var action_state_machine: Node2D = %ActionStateMachine
+
 func _ready() -> void:
 	connect("button_up", _on_click)
 	
 func _on_click() -> void:
-	game_controler.set_mouse_action(build_manager.order_minning)
+	var asm_cur_state = action_state_machine.cur_state
+	asm_cur_state.transitioned.emit(asm_cur_state, 'deconstuctionstate')
