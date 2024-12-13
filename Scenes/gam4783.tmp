@@ -1,6 +1,5 @@
 [gd_scene load_steps=23 format=4 uid="uid://c8wbxywbgtw3m"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="Texture2D" uid="uid://cw3t3l81w56yg" path="res://Assets/tilesheet.png" id="1_7hff7"]
 [ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
 [ext_resource type="Script" path="res://Scenes/Scripts/build_manager.gd" id="2_3xt5l"]
@@ -14,6 +13,22 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/mine_btn.gd" id="5_gxxrw"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/stock_pile_btn.gd" id="7_rte21"]
 [ext_resource type="PackedScene" uid="uid://qgc5x5rnnxpv" path="res://Scenes/Wall.tscn" id="8_pbfms"]
+
+[sub_resource type="GDScript" id="GDScript_px80w"]
+script/source = "extends Node2D
+
+@export var initial_state: State
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_j5cul"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -86,7 +101,7 @@ script = ExtResource("4_hkeoy")
 
 [node name="GameControler" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1_5k2rc")
+script = SubResource("GDScript_px80w")
 
 [node name="SceneManager" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -102,7 +117,6 @@ tile_map_data = PackedByteArray("AAD3//v/AAAAAAEAAAD4//v/AAAAAAEAAAD4//r/AAAAAAA
 tile_set = SubResource("TileSet_hqqi1")
 
 [node name="StockPileLayer" type="TileMapLayer" parent="."]
-unique_name_in_owner = true
 tile_set = SubResource("TileSet_f5s0c")
 
 [node name="Camera2D" type="Camera2D" parent="."]

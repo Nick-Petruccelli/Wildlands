@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var speed: int
 
+@onready var mouse_select_state: MouseSelectState = %MouseSelectState
+
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var build_manager: Node2D = %BuildManager
 var goal_pos = null
@@ -11,6 +13,9 @@ enum Tasks {Building, Minning, Gather, Ideling}
 var cur_task = Tasks.Ideling
 var cur_plan = []
 var inventory = []
+
+signal hovered
+signal unhovered
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,10 +53,10 @@ func _on_build_ordered() -> void:
 	
 	
 func _on_mouse_exit() -> void:
-	%GameControler.remove_from_hovering(self)
+	mouse_select_state.remove_from_hovering(self)
 	
 func _on_mouse_entered() -> void:
-	%GameControler.add_to_hovering(self)
+	mouse_select_state.add_to_hovering(self)
 
 func act_on_loc(loc: Vector2) -> void:
 	goal_pos = loc

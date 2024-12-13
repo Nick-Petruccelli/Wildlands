@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvar6b65bvlfe"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/character.gd" id="1_6f447"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
 [ext_resource type="Texture2D" uid="uid://bh6pfnnxhjx2s" path="res://Assets/dude1.png" id="2_mtje5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qulpi"]
@@ -34,4 +34,5 @@ path_desired_distance = 10.0
 path_postprocessing = 1
 simplify_path = true
 avoidance_enabled = true
+radius = 50.4
 debug_enabled = true

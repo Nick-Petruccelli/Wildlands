@@ -4,7 +4,7 @@ extends Node2D
 @export var map_width := 500
 @export var map_height := 500
 @onready var tile_map_layer: TileMapLayer = %TileMapLayer
-@onready var stock_pile_layer: TileMapLayer = $"../StockPileLayer"
+@onready var stock_pile_layer: TileMapLayer = %StockPileLayer
 @onready var scene_manager: Node2D = %SceneManager
 signal build_ordered
 signal minning_ordered
@@ -93,7 +93,6 @@ func get_mat(mat: int):
 	for pile in active_stockpiles:
 		for row in pile:
 			for e in row:
-				print(e)
 				if e[1] == mat:
 					return get_global_from_map(e[0])
 	return null
