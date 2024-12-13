@@ -41,8 +41,8 @@ func _on_build_ordered() -> void:
 		return
 	var build_loc = next_build[0]
 	var build_mat = next_build[1]
-	print("build_ordered")
 	if build_mat in inventory:
+		print(inventory)
 		cur_plan.append([Tasks.Building, build_loc, build_mat])
 	else:
 		var mat_loc = build_manager.get_mat(build_mat)
@@ -50,7 +50,7 @@ func _on_build_ordered() -> void:
 		cur_plan.append([Tasks.Building, build_loc, build_mat])
 		cur_task = Tasks.Gather
 		goal_pos = mat_loc
-	
+	print(cur_plan)
 	
 func _on_mouse_exit() -> void:
 	mouse_select_state.remove_from_hovering(self)
@@ -76,9 +76,11 @@ func _physics_process(delta: float) -> void:
 		match cur_task:
 			Tasks.Building:
 				build_manager.place_build(goal_pos, cur_block)
+				inventory.erase(cur_block)
 				cur_block = null
 				cur_task = Tasks.Ideling
 				goal_pos = null
+				cur_plan.pop_front()
 			Tasks.Minning:
 				build_manager.mine_build(goal_pos)
 				cur_task = Tasks.Ideling
