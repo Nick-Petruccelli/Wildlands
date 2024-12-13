@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bvar6b65bvlfe" path="res://GameObjects/character.tscn" id="3_q4bf7"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/place_build_state.gd" id="4_hkeoy"]
 [ext_resource type="Texture2D" uid="uid://lokinw6eqwh0" path="res://Assets/StockpileZone.png" id="5_187ep"]
-[ext_resource type="Script" path="res://Scenes/deconstuction_state.gd" id="5_dhv71"]
+[ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/deconstuction_state.gd" id="5_dhv71"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/mine_btn.gd" id="5_gxxrw"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/stock_pile_btn.gd" id="7_rte21"]
 [ext_resource type="PackedScene" uid="uid://qgc5x5rnnxpv" path="res://Scenes/Wall.tscn" id="8_pbfms"]

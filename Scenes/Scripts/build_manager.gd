@@ -51,10 +51,17 @@ func get_next_build() -> Array:
 	return build_queue.pop_front()
 
 func order_deconstuction(down_pos: Vector2, up_pos: Vector2) -> void:
-	var map_cords = get_map_from_global(up_pos)
-	if placed_build[map_cords.x][map_cords.y] == -1:
-		return
-	minning_queue.push_back(up_pos)
+	var down_pos_map = get_map_from_global(down_pos)
+	var up_pos_map = get_map_from_global(up_pos)
+	var stockpile_area = []
+	var top_left = Vector2i(mini(down_pos_map.x, up_pos_map.x), mini(down_pos_map.y, up_pos_map.y))
+	var bot_right = Vector2i(maxi(down_pos_map.x, up_pos_map.x), maxi(down_pos_map.y, up_pos_map.y))
+	for y in range(top_left.y, bot_right.y+1):
+		var row = []
+		for x in range(top_left.x, bot_right.x+1):
+			if placed_build[x][y] == -1:
+				continue
+			minning_queue.push_back(get_global_from_map(Vector2i(x,y)))
 	minning_ordered.emit()
 	
 func place_build(cords: Vector2, tile_id: int) -> void:
