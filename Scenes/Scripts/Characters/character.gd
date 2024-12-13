@@ -14,9 +14,6 @@ var cur_task = Tasks.Ideling
 var cur_plan = []
 var inventory = []
 
-signal hovered
-signal unhovered
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connect("mouse_entered", _on_mouse_entered)

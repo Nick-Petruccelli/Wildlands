@@ -13,6 +13,8 @@ func exit() -> void:
 	cur_zone_type = null
 	
 func update(delta: float) -> void:
+	if Input.is_action_just_pressed("cancel"):
+		transitioned.emit(self, 'mouseselectstate')
 	if Input.is_action_just_pressed("click"):
 		down_pos = get_global_mouse_position()
 	if Input.is_action_just_released("click"):
