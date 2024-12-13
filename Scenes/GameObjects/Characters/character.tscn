@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvar6b65bvlfe"]
+[gd_scene load_steps=12 format=3 uid="uid://bvar6b65bvlfe"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
 [ext_resource type="Texture2D" uid="uid://bh6pfnnxhjx2s" path="res://Assets/dude1.png" id="2_mtje5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/working.gd" id="6_veev3"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/recreation.gd" id="7_mbta5"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/build.gd" id="7_vc0hq"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/gather.gd" id="8_fjgvi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qulpi"]
 animations = [{
@@ -67,6 +68,9 @@ script = ExtResource("6_veev3")
 
 [node name="Build" type="Node2D" parent="StateMachine/Working"]
 script = ExtResource("7_vc0hq")
+
+[node name="Gather" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("8_fjgvi")
 
 [node name="Recreation" type="Node2D" parent="StateMachine"]
 script = ExtResource("7_mbta5")

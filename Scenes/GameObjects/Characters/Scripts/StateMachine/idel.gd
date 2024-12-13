@@ -21,7 +21,6 @@ func physics_update(delta: float) -> void:
 	character.move_and_slide()
 
 func _on_timeout() -> void:
-	print('hit')
 	character.velocity = get_rand_vel()
 	
 func get_rand_vel() -> Vector2:

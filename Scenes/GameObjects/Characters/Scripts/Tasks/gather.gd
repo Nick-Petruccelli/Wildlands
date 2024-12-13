@@ -1,14 +1,19 @@
 extends Task
-class_name Build
+class_name Gather
 
-var build_mat: int = -1
-@onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 @onready var character: CharacterBody2D = $"../../.."
+@onready var pathfinding: Pathfinding = $"../../../Pathfinding"
+
+var item_to_gather: int = -1
 
 func execute(args: Array) -> void:
 	character.goal_pos = args[1]
-	build_mat = args[2]
+	item_to_gather = args[2]
+	
 
+func update() -> void:
+	pass
+	
 func physics_update() -> void:
 	if character.goal_pos == null:
 		return
@@ -17,11 +22,10 @@ func physics_update() -> void:
 	character.velocity = vel * character.speed
 	character.move_and_slide()
 	if character.global_position.distance_to(character.goal_pos) < 35:
-		character.build_manager.place_build(character.goal_pos, build_mat)
-		character.inventory.erase(build_mat)
+		character.inventory.append(item_to_gather)
 		exit()
 
-func exit():
+func exit() -> void:
 	character.goal_pos = null
-	build_mat = -1
+	item_to_gather = -1
 	done_executing.emit()

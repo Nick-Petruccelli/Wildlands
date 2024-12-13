@@ -4,8 +4,14 @@ class_name Task
 
 signal done_executing
 
-func _execute(args: Array) -> void:
+func execute(args: Array) -> void:
 	pass
 
-func _process(delta: float) -> void:
+func update() -> void:
+	pass
+	
+func physics_update() -> void:
+	pass
+
+func exit() -> void:
 	pass

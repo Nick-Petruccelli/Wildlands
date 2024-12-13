@@ -38,6 +38,7 @@ func _on_minning_ordered() -> void:
 	
 func _on_build_ordered() -> void:
 	if state_machine.cur_state.name.to_lower() != 'idel':
+		print('hit')
 		return
 	var next_build = build_manager.get_next_build()
 	if next_build.is_empty():
@@ -49,7 +50,7 @@ func _on_build_ordered() -> void:
 		work_plan.append([Tasks.Building, build_loc, build_mat])
 	else:
 		var mat_loc = build_manager.get_mat(build_mat)
-		#work_plan.append([Tasks.Gather, mat_loc, build_mat])
+		work_plan.append([$StateMachine/Working/Gather, mat_loc, build_mat])
 		work_plan.append([$StateMachine/Working/Build, build_loc, build_mat])
 	work_queue.append(work_plan)
 	
@@ -72,20 +73,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if global_position.distance_to(goal_pos) < 35:
 		match cur_task:
-			Tasks.Building:
-				build_manager.place_build(goal_pos, cur_block)
-				inventory.erase(cur_block)
-				cur_block = null
-				cur_task = Tasks.Ideling
-				goal_pos = null
-				cur_plan.pop_front()
 			Tasks.Minning:
 				build_manager.mine_build(goal_pos)
 				cur_task = Tasks.Ideling
 				goal_pos = null
-			Tasks.Gather:
-				inventory.append(cur_plan[0][1])
-				cur_plan.pop_front()
-				goal_pos = cur_plan[0][1]
-				cur_task = cur_plan[0][0]
-				cur_block = cur_plan[0][2]
