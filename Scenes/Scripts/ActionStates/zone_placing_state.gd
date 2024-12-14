@@ -1,7 +1,7 @@
 extends State
 class_name ZonePlacingState
 
-@onready var build_manager: Node2D = %BuildManager
+@onready var build_layer: TileMapLayer = $"../../SceneManager/BuildLayer"
 var cur_zone_type = null
 var down_pos = null
 
@@ -22,7 +22,7 @@ func update(_delta: float) -> void:
 		if down_pos == null:
 			return
 		#TODO this needs to eventualy work for more than just stockpile but that comes later
-		build_manager.add_stockpile(down_pos, get_global_mouse_position())
+		build_layer.add_stockpile(down_pos, get_global_mouse_position())
 	
 func physics_update(_delta: float) -> void:
 	pass

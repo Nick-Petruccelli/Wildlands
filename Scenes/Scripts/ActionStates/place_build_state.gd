@@ -1,7 +1,7 @@
 extends State
 class_name PlaceBuildState
 
-@onready var build_manager: Node2D = %BuildManager
+@onready var build_layer: TileMapLayer = $"../../SceneManager/BuildLayer"
 var cur_material = null
 var mouse_down = null
 var mouse_up = null
@@ -22,7 +22,7 @@ func update(_delta: float) -> void:
 	if Input.is_action_just_released('click') and !hovering_ui:
 		if cur_material == null or mouse_down == null:
 			return
-		build_manager.order_build(mouse_down, get_global_mouse_position(), cur_material)
+		build_layer.order_build(mouse_down, get_global_mouse_position(), cur_material)
 	
 func physics_update(_delta: float) -> void:
 	pass

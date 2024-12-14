@@ -6,7 +6,6 @@ extends CharacterBody2D
 @onready var floor_layer: TileMapLayer = %FloorLayer
 @onready var build_layer: TileMapLayer = $"../../BuildLayer"
 @onready var state_machine: Node2D = $StateMachine
-@onready var build_manager: Node2D = %BuildManager
 @onready var pathfinding: Pathfinding = $Pathfinding
 @onready var scene_manager: Node2D = %SceneManager
 
@@ -21,13 +20,13 @@ var inventory = []
 func _ready() -> void:
 	connect("mouse_entered", _on_mouse_entered)
 	connect("mouse_exited", _on_mouse_exit)
-	build_manager.build_ordered.connect(_on_build_ordered)
-	build_manager.minning_ordered.connect(_on_minning_ordered)
+	build_layer.build_ordered.connect(_on_build_ordered)
+	build_layer.minning_ordered.connect(_on_minning_ordered)
 	
 func _on_minning_ordered() -> void:
 	if state_machine.cur_state.name.to_lower() != 'idel':
 		return
-	var deconstruct_loc = build_manager.get_next_minning()
+	var deconstruct_loc = build_layer.get_next_minning()
 	if deconstruct_loc == null:
 		return
 	var work_plan = [[$StateMachine/Working/Deconstruct, deconstruct_loc]]
@@ -36,7 +35,7 @@ func _on_minning_ordered() -> void:
 func _on_build_ordered() -> void:
 	if state_machine.cur_state.name.to_lower() != 'idel':
 		return
-	var next_build = build_manager.get_next_build()
+	var next_build = build_layer.get_next_build()
 	if next_build.is_empty():
 		return
 	var build_loc = next_build[0]
@@ -45,7 +44,7 @@ func _on_build_ordered() -> void:
 	if build_mat in inventory:
 		work_plan.append([$StateMachine/Working/Build, build_loc, build_mat])
 	else:
-		var mat_loc = build_manager.get_mat(build_mat)
+		var mat_loc = build_layer.get_mat(build_mat)
 		if mat_loc == Vector2i(-1,-1):
 			mat_loc = scene_manager.get_item(build_mat)
 			if mat_loc == Vector2i(-1,-1):

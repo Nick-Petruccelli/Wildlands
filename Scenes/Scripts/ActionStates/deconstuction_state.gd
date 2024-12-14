@@ -1,7 +1,7 @@
 extends State
 class_name DeconstuctionState
 
-@onready var build_manager: Node2D = %BuildManager
+@onready var build_layer: TileMapLayer = $"../../SceneManager/BuildLayer"
 var down_pos = null
 
 func enter() -> void:
@@ -19,7 +19,7 @@ func update(_delta: float) -> void:
 	if Input.is_action_just_released("click") and !hovering_ui:
 		if down_pos == null:
 			return
-		build_manager.order_deconstuction(down_pos, get_global_mouse_position())
+		build_layer.order_deconstuction(down_pos, get_global_mouse_position())
 	
 func physics_update(_delta: float) -> void:
 	pass

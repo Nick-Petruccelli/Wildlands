@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 func init_map() -> void:
 	if tile_map == null:
 		return
-	character.build_manager.build_placed.connect(_on_map_changed)
+	character.build_layer.build_placed.connect(_on_map_changed)
 	astar.region = Rect2i(0, 0, 18, 10)
 	astar.cell_size = Vector2i(32,32)
 	astar.set_diagonal_mode(3)
