@@ -12,9 +12,7 @@ func update() -> void:
 func physics_update() -> void:
 	if character.goal_pos == null:
 		return
-	print_debug("goal: ", character.goal_pos)
 	var next_node = pathfinding.next_node(character.global_position)
-	print_debug("next: ", next_node)
 	var vel = character.global_position.direction_to(next_node)
 	character.velocity = vel * character.speed
 	character.move_and_slide()

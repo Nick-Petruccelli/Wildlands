@@ -25,11 +25,13 @@ func _ready() -> void:
 	
 func _on_minning_ordered() -> void:
 	if state_machine.cur_state.name.to_lower() != 'idel':
+		print('hit')
 		return
 	var deconstruct_loc = build_layer.get_next_minning()
 	if deconstruct_loc == null:
 		return
 	var work_plan = [[$StateMachine/Working/Deconstruct, deconstruct_loc]]
+	print("deconLoc: ",deconstruct_loc)
 	work_queue.append(work_plan)
 	
 func _on_build_ordered() -> void:

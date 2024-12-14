@@ -20,6 +20,6 @@ func update(_delta: float) -> void:
 		if down_pos == null:
 			return
 		build_layer.order_deconstuction(down_pos, get_global_mouse_position())
-	
+		print("-----------------deconstuction---------------------")
 func physics_update(_delta: float) -> void:
 	pass

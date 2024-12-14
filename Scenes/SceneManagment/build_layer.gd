@@ -29,18 +29,10 @@ func init_map() -> void:
 			row.append(-1)
 		placed_build.append(row)
 
-func get_map_from_global(glob: Vector2) -> Vector2:
-	var tile_size = floor_layer.tile_set.tile_size
-	return Vector2i(floor(glob.x/tile_size.x), floor(glob.y/tile_size.y))
 
-func get_global_from_map(map: Vector2i) -> Vector2i:
-	var tile_size = floor_layer.tile_set.tile_size
-	var x_off = tile_size.x/2
-	var y_off = tile_size.y/2
-	return Vector2(map.x*tile_size.x + x_off, map.y*tile_size.y + y_off)
 
 func order_build(down_pos: Vector2, up_pos: Vector2, tile_id: int) -> void:
-	var map_cords = get_map_from_global(up_pos)
+	var map_cords = Cords.get_map_from_global(up_pos)
 	if placed_build[map_cords.x][map_cords.y] != -1:
 		return
 	build_queue.push_back([up_pos, tile_id])
@@ -52,20 +44,20 @@ func get_next_build() -> Array:
 	return build_queue.pop_front()
 
 func order_deconstuction(down_pos: Vector2, up_pos: Vector2) -> void:
-	var down_pos_map = get_map_from_global(down_pos)
-	var up_pos_map = get_map_from_global(up_pos)
+	var down_pos_map = Cords.get_map_from_global(down_pos)
+	var up_pos_map = Cords.get_map_from_global(up_pos)
 	var top_left = Vector2i(mini(down_pos_map.x, up_pos_map.x), mini(down_pos_map.y, up_pos_map.y))
 	var bot_right = Vector2i(maxi(down_pos_map.x, up_pos_map.x), maxi(down_pos_map.y, up_pos_map.y))
 	for y in range(top_left.y, bot_right.y+1):
 		for x in range(top_left.x, bot_right.x+1):
 			if placed_build[x][y] == -1:
 				continue
-			minning_queue.push_back(get_global_from_map(Vector2i(x,y)))
+			minning_queue.push_back(Cords.get_global_from_map(Vector2i(x,y)))
 	minning_ordered.emit()
 	
 func place_build(cords: Vector2, tile_id: int) -> void:
 	var selected_obj = tile_map[tile_id]
-	var map_cords = get_map_from_global(cords)
+	var map_cords = Cords.get_map_from_global(cords)
 	floor_layer.set_cell(map_cords, 0, selected_obj)
 	placed_build[map_cords.x][map_cords.y] = tile_id
 	build_placed.emit()
@@ -76,14 +68,14 @@ func get_next_minning():
 	return minning_queue.pop_front()
 	
 func deconstruct_build(cords: Vector2) -> void:
-	var map_cords = get_map_from_global(cords)
+	var map_cords = Cords.get_map_from_global(cords)
 	floor_layer.set_cell(map_cords, 0, Vector2i(0, 0))
 	placed_build[map_cords.x][map_cords.y] = -1
 	scene_manager.add_ground_item(map_cords, 0)
 
 func add_stockpile(down_pos: Vector2, up_pos: Vector2) -> void:
-	var down_pos_map = get_map_from_global(down_pos)
-	var up_pos_map = get_map_from_global(up_pos)
+	var down_pos_map = Cords.get_map_from_global(down_pos)
+	var up_pos_map = Cords.get_map_from_global(up_pos)
 	var stockpile_area = []
 	var top_left = Vector2i(mini(down_pos_map.x, up_pos_map.x), mini(down_pos_map.y, up_pos_map.y))
 	var bot_right = Vector2i(maxi(down_pos_map.x, up_pos_map.x), maxi(down_pos_map.y, up_pos_map.y))
@@ -101,5 +93,5 @@ func get_mat(mat: int) -> Vector2i:
 		for row in pile:
 			for e in row:
 				if e[1] == mat:
-					return get_global_from_map(e[0])
+					return Cords.get_global_from_map(e[0])
 	return Vector2i(-1, -1)

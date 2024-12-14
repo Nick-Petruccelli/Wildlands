@@ -20,11 +20,5 @@ func add_ground_item(map_cords, item_id):
 func get_item(item_id: int) -> Vector2i:
 	for item in items_on_ground:
 		if item == item_id:
-			return get_global_from_map(items_on_ground[item])
+			return Cords.get_global_from_map(items_on_ground[item])
 	return Vector2i(-1,-1)
-
-func get_global_from_map(map: Vector2i) -> Vector2i:
-	var tile_size = floor_layer.tile_set.tile_size
-	var x_off = tile_size.x/2
-	var y_off = tile_size.y/2
-	return Vector2(map.x*tile_size.x + x_off, map.y*tile_size.y + y_off)
