@@ -17,11 +17,9 @@ func enter() -> void:
 func exit() -> void:
 	character.velocity = Vector2()
 	
-func update(delta: float) -> void:
-	print(character.work_queue)
+func update(_delta: float) -> void:
 	if character.work_queue.is_empty():
 		transitioned.emit(self, 'idel')
-		print('done working')
 		return
 	if in_task:
 		return
@@ -34,7 +32,7 @@ func update(delta: float) -> void:
 	in_task = true
 	
 	
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	if work_plan.is_empty():
 		return
 	var task = work_plan[0]

@@ -22,6 +22,7 @@ func physics_update() -> void:
 	character.velocity = vel * character.speed
 	character.move_and_slide()
 	if character.global_position.distance_to(character.goal_pos) < 35:
+		#character.build_manager.remove_from_stockpile(character.goal_pos, item_to_gather)
 		character.inventory.append(item_to_gather)
 		exit()
 

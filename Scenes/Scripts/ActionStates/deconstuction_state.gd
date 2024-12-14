@@ -11,7 +11,7 @@ func enter() -> void:
 func exit() -> void:
 	down_pos = null
 	
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	if Input.is_action_just_pressed("cancel"):
 		transitioned.emit(self, 'mouseselectstate')
 	if Input.is_action_just_pressed("click"):
@@ -21,5 +21,5 @@ func update(delta: float) -> void:
 			return
 		build_manager.order_deconstuction(down_pos, get_global_mouse_position())
 	
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass

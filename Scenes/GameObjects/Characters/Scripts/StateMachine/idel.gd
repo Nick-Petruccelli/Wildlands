@@ -13,11 +13,11 @@ func enter() -> void:
 func exit() -> void:
 	character.velocity = Vector2()
 	
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	if !character.work_queue.is_empty():
 		transitioned.emit(self, 'working')
 	
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	character.move_and_slide()
 
 func _on_timeout() -> void:

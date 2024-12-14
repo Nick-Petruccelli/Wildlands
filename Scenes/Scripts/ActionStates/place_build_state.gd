@@ -14,7 +14,7 @@ func enter() -> void:
 func exit() -> void:
 	cur_material = null
 	
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	if Input.is_action_just_pressed("cancel"):
 		transitioned.emit(self, 'mouseselectstate')
 	if Input.is_action_just_pressed('click'):
@@ -24,5 +24,5 @@ func update(delta: float) -> void:
 			return
 		build_manager.order_build(mouse_down, get_global_mouse_position(), cur_material)
 	
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass

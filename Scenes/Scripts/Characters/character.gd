@@ -3,22 +3,19 @@ extends CharacterBody2D
 @export var speed: int
 
 @onready var mouse_select_state: MouseSelectState = %MouseSelectState
-@onready var tile_map_layer: TileMapLayer = %TileMapLayer
+@onready var floor_layer: TileMapLayer = %FloorLayer
+@onready var build_layer: TileMapLayer = $"../../BuildLayer"
 @onready var state_machine: Node2D = $StateMachine
 @onready var build_manager: Node2D = %BuildManager
 @onready var pathfinding: Pathfinding = $Pathfinding
+@onready var scene_manager: Node2D = %SceneManager
 
 var goal_pos = null
 var cur_block = null
 var work_queue = []
-
-enum Tasks {Building, Minning, Gather, Ideling}
-var cur_task = Tasks.Ideling
+var cur_path = PackedVector2Array()
 var cur_plan = []
 var inventory = []
-var cur_path: PackedVector2Array = []
-var cur_path_idx = 0
-var timer_ticked = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,17 +25,16 @@ func _ready() -> void:
 	build_manager.minning_ordered.connect(_on_minning_ordered)
 	
 func _on_minning_ordered() -> void:
-	if cur_task != Tasks.Ideling:
+	if state_machine.cur_state.name.to_lower() != 'idel':
 		return
-	var next_minning = build_manager.get_next_minning()
-	if next_minning == null:
+	var deconstruct_loc = build_manager.get_next_minning()
+	if deconstruct_loc == null:
 		return
-	cur_task = Tasks.Minning
-	goal_pos = next_minning
+	var work_plan = [[$StateMachine/Working/Deconstruct, deconstruct_loc]]
+	work_queue.append(work_plan)
 	
 func _on_build_ordered() -> void:
 	if state_machine.cur_state.name.to_lower() != 'idel':
-		print('hit')
 		return
 	var next_build = build_manager.get_next_build()
 	if next_build.is_empty():
@@ -47,9 +43,13 @@ func _on_build_ordered() -> void:
 	var build_mat = next_build[1]
 	var work_plan = []
 	if build_mat in inventory:
-		work_plan.append([Tasks.Building, build_loc, build_mat])
+		work_plan.append([$StateMachine/Working/Build, build_loc, build_mat])
 	else:
 		var mat_loc = build_manager.get_mat(build_mat)
+		if mat_loc == Vector2i(-1,-1):
+			mat_loc = scene_manager.get_item(build_mat)
+			if mat_loc == Vector2i(-1,-1):
+				return
 		work_plan.append([$StateMachine/Working/Gather, mat_loc, build_mat])
 		work_plan.append([$StateMachine/Working/Build, build_loc, build_mat])
 	work_queue.append(work_plan)
@@ -63,17 +63,3 @@ func _on_mouse_entered() -> void:
 func act_on_loc(loc: Vector2) -> void:
 	goal_pos = loc
 	%GameControler.unselect()
-
-func _physics_process(delta: float) -> void:
-	if goal_pos == null:
-		return
-	var next_node = pathfinding.next_node(global_position)
-	var vel = global_position.direction_to(next_node)
-	self.velocity = vel * speed
-	move_and_slide()
-	if global_position.distance_to(goal_pos) < 35:
-		match cur_task:
-			Tasks.Minning:
-				build_manager.mine_build(goal_pos)
-				cur_task = Tasks.Ideling
-				goal_pos = null

@@ -4,7 +4,7 @@ class_name Task
 
 signal done_executing
 
-func execute(args: Array) -> void:
+func execute(_args: Array) -> void:
 	pass
 
 func update() -> void:

@@ -11,7 +11,7 @@ func exit() -> void:
 	selected = null
 	hovered_objs = []
 	
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	if Input.is_action_just_pressed('click') and !hovering_ui:
 		if hovered_objs.is_empty():
 			selected = null
@@ -19,7 +19,7 @@ func update(delta: float) -> void:
 		selected = hovered_objs[0]
 		
 	
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass
 	
 func add_to_hovering(obj) -> void:

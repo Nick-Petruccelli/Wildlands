@@ -38,7 +38,6 @@ func _input(event: InputEvent) -> void:
 func place_object(tile_id: int) -> void:
 	placing_build = true
 	selected_obj = tile_id
-	var minefun = mine_build
 
 func mine_build() -> void:
 	minning = true
