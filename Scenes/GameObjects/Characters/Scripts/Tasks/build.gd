@@ -19,8 +19,8 @@ func physics_update() -> void:
 		return
 	var next_node = pathfinding.next_node(character.global_position)
 	var vel = global_position.direction_to(next_node)
-	character.velocity = vel * character.speed
-	character.move_and_slide()
+	character.velocity = vel
+	character.move_with_vel()
 	if character.global_position.distance_to(character.goal_pos) < 35:
 		character.build_layer.place_build(character.goal_pos, build_mat)
 		character.inventory.erase(build_mat)

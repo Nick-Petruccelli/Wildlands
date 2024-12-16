@@ -18,12 +18,12 @@ func update(_delta: float) -> void:
 		transitioned.emit(self, 'working')
 	
 func physics_update(_delta: float) -> void:
-	character.move_and_slide()
+	character.move_with_vel()
 
 func _on_timeout() -> void:
 	character.velocity = get_rand_vel()
 	
 func get_rand_vel() -> Vector2:
-	var x = randf_range(-character.speed/2, character.speed/2)
-	var y = randf_range(-character.speed/2, character.speed/2)
+	var x = randf_range(-1/2, 1/2)
+	var y = randf_range(-1/2, 1/2)
 	return Vector2(x, y)

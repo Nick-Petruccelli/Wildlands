@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed: int
+var speed_mod = 1
 
 #@onready var mouse_select_state: MouseSelectState = %MouseSelectState
 @onready var mouse_select_state: MouseSelectState = get_tree().get_first_node_in_group("mouseselectstate")
@@ -76,3 +77,8 @@ func _on_mouse_entered() -> void:
 func act_on_loc(loc: Vector2) -> void:
 	goal_pos = loc
 	%GameControler.unselect()
+
+func move_with_vel() -> void:
+	print(speed_mod)
+	velocity  = velocity * speed * speed_mod
+	move_and_slide()

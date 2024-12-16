@@ -32,6 +32,11 @@ cancel={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Enviorment"
+2d_physics/layer_2="Characters"
+
 [navigation]
 
 2d/default_cell_size=32.0
