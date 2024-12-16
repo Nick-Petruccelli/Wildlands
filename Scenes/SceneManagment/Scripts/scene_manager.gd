@@ -1,6 +1,9 @@
 extends Node2D
 @onready var game: Node2D = $".."
 @onready var floor_layer: TileMapLayer = $FloorLayer
+@onready var zone_layer: TileMapLayer = $ZoneLayer
+@onready var stone_layer: TileMapLayer = $StoneLayer
+@onready var plant_layer: TileMapLayer = $PlantLayer
 @onready var characters: Node2D = $Characters
 
 
@@ -25,22 +28,30 @@ func order_work(task: String, args: Array):
 	work_queue.push_back([task, args])
 	
 func query_work() -> void:
-	print(work_queue)
 	if work_queue.is_empty():
 		return
 	for colonist in characters.get_children():
 		colonist.get_work_order(work_queue)
 
-func add_ground_item(map_cords, item_id):
-	items_on_ground[item_id] = map_cords
+func add_ground_item(map_cords: Vector2i, item_id: int):
 	var item = preload("res://Scenes/Wall.tscn").instantiate()
 	game.add_child(item)
 	var tile_size = floor_layer.tile_set.tile_size
 	var x_off = tile_size.x/2
 	var y_off = tile_size.y/2
-	var pos = Vector2(map_cords.x*tile_size.x + x_off, map_cords.y*tile_size.y + y_off)
+	var pos = Vector2i(map_cords.x*tile_size.x + x_off, map_cords.y*tile_size.y + y_off)
 	item.global_position = pos
+	if !items_on_ground.has(item_id):
+		items_on_ground[item_id] = []
+	items_on_ground[item_id].append([map_cords, item])
 	
+func remove_ground_item(map_cords: Vector2i, item_id: int) -> void:
+	for item in items_on_ground[item_id]:
+		if item[0] == map_cords:
+			items_on_ground[item_id].erase(item)
+			item[1].queue_free()
+			return
+
 func get_item(item_id: int) -> Vector2i:
 	for item in items_on_ground:
 		if item == item_id:

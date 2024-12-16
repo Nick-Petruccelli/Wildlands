@@ -44,7 +44,6 @@ func _on_minning_ordered() -> void:
 	if deconstruct_loc == null:
 		return
 	var work_plan = [[$StateMachine/Working/Deconstruct, deconstruct_loc]]
-	print("deconLoc: ",deconstruct_loc)
 	cur_work = work_plan
 	
 func _on_build_ordered() -> void:
