@@ -33,7 +33,7 @@ func get_deconstruct_tiles(down_pos: Vector2i, up_pos: Vector2i) -> Array[Vector
 	var up_pos_map = Cords.get_map_from_global(up_pos)
 	var top_left = Vector2i(mini(down_pos_map.x, up_pos_map.x), mini(down_pos_map.y, up_pos_map.y))
 	var bot_right = Vector2i(maxi(down_pos_map.x, up_pos_map.x), maxi(down_pos_map.y, up_pos_map.y))
-	var out = []
+	var out: Array[Vector2i] = []
 	for y in range(top_left.y, bot_right.y+1):
 		for x in range(top_left.x, bot_right.x+1):
 			if build_layer.placed_build[x][y] == -1:

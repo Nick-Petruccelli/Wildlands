@@ -1,11 +1,11 @@
 extends Task
-class_name Mine
+class_name Deconstruct
 
 @onready var character: CharacterBody2D = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
 func execute(args: Array) -> void:
-	character.goal_pos = args[0]
+	character.goal_pos = args[1]
 
 func update() -> void:
 	pass
