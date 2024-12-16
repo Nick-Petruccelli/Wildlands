@@ -5,7 +5,7 @@ class_name Deconstruct
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
 func execute(args: Array) -> void:
-	character.goal_pos = args[1]
+	character.goal_pos = args[0]
 
 func update() -> void:
 	pass
@@ -18,7 +18,8 @@ func physics_update() -> void:
 	character.velocity = vel * character.speed
 	character.move_and_slide()
 	if character.global_position.distance_to(character.goal_pos) < 35:
-		character.build_layer.deconstruct_build(character.goal_pos)
+		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
+		scene_manager.get_child(3).mine(character.goal_pos)
 		exit()
 
 func exit() -> void:
