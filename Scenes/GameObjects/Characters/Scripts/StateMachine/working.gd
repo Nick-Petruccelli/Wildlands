@@ -44,4 +44,5 @@ func _on_done_executing() -> void:
 	work_plan.pop_front()
 	if work_plan.is_empty():
 		job_done = true
+		character.work_done.emit(character)
 	in_task = false
