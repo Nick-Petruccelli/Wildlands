@@ -2,6 +2,7 @@ extends Node2D
 @onready var game: Node2D = $".."
 @onready var floor_layer: TileMapLayer = $FloorLayer
 @onready var zone_layer: TileMapLayer = $ZoneLayer
+@onready var build_layer: TileMapLayer = $BuildLayer
 @onready var stone_layer: TileMapLayer = $StoneLayer
 @onready var plant_layer: TileMapLayer = $PlantLayer
 @onready var characters: Node2D = $Characters

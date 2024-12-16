@@ -41,13 +41,15 @@ func put_in_stockpile(loc: Vector2i, item_id: int) -> void:
 					item.global_position = pos
 					e[2] = item
 
-func remove_from_stockpile(loc: Vector2i) -> int:
+func remove_from_stockpile(loc: Vector2i, item_id: int) -> int:
 	var item_out = -1
 	for pile in active_stockpiles:
 		for row in pile:
 			for e in row:
 				if e[0] == loc:
 					item_out = e[1]
+					if item_out == -1:
+						return item_out
 					e[1] = -1
 					e[2].queue_free()
 					e[2] = null

@@ -22,7 +22,7 @@ func physics_update() -> void:
 	character.velocity = vel
 	character.move_with_vel()
 	if character.global_position.distance_to(character.goal_pos) < 35:
-		character.build_layer.place_build(character.goal_pos, build_mat)
+		character.scene_manager.build_layer.place_build(character.goal_pos, build_mat)
 		character.inventory.erase(build_mat)
 		exit()
 

@@ -4,30 +4,29 @@ class_name Pathfinding
 @onready var character: CharacterBody2D = $".."
 @onready var timer: Timer = $Timer
 
+var scene_manager: Node2D = null
 var astar = AStarGrid2D.new()
-var tile_map = null
 var cur_path: PackedVector2Array
 var path_idx: int
 
 func _ready() -> void:
-	tile_map = character.floor_layer
 	timer.timeout.connect(_on_timeout)
 	init_map()
 	
 func _process(_delta: float) -> void:
-	if tile_map == null:
-		tile_map = character.floor_layer
+	if scene_manager == null:
+		scene_manager = get_tree().get_first_node_in_group("scenemanager")
 		init_map()
 		
 func init_map() -> void:
-	if tile_map == null:
+	if scene_manager == null:
 		return
-	character.build_layer.build_placed.connect(_on_map_changed)
+	scene_manager.build_layer.build_placed.connect(_on_map_changed)
 	astar.region = Rect2i(0, 0, 18, 10)
 	astar.cell_size = Vector2i(32,32)
 	astar.set_diagonal_mode(3)
 	astar.update()
-	var layer_tiles = character.build_layer.get_used_cells()
+	var layer_tiles = scene_manager.build_layer.get_used_cells()
 	for tile in layer_tiles:
 		astar.set_point_solid(tile)
 
@@ -46,11 +45,11 @@ func next_node(cur_pos: Vector2i) -> Vector2i:
 		path_idx += 1
 	if path_idx >= cur_path.size():
 		path_idx = cur_path.size()-1
-	var tile_size = tile_map.tile_set.tile_size
+	var tile_size = scene_manager.floor_layer.tile_set.tile_size
 	return cur_path[path_idx] + Vector2(tile_size.x/2, tile_size.y/2)
 
 func _on_map_changed() -> void:
-	var layer_tiles = character.build_layer.get_used_cells()
+	var layer_tiles = scene_manager.build_layer.get_used_cells()
 	for tile in layer_tiles:
 		astar.set_point_solid(tile)
 

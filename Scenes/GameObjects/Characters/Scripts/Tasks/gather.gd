@@ -25,7 +25,15 @@ func physics_update() -> void:
 	character.move_with_vel()
 	if character.global_position.distance_to(character.goal_pos) < 35:
 		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
-		scene_manager.zone_layer.remove_from_stockpile(Cords.get_map_from_global(character.goal_pos))
+		var ret = scene_manager.zone_layer.remove_from_stockpile(Cords.get_map_from_global(character.goal_pos), item_to_gather)
+		if ret == -1:
+			var zone_layer = character.scene_manager.get_child(1)
+			var mat_loc = zone_layer.get_mat(item_to_gather)
+			if mat_loc == Vector2i(-1,-1):
+				exit()
+				return
+			character.goal_pos = mat_loc
+			return
 		character.inventory.append(item_to_gather)
 		exit()
 
