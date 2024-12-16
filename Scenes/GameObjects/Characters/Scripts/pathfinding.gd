@@ -38,7 +38,6 @@ func update_path(start: Vector2i, goal: Vector2i) -> void:
 	path_idx = 1
 	if cur_path.size() == 1:
 		path_idx = 0
-	print(cur_path)
 
 func next_node(cur_pos: Vector2i) -> Vector2i:
 	if cur_path.is_empty():
@@ -58,5 +57,4 @@ func _on_map_changed() -> void:
 func _on_timeout() -> void:
 	if character.goal_pos == null:
 		return
-	print(character.global_position, character.goal_pos)
 	update_path(character.global_position, character.goal_pos)

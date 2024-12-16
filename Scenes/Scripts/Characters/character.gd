@@ -2,16 +2,18 @@ extends CharacterBody2D
 
 @export var speed: int
 
-@onready var mouse_select_state: MouseSelectState = %MouseSelectState
-@onready var floor_layer: TileMapLayer = %FloorLayer
+#@onready var mouse_select_state: MouseSelectState = %MouseSelectState
+@onready var mouse_select_state: MouseSelectState = get_tree().get_first_node_in_group("mouseselectstate")
+@onready var floor_layer: TileMapLayer = $"../../FloorLayer"
 @onready var build_layer: TileMapLayer = $"../../BuildLayer"
 @onready var state_machine: Node2D = $StateMachine
 @onready var pathfinding: Pathfinding = $Pathfinding
-@onready var scene_manager: Node2D = %SceneManager
+@onready var scene_manager: Node2D = get_tree().get_first_node_in_group("scenemanager")
+@onready var working_state_nodes: Working = $StateMachine/Working
 
 var goal_pos = null
 var cur_block = null
-var work_queue = []
+var cur_work = null
 var cur_path = PackedVector2Array()
 var cur_plan = []
 var inventory = []
@@ -20,19 +22,28 @@ var inventory = []
 func _ready() -> void:
 	connect("mouse_entered", _on_mouse_entered)
 	connect("mouse_exited", _on_mouse_exit)
-	build_layer.build_ordered.connect(_on_build_ordered)
-	build_layer.minning_ordered.connect(_on_minning_ordered)
+	#build_layer.build_ordered.connect(_on_build_ordered)
+	#build_layer.minning_ordered.connect(_on_minning_ordered)
 	
+func get_work_order(_work_queue: Array) -> void:
+	if _work_queue.is_empty():
+		return
+	var work_item = _work_queue.pop_front()
+	var work_args = work_item[1]
+	var task = work_item[0]
+	for work in working_state_nodes.get_children():
+		if work.name == task:
+			cur_work = [work, work_args]
+
 func _on_minning_ordered() -> void:
 	if state_machine.cur_state.name.to_lower() != 'idel':
-		print('hit')
 		return
 	var deconstruct_loc = build_layer.get_next_minning()
 	if deconstruct_loc == null:
 		return
 	var work_plan = [[$StateMachine/Working/Deconstruct, deconstruct_loc]]
 	print("deconLoc: ",deconstruct_loc)
-	work_queue.append(work_plan)
+	cur_work = work_plan
 	
 func _on_build_ordered() -> void:
 	if state_machine.cur_state.name.to_lower() != 'idel':
@@ -53,7 +64,7 @@ func _on_build_ordered() -> void:
 				return
 		work_plan.append([$StateMachine/Working/Gather, mat_loc, build_mat])
 		work_plan.append([$StateMachine/Working/Build, build_loc, build_mat])
-	work_queue.append(work_plan)
+	cur_work = work_plan
 	
 func _on_mouse_exit() -> void:
 	mouse_select_state.remove_from_hovering(self)

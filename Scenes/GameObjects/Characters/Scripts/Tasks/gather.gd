@@ -7,8 +7,10 @@ class_name Gather
 var item_to_gather: int = -1
 
 func execute(args: Array) -> void:
-	character.goal_pos = args[1]
-	item_to_gather = args[2]
+	item_to_gather = args[0]
+	var zone_layer = character.scene_manager.get_child(1)
+	var mat_loc = zone_layer.get_mat(item_to_gather)
+	character.goal_pos = mat_loc
 	
 
 func update() -> void:

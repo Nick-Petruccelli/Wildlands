@@ -1,4 +1,5 @@
 extends Task
+class_name Deconstruct
 
 @onready var character: CharacterBody2D = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"

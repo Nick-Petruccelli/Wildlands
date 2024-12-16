@@ -3,6 +3,9 @@ class_name MouseSelectState
 
 var selected = null
 var hovered_objs = []
+
+func _ready() -> void:
+	add_to_group("mouseselectstate")
 func enter() -> void:
 	selected = null
 	hovering_ui = false

@@ -4,10 +4,15 @@ class_name Build
 var build_mat: int = -1
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 @onready var character: CharacterBody2D = $"../../.."
+@onready var gather: Gather = $"../Gather"
+@onready var working: Working = $".."
 
 func execute(args: Array) -> void:
-	character.goal_pos = args[1]
-	build_mat = args[2]
+	character.goal_pos = args[0]
+	build_mat = args[1]
+	if character.inventory.count(build_mat) <= 0:
+		working.work_plan.push_front([gather, [build_mat]])
+		gather.execute([build_mat])
 
 func physics_update() -> void:
 	if character.goal_pos == null:

@@ -14,7 +14,7 @@ func exit() -> void:
 	character.velocity = Vector2()
 	
 func update(_delta: float) -> void:
-	if !character.work_queue.is_empty():
+	if character.cur_work != null:
 		transitioned.emit(self, 'working')
 	
 func physics_update(_delta: float) -> void:

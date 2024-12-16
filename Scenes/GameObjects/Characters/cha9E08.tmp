@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvar6b65bvlfe"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
+[ext_resource type="Texture2D" uid="uid://bh6pfnnxhjx2s" path="res://Assets/dude1.png" id="2_mtje5"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/pathfinding.gd" id="3_hknuf"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/state_machine.gd" id="4_wnnct"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/idel.gd" id="5_nc2hc"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/working.gd" id="6_veev3"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/recreation.gd" id="7_mbta5"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/build.gd" id="7_vc0hq"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/gather.gd" id="8_fjgvi"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/deconstruct.gd" id="9_ifwck"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qulpi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mtje5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5egs"]
+radius = 9.5
+height = 29.0
+
+[node name="Character" type="CharacterBody2D"]
+input_pickable = true
+motion_mode = 1
+script = ExtResource("1_6f447")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_qulpi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("CapsuleShape2D_t5egs")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 50.4
+debug_enabled = true
+
+[node name="Pathfinding" type="Node2D" parent="."]
+script = ExtResource("3_hknuf")
+
+[node name="Timer" type="Timer" parent="Pathfinding"]
+wait_time = 0.578
+autostart = true
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("init_state")]
+script = ExtResource("4_wnnct")
+init_state = NodePath("Idel")
+
+[node name="Idel" type="Node2D" parent="StateMachine"]
+script = ExtResource("5_nc2hc")
+
+[node name="Timer" type="Timer" parent="StateMachine/Idel"]
+wait_time = 2.0
+autostart = true
+
+[node name="Working" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_veev3")
+
+[node name="Build" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("7_vc0hq")
+
+[node name="Gather" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("8_fjgvi")
+
+[node name="Deconstruct" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("9_ifwck")
+
+[node name="Recreation" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_mbta5")

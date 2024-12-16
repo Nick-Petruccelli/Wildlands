@@ -21,3 +21,11 @@ func add_stockpile(down_pos: Vector2, up_pos: Vector2) -> void:
 			set_cell(tile_cords, 0, Vector2i(0,0))
 		stockpile_area.append(row)
 	active_stockpiles.append(stockpile_area)
+
+func get_mat(mat: int) -> Vector2i:
+	for pile in active_stockpiles:
+		for row in pile:
+			for e in row:
+				if e[1] == mat:
+					return Cords.get_global_from_map(e[0])
+	return Vector2i(-1, -1)

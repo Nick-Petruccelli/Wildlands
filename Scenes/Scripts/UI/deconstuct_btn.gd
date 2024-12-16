@@ -1,5 +1,6 @@
 extends Button
 
+
 @onready var action_state_machine: Node2D = %ActionStateMachine
 
 func _ready() -> void:
@@ -15,4 +16,4 @@ func _on_mouse_exit() -> void:
 	
 func _on_click() -> void:
 	var asm_cur_state = action_state_machine.cur_state
-	asm_cur_state.transitioned.emit(asm_cur_state, 'minestate')
+	asm_cur_state.transitioned.emit(asm_cur_state, 'deconstuctionstate')
