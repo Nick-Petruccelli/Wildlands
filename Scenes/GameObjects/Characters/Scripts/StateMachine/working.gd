@@ -35,7 +35,6 @@ func update(_delta: float) -> void:
 	
 	
 func physics_update(_delta: float) -> void:
-	print(work_plan)
 	if work_plan.is_empty():
 		return
 	var task = work_plan[0]

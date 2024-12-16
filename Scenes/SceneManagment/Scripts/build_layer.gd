@@ -1,4 +1,4 @@
-extends Node2D
+extends TileMapLayer
 
 
 @export var map_width := 500
@@ -71,6 +71,6 @@ func get_next_minning():
 func deconstruct_build(cords: Vector2) -> void:
 	var map_cords = Cords.get_map_from_global(cords)
 	#child 0 is floorlayer
-	scene_manager.get_child(0).set_cell(map_cords, 0, Vector2i(0, 0))
+	set_cell(map_cords, 0, Vector2i(0, 0))
 	placed_build[map_cords.x][map_cords.y] = -1
 	scene_manager.add_ground_item(map_cords, 0)

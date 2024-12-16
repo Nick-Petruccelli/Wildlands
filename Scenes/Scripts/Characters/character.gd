@@ -28,6 +28,8 @@ func _ready() -> void:
 func get_work_order(_work_queue: Array) -> void:
 	if _work_queue.is_empty():
 		return
+	if cur_work != null:
+		return
 	var work_item = _work_queue.pop_front()
 	var work_args = work_item[1]
 	var task = work_item[0]

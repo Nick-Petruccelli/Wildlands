@@ -25,6 +25,7 @@ func order_work(task: String, args: Array):
 	work_queue.push_back([task, args])
 	
 func query_work() -> void:
+	print(work_queue)
 	if work_queue.is_empty():
 		return
 	for colonist in characters.get_children():
