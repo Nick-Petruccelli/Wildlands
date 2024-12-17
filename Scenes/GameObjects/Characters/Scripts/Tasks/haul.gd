@@ -38,7 +38,7 @@ func physics_update() -> void:
 	var vel = character.global_position.direction_to(next_node)
 	character.velocity = vel
 	character.move_with_vel()
-	if character.global_position.distance_to(character.goal_pos) < 35:
+	if character.global_position.distance_to(character.goal_pos) < 18:
 		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
 		if has_item:
 			scene_manager.zone_layer.put_in_stockpile(storage_loc, item_id)

@@ -17,7 +17,7 @@ func physics_update() -> void:
 	var vel = character.global_position.direction_to(next_node)
 	character.velocity = vel
 	character.move_with_vel()
-	if character.global_position.distance_to(character.goal_pos) < 35:
+	if character.global_position.distance_to(character.goal_pos) < 18:
 		character.build_layer.deconstruct_build(character.goal_pos)
 		exit()
 

@@ -176,7 +176,34 @@ script = ExtResource("7_014o3")
 [node name="Plants" type="Node2D" parent="."]
 
 [node name="Tree" parent="Plants" instance=ExtResource("9_ryiur")]
-position = Vector2(24, 96)
+position = Vector2(56, 72)
+
+[node name="Tree2" parent="Plants" instance=ExtResource("9_ryiur")]
+position = Vector2(72, 360)
+
+[node name="Tree3" parent="Plants" instance=ExtResource("9_ryiur")]
+position = Vector2(208, 200)
+
+[node name="Tree4" parent="Plants" instance=ExtResource("9_ryiur")]
+position = Vector2(376, 384)
+
+[node name="Tree5" parent="Plants" instance=ExtResource("9_ryiur")]
+position = Vector2(224, 416)
+
+[node name="Tree6" parent="Plants" instance=ExtResource("9_ryiur")]
+position = Vector2(48, 272)
+
+[node name="Tree7" parent="Plants" instance=ExtResource("9_ryiur")]
+position = Vector2(200, 264)
+
+[node name="Tree8" parent="Plants" instance=ExtResource("9_ryiur")]
+position = Vector2(400, 104)
+
+[node name="Tree9" parent="Plants" instance=ExtResource("9_ryiur")]
+position = Vector2(216, 88)
+
+[node name="Tree10" parent="Plants" instance=ExtResource("9_ryiur")]
+position = Vector2(104, 224)
 
 [node name="Characters" type="Node2D" parent="."]
 

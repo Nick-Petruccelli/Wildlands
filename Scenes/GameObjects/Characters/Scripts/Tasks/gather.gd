@@ -23,7 +23,7 @@ func physics_update() -> void:
 	var vel = global_position.direction_to(next_node)
 	character.velocity = vel
 	character.move_with_vel()
-	if character.global_position.distance_to(character.goal_pos) < 35:
+	if character.global_position.distance_to(character.goal_pos) < 18:
 		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
 		var ret = scene_manager.zone_layer.remove_from_stockpile(Cords.get_map_from_global(character.goal_pos), item_to_gather)
 		if ret == -1:

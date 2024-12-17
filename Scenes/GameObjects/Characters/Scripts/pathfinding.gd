@@ -26,8 +26,11 @@ func init_map() -> void:
 	astar.cell_size = Vector2i(16,16)
 	astar.set_diagonal_mode(3)
 	astar.update()
-	var layer_tiles = scene_manager.build_layer.get_used_cells()
-	for tile in layer_tiles:
+	var build_tiles = scene_manager.build_layer.get_used_cells()
+	var stone_tiles = scene_manager.stone_layer.get_used_cells()
+	for tile in build_tiles:
+		astar.set_point_solid(tile)
+	for tile in stone_tiles:
 		astar.set_point_solid(tile)
 
 func update_path(start: Vector2i, goal: Vector2i) -> void:
