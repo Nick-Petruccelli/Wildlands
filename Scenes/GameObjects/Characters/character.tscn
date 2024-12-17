@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bvar6b65bvlfe"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
-[ext_resource type="Texture2D" uid="uid://bh6pfnnxhjx2s" path="res://Assets/dude1.png" id="2_mtje5"]
+[ext_resource type="Texture2D" uid="uid://osh5afn0s3r3" path="res://Assets/dude16x16.png" id="2_4ox6i"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/character_collision_handler.gd" id="3_88c83"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/pathfinding.gd" id="3_hknuf"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/state_machine.gd" id="4_wnnct"]
@@ -18,7 +18,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_mtje5")
+"texture": ExtResource("2_4ox6i")
 }],
 "loop": true,
 "name": &"default",
@@ -26,8 +26,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5egs"]
-radius = 9.5
-height = 29.0
+radius = 4.0
+height = 16.0
 
 [node name="Character" type="CharacterBody2D"]
 collision_layer = 2
@@ -36,11 +36,12 @@ motion_mode = 1
 script = ExtResource("1_6f447")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_qulpi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_t5egs")
 
 [node name="CharacterCollisionHandler" type="Area2D" parent="."]
@@ -49,7 +50,7 @@ collision_mask = 2
 script = ExtResource("3_88c83")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterCollisionHandler"]
-position = Vector2(0, 0.5)
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_t5egs")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

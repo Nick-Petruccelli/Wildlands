@@ -16,9 +16,9 @@ var stock_piels = []
 
 func _ready():
 	add_to_group("scenemanager")
-	for char in characters.get_children():
-		char.scene_manager = self
-		char.work_done.connect(_on_character_work_done)
+	for character in characters.get_children():
+		character.scene_manager = self
+		character.work_done.connect(_on_character_work_done)
 	for node in get_children():
 		if node is not TileMapLayer:
 			continue
@@ -26,9 +26,8 @@ func _ready():
 			node.scene_manager = self
 	query_work_timer.timeout.connect(query_work)
 	
-func _on_character_work_done(char: Character) -> void:
-	print('hit')
-	char.get_work_order(work_queue)
+func _on_character_work_done(character: Character) -> void:
+	character.get_work_order(work_queue)
 
 func order_work(task: String, args: Array):
 	work_queue.push_back([task, args])

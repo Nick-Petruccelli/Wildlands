@@ -22,8 +22,8 @@ func init_map() -> void:
 	if scene_manager == null:
 		return
 	scene_manager.build_layer.build_placed.connect(_on_map_changed)
-	astar.region = Rect2i(0, 0, 18, 10)
-	astar.cell_size = Vector2i(32,32)
+	astar.region = Rect2i(0, 0, 100, 100)
+	astar.cell_size = Vector2i(16,16)
 	astar.set_diagonal_mode(3)
 	astar.update()
 	var layer_tiles = scene_manager.build_layer.get_used_cells()
