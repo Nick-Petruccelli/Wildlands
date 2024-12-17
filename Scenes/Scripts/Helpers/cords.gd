@@ -2,7 +2,7 @@ extends Node
 
 @export var tile_size: int = 16
 
-func get_map_from_global(glob: Vector2) -> Vector2:
+func get_map_from_global(glob: Vector2) -> Vector2i:
 	return Vector2i(floor(glob.x/tile_size), floor(glob.y/tile_size))
 
 func get_global_from_map(map: Vector2i) -> Vector2i:

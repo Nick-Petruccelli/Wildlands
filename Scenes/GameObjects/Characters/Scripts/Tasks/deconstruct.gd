@@ -1,5 +1,5 @@
 extends Task
-class_name Mine
+class_name Deconsturct
 
 @onready var character: CharacterBody2D = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"

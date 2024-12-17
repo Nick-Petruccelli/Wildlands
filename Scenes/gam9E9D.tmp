@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8wbxywbgtw3m"]
+[gd_scene load_steps=16 format=3 uid="uid://c8wbxywbgtw3m"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/place_build_state.gd" id="4_hkeoy"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/deconstuction_state.gd" id="5_dhv71"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/deconstuct_btn.gd" id="5_gxxrw"]
-[ext_resource type="Script" path="res://Scenes/Scripts/UI/chop_btn.gd" id="6_6brmd"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/zone_placing_state.gd" id="6_lqyr2"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/stock_pile_btn.gd" id="7_rte21"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/mine_state.gd" id="8_t4tpu"]
@@ -63,14 +62,14 @@ offset_bottom = 158.0
 text = "Mine"
 script = ExtResource("21_12qct")
 
-[node name="ChopBtn" type="Button" parent="Camera2D/UI"]
+[node name="Chop" type="Button" parent="Camera2D/UI"]
 z_index = 10
-offset_left = 50.0
-offset_top = 127.0
-offset_right = 129.0
-offset_bottom = 159.0
-text = "Chop"
-script = ExtResource("6_6brmd")
+offset_left = -32.0
+offset_top = 126.0
+offset_right = 47.0
+offset_bottom = 158.0
+text = "Mine"
+script = ExtResource("21_12qct")
 
 [node name="ActionStateMachine" parent="." node_paths=PackedStringArray("init_state") instance=ExtResource("1_fxhci")]
 unique_name_in_owner = true

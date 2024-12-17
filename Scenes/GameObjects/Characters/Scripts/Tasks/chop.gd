@@ -1,12 +1,14 @@
 extends Task
-class_name Mine
+class_name Chop
 
 @onready var character: CharacterBody2D = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
+var target: Plant = null
 func execute(args: Array) -> void:
-	character.goal_pos = args[0]
-
+	target = args[0]
+	character.goal_pos = target.global_position
+	
 func update() -> void:
 	pass
 	
@@ -18,9 +20,9 @@ func physics_update() -> void:
 	character.velocity = vel
 	character.move_with_vel()
 	if character.global_position.distance_to(character.goal_pos) < 35:
-		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
-		scene_manager.get_child(3).mine(character.goal_pos)
-		scene_manager.order_work("Haul", [character.goal_pos, 0])
+		target.cut_down()
+		var scene_manager = get_tree().get_first_node_in_group('scenemanager')
+		scene_manager.order_work("Haul", [character.goal_pos, target.item_id])
 		exit()
 
 func exit() -> void:

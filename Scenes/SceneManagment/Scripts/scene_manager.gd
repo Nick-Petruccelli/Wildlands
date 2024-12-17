@@ -4,7 +4,7 @@ extends Node2D
 @onready var zone_layer: TileMapLayer = $ZoneLayer
 @onready var build_layer: TileMapLayer = $BuildLayer
 @onready var stone_layer: TileMapLayer = $StoneLayer
-@onready var plant_layer: TileMapLayer = $PlantLayer
+@onready var plants: Node2D = $Plants
 @onready var characters: Node2D = $Characters
 
 
@@ -31,6 +31,7 @@ func _on_character_work_done(character: Character) -> void:
 
 func order_work(task: String, args: Array):
 	work_queue.push_back([task, args])
+	print(work_queue)
 	query_work()
 	
 func query_work() -> void:

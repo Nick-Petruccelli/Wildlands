@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvar6b65bvlfe"]
+[gd_scene load_steps=17 format=3 uid="uid://bvar6b65bvlfe"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
 [ext_resource type="Texture2D" uid="uid://osh5afn0s3r3" path="res://Assets/dude16x16.png" id="2_4ox6i"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/deconstruct.gd" id="9_ifwck"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/mine.gd" id="10_uwbjx"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/haul.gd" id="11_ynclf"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/chop.gd" id="13_amcqv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qulpi"]
 animations = [{
@@ -95,6 +96,9 @@ script = ExtResource("10_uwbjx")
 
 [node name="Haul" type="Node2D" parent="StateMachine/Working"]
 script = ExtResource("11_ynclf")
+
+[node name="Chop" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("13_amcqv")
 
 [node name="Recreation" type="Node2D" parent="StateMachine"]
 script = ExtResource("7_mbta5")

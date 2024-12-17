@@ -23,6 +23,8 @@ func execute(args: Array) -> void:
 				if dist < min_dist:
 					min_dist = dist
 					closest = tile[0]
+	if closest == null:
+		exit()
 	storage_loc = closest
 	has_item = false
 
