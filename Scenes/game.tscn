@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8wbxywbgtw3m"]
+[gd_scene load_steps=18 format=3 uid="uid://c8wbxywbgtw3m"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_xnwmn"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/action_state_machine.gd" id="2_8ycd8"]
+[ext_resource type="Script" path="res://Scenes/Scripts/camera_2d.gd" id="2_jn73j"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/build_btn.gd" id="3_d7i6g"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/mouse_select_state.gd" id="3_iu413"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/place_build_state.gd" id="4_hkeoy"]
@@ -23,7 +24,7 @@ script = ExtResource("1_xnwmn")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(290, 150)
 zoom = Vector2(2, 2)
-position_smoothing_enabled = true
+script = ExtResource("2_jn73j")
 
 [node name="UI" type="Node2D" parent="Camera2D"]
 

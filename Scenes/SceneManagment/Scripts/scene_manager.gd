@@ -31,7 +31,6 @@ func _on_character_work_done(character: Character) -> void:
 
 func order_work(task: String, args: Array):
 	work_queue.push_back([task, args])
-	print(work_queue)
 	query_work()
 	
 func query_work() -> void:

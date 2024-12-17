@@ -28,12 +28,8 @@ func chop_in_area(down_pos: Vector2i, up_pos: Vector2i) -> void:
 	var scene_manager = get_tree().get_first_node_in_group('scenemanager')
 	var plants = scene_manager.plants.get_children()
 	var selected_tiles = get_selected_tiles(down_pos, up_pos)
-	print(plants)
-	print(selected_tiles)
 	for plant in plants:
-		print('PlantPos: ',Cords.get_map_from_global(plant.global_position))
 		if selected_tiles.has(Cords.get_map_from_global(plant.global_position)):
-			print('hit order chop')
 			scene_manager.order_work('Chop', [plant])
 
 func get_selected_tiles(down_pos: Vector2i, up_pos: Vector2i) -> Array[Vector2i]:
