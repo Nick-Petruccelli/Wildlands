@@ -25,6 +25,7 @@ script = ExtResource("1_xnwmn")
 position = Vector2(290, 150)
 zoom = Vector2(2, 2)
 script = ExtResource("2_jn73j")
+zoom_speed = 10.0
 
 [node name="UI" type="Node2D" parent="Camera2D"]
 

@@ -25,3 +25,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_camera_down"):
 		target += Vector2(0, speed)
 	global_position = global_position.lerp(target, delta * speed)
+	if Input.is_action_just_released("zoom_camera_in"):
+		print('hit')
+		if zoom.x < max_zoom:
+			zoom += Vector2(zoom_speed, zoom_speed)*delta
+	if Input.is_action_just_released("zoom_camera_out"):
+		if zoom.x > min_zoom:
+			zoom -= Vector2(zoom_speed, zoom_speed)*delta
