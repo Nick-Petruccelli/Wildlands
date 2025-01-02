@@ -1,6 +1,8 @@
 {
+	"id": 0,
 	"name": "RawGranateWall",
 	"droped_items": {
 		"GranateChunk": 0.8
-	}
+	},
+	"atlas_loc": [0,0]
 }

@@ -13,7 +13,7 @@ var placed_build = []
 var active_stockpiles = []
 var build_queue = []
 var minning_queue = []
-var tile_map = {0: Vector2i(1,1)}
+var tile_map = {}
 
 func _ready() -> void:
 	set_tileset_sources()
@@ -59,8 +59,7 @@ func order_deconstuction(down_pos: Vector2, up_pos: Vector2) -> void:
 func place_build(cords: Vector2, tile_id: int) -> void:
 	var selected_obj = tile_map[tile_id]
 	var map_cords = Cords.get_map_from_global(cords)
-	#child0 is floorlayer
-	scene_manager.get_child(0).set_cell(map_cords, 0, selected_obj)
+	scene_manager.build_layer.set_cell(map_cords, 1, selected_obj)
 	placed_build[map_cords.x][map_cords.y] = tile_id
 	build_placed.emit()
 	
@@ -85,8 +84,11 @@ func set_tileset_sources() -> void:
 	for file_name in data_files:
 		var file = FileAccess.open(wall_data_path+file_name, FileAccess.READ)
 		var data = JSON.parse_string(file.get_as_text())
-		#add_to_tileset(id, data)
+		add_to_tileset(data)
 		
+func add_to_tileset(data: Dictionary) -> void:
+	var atlas_loc = Vector2i(data["atlas_loc"][0], data["atlas_loc"][1])
+	tile_map[int(data["id"])] = atlas_loc
 
 func open_dir(path: String) -> DirAccess:
 	var dir = DirAccess.open(path)
