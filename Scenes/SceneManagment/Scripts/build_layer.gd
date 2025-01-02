@@ -16,6 +16,7 @@ var minning_queue = []
 var tile_map = {0: Vector2i(1,1)}
 
 func _ready() -> void:
+	set_tileset_sources()
 	init_map()
 
 func _process(_delta: float) -> void:
@@ -74,3 +75,22 @@ func deconstruct_build(cords: Vector2) -> void:
 	set_cell(map_cords, 0, Vector2i(0, 0))
 	placed_build[map_cords.x][map_cords.y] = -1
 	scene_manager.add_ground_item(map_cords, 0)
+
+func set_tileset_sources() -> void:
+	var wall_data_path = 'res://GameData/Environment/Walls/'
+	var data_dir = open_dir(wall_data_path)
+	if data_dir == null:
+		return
+	var data_files = data_dir.get_files()
+	for file_name in data_files:
+		var file = FileAccess.open(wall_data_path+file_name, FileAccess.READ)
+		var data = JSON.parse_string(file.get_as_text())
+		#add_to_tileset(id, data)
+		
+
+func open_dir(path: String) -> DirAccess:
+	var dir = DirAccess.open(path)
+	if dir == null:
+		print("ERROR: failed to open directory at: ", path)
+	return dir
+	

@@ -30,6 +30,7 @@ func get_work_order(_work_queue: Array) -> void:
 		return
 	if cur_work != null:
 		return
+	print('hit')
 	var work_item = _work_queue.pop_front()
 	var work_args = work_item[1]
 	var task = work_item[0]

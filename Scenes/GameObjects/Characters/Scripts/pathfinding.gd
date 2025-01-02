@@ -22,6 +22,7 @@ func init_map() -> void:
 	if scene_manager == null:
 		return
 	scene_manager.build_layer.build_placed.connect(_on_map_changed)
+	scene_manager.stone_layer.stone_removed.connect(_on_stone_removed)
 	astar.region = Rect2i(0, 0, 100, 100)
 	astar.cell_size = Vector2i(16,16)
 	astar.set_diagonal_mode(3)
@@ -36,7 +37,9 @@ func init_map() -> void:
 func update_path(start: Vector2i, goal: Vector2i) -> void:
 	var start_map = Cords.get_map_from_global(start)
 	var goal_map = Cords.get_map_from_global(goal)
+	astar.set_point_solid(goal_map, false)
 	cur_path = astar.get_point_path(start_map, goal_map)
+	astar.set_point_solid(goal_map, true)
 	path_idx = 1
 	if cur_path.size() == 1:
 		path_idx = 0
@@ -52,9 +55,14 @@ func next_node(cur_pos: Vector2i) -> Vector2i:
 	return cur_path[path_idx] + Vector2(tile_size.x/2, tile_size.y/2)
 
 func _on_map_changed() -> void:
-	var layer_tiles = scene_manager.build_layer.get_used_cells()
-	for tile in layer_tiles:
+	var build_tiles = scene_manager.build_layer.get_used_cells()
+	for tile in build_tiles:
 		astar.set_point_solid(tile)
+		
+func _on_stone_removed() -> void:
+	var stone_tiles = scene_manager.stone_layer.get_used_cells()
+	for tile in stone_tiles:
+		astar.set_point_solid(tile, false)
 
 func _on_timeout() -> void:
 	if character.goal_pos == null:
