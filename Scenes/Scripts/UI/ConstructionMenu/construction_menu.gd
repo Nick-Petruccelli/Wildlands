@@ -1,6 +1,5 @@
 extends Panel
 
-
 func _ready() -> void:
 	connect("mouse_entered", _on_mouse_enter)
 	connect("mouse_exited", _on_mouse_exit)
