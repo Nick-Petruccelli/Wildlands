@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c8wbxywbgtw3m"]
+[gd_scene load_steps=23 format=3 uid="uid://c8wbxywbgtw3m"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/deconstuct_btn.gd" id="5_gxxrw"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/chop_btn.gd" id="6_6brmd"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/zone_placing_state.gd" id="6_lqyr2"]
-[ext_resource type="Script" path="res://Scenes/Scripts/UI/stock_pile_btn.gd" id="7_rte21"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/mine_state.gd" id="8_t4tpu"]
 [ext_resource type="PackedScene" uid="uid://cb21hux3mwctf" path="res://Scenes/SceneManagment/scene_manager.tscn" id="10_wpc2i"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/chop_state.gd" id="13_6iyp2"]
@@ -115,12 +114,12 @@ visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -279.0
-offset_right = 251.0
-offset_bottom = -79.0
+offset_left = -1.0
+offset_top = -240.0
+offset_right = 252.0
+offset_bottom = -40.0
 grow_vertical = 0
-scale = Vector2(1.10935, 1.17811)
+scale = Vector2(0.942, 1)
 size_flags_vertical = 4
 script = ExtResource("3_hnrea")
 
@@ -189,24 +188,3 @@ script = ExtResource("1_5k2rc")
 
 [node name="SceneManager" parent="." instance=ExtResource("10_wpc2i")]
 unique_name_in_owner = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="BuildBtn" type="Button" parent="CanvasLayer"]
-z_index = 10
-offset_left = 8.0
-offset_top = 275.0
-offset_right = 82.0
-offset_bottom = 306.0
-text = "Add wall"
-script = ExtResource("3_d7i6g")
-
-[node name="StockPlieBtn" type="Button" parent="CanvasLayer"]
-z_index = 10
-offset_left = 175.0
-offset_top = 275.0
-offset_right = 254.0
-offset_bottom = 307.0
-text = "Stockpile"
-script = ExtResource("7_rte21")

@@ -12,6 +12,8 @@ func execute(args: Array) -> void:
 	character.goal_pos = args[0]
 	item_id = args[1]
 	var stock_piles = character.scene_manager.zone_layer.get_stockpiles()
+	if stock_piles.is_empty():
+		return
 	var closest = null
 	var min_dist = 999999999999999.9
 	for pile in stock_piles:

@@ -59,10 +59,8 @@ func _on_map_changed() -> void:
 	for tile in build_tiles:
 		astar.set_point_solid(tile)
 		
-func _on_stone_removed() -> void:
-	var stone_tiles = scene_manager.stone_layer.get_used_cells()
-	for tile in stone_tiles:
-		astar.set_point_solid(tile, false)
+func _on_stone_removed(cords: Vector2i) -> void:
+	astar.set_point_solid(cords, false)
 
 func _on_timeout() -> void:
 	if character.goal_pos == null:
