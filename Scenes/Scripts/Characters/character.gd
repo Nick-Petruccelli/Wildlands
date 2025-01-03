@@ -10,6 +10,7 @@ var speed_mod = 1
 @onready var pathfinding: Pathfinding = $Pathfinding
 @onready var scene_manager: Node2D = get_tree().get_first_node_in_group("scenemanager")
 @onready var working_state_nodes: Working = $StateMachine/Working
+@onready var stats: CharacterStats = $Stats
 
 signal work_done
 

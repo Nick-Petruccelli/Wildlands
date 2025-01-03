@@ -27,6 +27,7 @@ func execute(args: Array) -> void:
 					closest = tile
 	if closest == null:
 		exit()
+		return
 	storage_loc = closest[0]
 	closest[1] = -2
 	has_item = false

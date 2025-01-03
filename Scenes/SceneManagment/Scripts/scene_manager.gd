@@ -12,6 +12,7 @@ var items_on_ground = {}
 var colonists = []
 var work_queue = []
 var stock_piels = []
+@onready var map_size = floor_layer.get_used_rect()
 @onready var query_work_timer: Timer = $Query_Work_Timer
 
 func _ready():
