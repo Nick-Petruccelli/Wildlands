@@ -8,16 +8,6 @@ var data: Dictionary = {}
 
 func _ready() -> void:
 	connect("button_up", _on_click)
-	connect("mouse_entered", _on_mouse_enter)
-	connect("mouse_exited", _on_mouse_exit)
-	
-func _on_mouse_enter() -> void:
-	#action_state_machine.entered_ui.emit()
-	pass
-	
-func _on_mouse_exit() -> void:
-	#action_state_machine.exited_ui.emit()
-	pass
 
 func _on_click() -> void:
 	if action_state_machine == null:

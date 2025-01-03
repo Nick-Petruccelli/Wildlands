@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c8wbxywbgtw3m"]
+[gd_scene load_steps=27 format=3 uid="uid://c8wbxywbgtw3m"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
@@ -13,13 +13,17 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ActionBar/work_btn.gd" id="4_5gdg3"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ConstructionMenu/zone_select_btn.gd" id="4_btnwp"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/place_build_state.gd" id="4_hkeoy"]
+[ext_resource type="Script" path="res://Scenes/Scripts/UI/ActionBar/people_btn.gd" id="5_17msa"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/deconstuction_state.gd" id="5_dhv71"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/deconstuct_btn.gd" id="5_gxxrw"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/chop_btn.gd" id="6_6brmd"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/zone_placing_state.gd" id="6_lqyr2"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/mine_state.gd" id="8_t4tpu"]
 [ext_resource type="PackedScene" uid="uid://cb21hux3mwctf" path="res://Scenes/SceneManagment/scene_manager.tscn" id="10_wpc2i"]
+[ext_resource type="Script" path="res://Scenes/Scripts/UI/PeopleMenu/character_select.gd" id="12_xin6s"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/chop_state.gd" id="13_6iyp2"]
+[ext_resource type="Script" path="res://Scenes/Scripts/UI/PeopleMenu/people_menu.gd" id="13_caglq"]
+[ext_resource type="Script" path="res://Scenes/character_display.gd" id="13_ne33j"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ConstructionMenu/construction_list.gd" id="18_j10s6"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/mine_btn.gd" id="21_12qct"]
 
@@ -68,7 +72,7 @@ z_index = 10
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "People"
-script = ExtResource("3_d7i6g")
+script = ExtResource("5_17msa")
 
 [node name="ConstructionMenu" type="Panel" parent="UI"]
 unique_name_in_owner = true
@@ -149,6 +153,76 @@ layout_mode = 2
 text = "Chop"
 script = ExtResource("6_6brmd")
 
+[node name="PeopleMenu" type="Panel" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.942, 1)
+size_flags_vertical = 4
+script = ExtResource("13_caglq")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PeopleMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ConstructionListContainer" type="VBoxContainer" parent="UI/PeopleMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="People" type="Label" parent="UI/PeopleMenu/MarginContainer/ConstructionListContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "People"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PeopleMenu/MarginContainer/ConstructionListContainer"]
+layout_mode = 2
+
+[node name="CharacterSelect" type="VBoxContainer" parent="UI/PeopleMenu/MarginContainer/ConstructionListContainer/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("12_xin6s")
+
+[node name="CharacterDisplay" type="VBoxContainer" parent="UI/PeopleMenu/MarginContainer/ConstructionListContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+script = ExtResource("13_ne33j")
+
+[node name="Name" type="Label" parent="UI/PeopleMenu/MarginContainer/ConstructionListContainer/HBoxContainer/CharacterDisplay"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 0
+horizontal_alignment = 1
+
+[node name="Picture" type="TextureRect" parent="UI/PeopleMenu/MarginContainer/ConstructionListContainer/HBoxContainer/CharacterDisplay"]
+texture_filter = 1
+layout_mode = 2
+expand_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PeopleMenu/MarginContainer/ConstructionListContainer/HBoxContainer/CharacterDisplay"]
+layout_mode = 2
+
+[node name="Stats" type="GridContainer" parent="UI/PeopleMenu/MarginContainer/ConstructionListContainer/HBoxContainer/CharacterDisplay/HBoxContainer"]
+layout_mode = 2
+columns = 2
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(290, 150)
 zoom = Vector2(2, 2)
@@ -188,3 +262,4 @@ script = ExtResource("1_5k2rc")
 
 [node name="SceneManager" parent="." instance=ExtResource("10_wpc2i")]
 unique_name_in_owner = true
+position = Vector2(-18, 13)

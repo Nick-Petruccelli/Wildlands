@@ -6,6 +6,7 @@ var speed_mod = 1
 
 #@onready var mouse_select_state: MouseSelectState = %MouseSelectState
 @onready var mouse_select_state: MouseSelectState = get_tree().get_first_node_in_group("mouseselectstate")
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: Node2D = $StateMachine
 @onready var pathfinding: Pathfinding = $Pathfinding
 @onready var scene_manager: Node2D = get_tree().get_first_node_in_group("scenemanager")

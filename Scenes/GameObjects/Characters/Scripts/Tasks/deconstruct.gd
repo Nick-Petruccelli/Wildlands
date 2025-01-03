@@ -30,7 +30,6 @@ func physics_update() -> void:
 	character.velocity = vel
 	character.move_with_vel()
 	
-
 func exit() -> void:
 	character.goal_pos = null
 	done_executing.emit()
