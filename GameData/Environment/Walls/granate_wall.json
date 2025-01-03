@@ -1,0 +1,9 @@
+{
+	"id": 0,
+	"name": "Granate Wall",
+	"constructable": true,
+	"droped_items": {
+		"GranateWall": 1.0
+	},
+	"atlas_loc": [0,0]
+}

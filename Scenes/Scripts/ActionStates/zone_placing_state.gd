@@ -6,12 +6,13 @@ class_name ZonePlacingState
 var cur_zone_type = null
 var down_pos = null
 
-func enter() -> void:
-	cur_zone_type = null
+func enter(args: Array) -> void:
+	cur_zone_type = args[0]
 	down_pos = null
 	hovering_ui = true
 	
 func exit() -> void:
+	print("hit exit")
 	cur_zone_type = null
 	
 func update(_delta: float) -> void:

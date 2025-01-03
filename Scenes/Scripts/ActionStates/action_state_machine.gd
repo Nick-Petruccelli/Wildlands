@@ -12,17 +12,18 @@ func _ready() -> void:
 		state.transitioned.connect(_on_transition)
 	if init_state:
 		cur_state = init_state
-		cur_state.enter()
+		cur_state.enter([])
 	connect("entered_ui", _on_entered_ui)
 	connect("exited_ui", _on_exited_ui)
 
-func _on_transition(state: State, new_state_name: String) -> void:
+func _on_transition(state: State, new_state_name: String, transition_args: Array) -> void:
+	print("hit transition")
 	if state != cur_state:
 		return
 	var new_state = state_dict[new_state_name.to_lower()]
 	if cur_state:
 		cur_state.exit()
-	new_state.enter()
+	new_state.enter(transition_args)
 	cur_state = new_state
 	
 func _process(delta: float) -> void:

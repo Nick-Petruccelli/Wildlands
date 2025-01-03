@@ -7,9 +7,8 @@ var cur_material = null
 var mouse_down = null
 var mouse_up = null
 
-func enter() -> void:
-
-	cur_material = 0
+func enter(args: Array) -> void:
+	cur_material = args[0]
 	hovering_ui = true
 	
 func exit() -> void:

@@ -6,7 +6,7 @@ var hovered_objs = []
 
 func _ready() -> void:
 	add_to_group("mouseselectstate")
-func enter() -> void:
+func enter(args: Array) -> void:
 	selected = null
 	hovering_ui = false
 

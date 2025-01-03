@@ -5,7 +5,7 @@ class_name DeconstuctionState
 @onready var scene_manager: Node2D = %SceneManager
 var down_pos = null
 
-func enter() -> void:
+func enter(args: Array) -> void:
 	down_pos = null
 	hovering_ui = true
 	

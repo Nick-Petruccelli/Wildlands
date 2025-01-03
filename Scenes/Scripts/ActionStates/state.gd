@@ -4,7 +4,7 @@ class_name State
 signal transitioned
 var hovering_ui = false
 
-func enter() -> void:
+func enter(args: Array) -> void:
 	pass
 	
 func exit() -> void:

@@ -6,7 +6,7 @@ extends State
 
 var down_pos = null
 
-func enter() -> void:
+func enter(args: Array) -> void:
 	down_pos = null
 	hovering_ui = true
 	
