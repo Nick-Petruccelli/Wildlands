@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvar6b65bvlfe"]
+[gd_scene load_steps=17 format=3 uid="uid://bvar6b65bvlfe"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
 [ext_resource type="Texture2D" uid="uid://osh5afn0s3r3" path="res://Assets/dude16x16.png" id="2_4ox6i"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/build.gd" id="7_vc0hq"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/gather.gd" id="8_fjgvi"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/deconstruct.gd" id="9_ifwck"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/chop.gd" id="9_yp4im"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/mine.gd" id="10_uwbjx"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/haul.gd" id="11_ynclf"]
 
@@ -83,6 +84,9 @@ script = ExtResource("6_veev3")
 
 [node name="Build" type="Node2D" parent="StateMachine/Working"]
 script = ExtResource("7_vc0hq")
+
+[node name="Chop" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("9_yp4im")
 
 [node name="Gather" type="Node2D" parent="StateMachine/Working"]
 script = ExtResource("8_fjgvi")

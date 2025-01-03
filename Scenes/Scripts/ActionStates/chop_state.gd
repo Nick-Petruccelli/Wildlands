@@ -19,6 +19,7 @@ func update(_delta: float) -> void:
 	if Input.is_action_just_released("click") and !hovering_ui:
 		if down_pos == null:
 			return
+		print("chop hit")
 		chop_in_area(down_pos, get_global_mouse_position())
 	
 func physics_update(_delta: float) -> void:
@@ -30,6 +31,7 @@ func chop_in_area(down_pos: Vector2i, up_pos: Vector2i) -> void:
 	var selected_tiles = get_selected_tiles(down_pos, up_pos)
 	for plant in plants:
 		if selected_tiles.has(Cords.get_map_from_global(plant.global_position)):
+			print("hit")
 			scene_manager.order_work('Chop', [plant])
 
 func get_selected_tiles(down_pos: Vector2i, up_pos: Vector2i) -> Array[Vector2i]:
