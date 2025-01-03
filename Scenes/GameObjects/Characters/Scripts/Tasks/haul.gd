@@ -13,7 +13,7 @@ func execute(args: Array) -> void:
 	item_id = args[1]
 	var stock_piles = character.scene_manager.zone_layer.get_stockpiles()
 	if stock_piles.is_empty():
-		return
+		exit()
 	var closest = null
 	var min_dist = 999999999999999.9
 	for pile in stock_piles:
@@ -24,10 +24,11 @@ func execute(args: Array) -> void:
 				var dist = character.global_position.distance_to(Cords.get_global_from_map(tile[0]))
 				if dist < min_dist:
 					min_dist = dist
-					closest = tile[0]
+					closest = tile
 	if closest == null:
 		exit()
-	storage_loc = closest
+	storage_loc = closest[0]
+	closest[1] = -2
 	has_item = false
 
 func update() -> void:
