@@ -231,6 +231,41 @@ layout_mode = 2
 layout_mode = 2
 columns = 2
 
+[node name="ProductionMenu" type="Panel" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.592
+offset_left = -147.0
+offset_top = -151.0
+offset_right = 180.0
+offset_bottom = 109.384
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ProductionMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="UI/ProductionMenu/VBoxContainer"]
+layout_mode = 2
+text = "StationName"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/ProductionMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ProducablesList" type="VBoxContainer" parent="UI/ProductionMenu/VBoxContainer/MarginContainer" groups=["producableslist"]]
+layout_mode = 2
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(290, 150)
 zoom = Vector2(2, 2)

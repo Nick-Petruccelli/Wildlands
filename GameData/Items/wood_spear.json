@@ -1,0 +1,7 @@
+{
+	"id": 2,
+	"name": "Wood Spear",
+	"weight": 5,
+	"texture": "res://Assets/wood_log.png",
+	"prod_station": 3
+}
