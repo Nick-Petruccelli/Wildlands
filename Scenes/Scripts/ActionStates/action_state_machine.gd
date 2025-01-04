@@ -17,7 +17,6 @@ func _ready() -> void:
 	connect("exited_ui", _on_exited_ui)
 
 func _on_transition(state: State, new_state_name: String, transition_args: Array) -> void:
-	print("hit transition")
 	if state != cur_state:
 		return
 	var new_state = state_dict[new_state_name.to_lower()]

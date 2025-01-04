@@ -6,6 +6,11 @@ class_name ProductionStation
 
 var type_id: int = -1
 var type_name: String
+var inventory: Array = []
+	
+func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("click"):
+		load_menu()
 
 func load_data(id: int) -> void:
 	var data = get_tree().get_first_node_in_group("gamedata").environment_data[id]
@@ -14,18 +19,22 @@ func load_data(id: int) -> void:
 	var tex = load(data["texture"])
 	sprite_2d.texture = tex
 	collision_shape_2d.shape.set("size", tex.get_size())
-	open_ui()
+	load_menu()
 
-func open_ui() -> void:
+func load_menu() -> void:
 	var item_data = get_tree().get_first_node_in_group("gamedata").item_data
 	var producables_list = get_tree().get_first_node_in_group("producableslist")
 	for child in producables_list.get_children():
 		child.queue_free()
 	for id in item_data:
-		print(item_data[id])
 		if !item_data[id].has("prod_station") or item_data[id]["prod_station"] != type_id:
 			continue
-		var btn = ConstructionListItem.new()
+		var btn = CraftItemBtn.new()
 		btn.text = item_data[id]["name"]
 		btn.data = item_data[id]
+		btn.station = self
 		producables_list.add_child(btn)
+		btn.init()
+		print("btn initialized")
+	var prod_menu = get_tree().get_first_node_in_group("productionmenu")
+	prod_menu.open_ui()

@@ -55,5 +55,4 @@ func add_structure_to_list(data: Dictionary) -> void:
 	
 func _on_item_pressed() -> void:
 	var asm_cur_state = get_tree().get_first_node_in_group("actionstatemachine").cur_state
-	print(asm_cur_state)
 	asm_cur_state.transitioned.emit(asm_cur_state, 'zoneplacingstate', [0])

@@ -25,7 +25,6 @@ func update(_delta: float) -> void:
 		#build_layer.order_build(mouse_down, get_global_mouse_position(), cur_material)
 		var build_tiles =  get_build_tiles(mouse_down, get_global_mouse_position())	
 		for tile in build_tiles:
-			print("tile: ", tile, " mat: ", cur_material)
 			scene_manager.order_work("Build", [tile, cur_material])
 			
 func get_build_tiles(down_pos: Vector2i, up_pos: Vector2i):

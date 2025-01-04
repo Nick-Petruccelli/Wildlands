@@ -5,6 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ndr7y"]
 
 [node name="ProductionStation" type="StaticBody2D"]
+input_pickable = true
 script = ExtResource("1_11vdt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
