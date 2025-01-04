@@ -265,5 +265,6 @@ script = ExtResource("1_5k2rc")
 [node name="SceneManager" parent="." instance=ExtResource("10_wpc2i")]
 unique_name_in_owner = true
 
-[node name="GameData" type="Node2D" parent="."]
+[node name="GameData" type="Node2D" parent="." groups=["gamedata"]]
+unique_name_in_owner = true
 script = ExtResource("27_rl22o")

@@ -41,8 +41,9 @@ func query_work() -> void:
 		colonist.get_work_order(work_queue)
 
 func add_ground_item(map_cords: Vector2i, item_id: int):
-	var item = preload("res://Scenes/Wall.tscn").instantiate()
+	var item = preload("res://Scenes/GameObjects/ground_item.tscn").instantiate()
 	game.add_child(item)
+	item.load_item(item_id)
 	var tile_size = floor_layer.tile_set.tile_size
 	var x_off = tile_size.x/2
 	var y_off = tile_size.y/2

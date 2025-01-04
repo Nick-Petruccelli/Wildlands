@@ -6,8 +6,6 @@ var environment_data: Dictionary = {}
 func _ready() -> void:
 	load_item_data()
 	load_environment_data()
-	for key in environment_data:
-		print(environment_data[key])
 
 func load_item_data() -> void:
 	var item_data_path = "res://GameData/Items/"
@@ -24,7 +22,7 @@ func add_to_item_data(data: Dictionary) -> void:
 	if item_data.has(data["id"]):
 		print("Error: loading item data, item id alredy in use.")
 		return
-	item_data[data["id"]] = data
+	item_data[int(data["id"])] = data
 
 func load_environment_data() -> void:
 	var environment_data_path = "res://GameData/Environment/"
@@ -44,7 +42,7 @@ func add_to_environment_data(data: Dictionary) -> void:
 	if environment_data.has(data["id"]):
 		print("Error: loading item data, item id alredy in use.")
 		return
-	environment_data[data["id"]] = data
+	environment_data[int(data["id"])] = data
 	
 func open_dir(path: String) -> DirAccess:
 	var dir = DirAccess.open(path)
