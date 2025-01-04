@@ -36,6 +36,9 @@ func load_environment_data() -> void:
 		for file_name in data_files:
 			var file = FileAccess.open(environment_data_path+dir_name+"/"+file_name, FileAccess.READ)
 			var data = JSON.parse_string(file.get_as_text())
+			if data == null:
+				print("Error: "+environment_data_path+dir_name+"/"+file_name+", failed to load.")
+				continue
 			add_to_environment_data(data)
 		
 func add_to_environment_data(data: Dictionary) -> void:

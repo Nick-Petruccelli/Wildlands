@@ -1,6 +1,7 @@
 {
 	"id": 1,
 	"name": "Raw Granate Wall",
+	"type": "Structure",
 	"constructable": false,
 	"droped_items": {
 		"GranateChunk": 0.8

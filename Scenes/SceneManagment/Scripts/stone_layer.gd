@@ -18,7 +18,6 @@ func mine(loc: Vector2i, character_stats: Dictionary) -> bool:
 	var map_cords = Cords.get_map_from_global(loc)
 	var mining_mod = character_stats["skills"]["mining"] / 10.0
 	tile_data[map_cords.y][map_cords.x] -= 10 + (character_stats["strength"] * mining_mod)
-	print("stone_loc: ", map_cords, " stone_dur: ", tile_data[map_cords.y][map_cords.x])
 	if tile_data[map_cords.y][map_cords.x] <= 0:
 		erase_cell(map_cords)
 		stone_removed.emit(map_cords)

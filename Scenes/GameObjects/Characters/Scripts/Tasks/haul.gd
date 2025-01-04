@@ -11,6 +11,7 @@ var storage_loc: Vector2i = Vector2i(-1,-1)
 func execute(args: Array) -> void:
 	character.goal_pos = args[0]
 	item_id = args[1]
+	print("item_id_pickup: ", item_id)
 	var stock_piles = character.scene_manager.zone_layer.get_stockpiles()
 	if stock_piles.is_empty():
 		exit()
@@ -45,6 +46,7 @@ func physics_update() -> void:
 	if character.global_position.distance_to(character.goal_pos) < 18:
 		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
 		if has_item:
+			print("item_id_putdown: ", item_id)
 			scene_manager.zone_layer.put_in_stockpile(storage_loc, item_id)
 			character.inventory.erase(item_id)
 			exit()

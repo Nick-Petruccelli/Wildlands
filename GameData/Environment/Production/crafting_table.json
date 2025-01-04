@@ -1,0 +1,13 @@
+{
+	"id": 3,
+	"name": "Crafting Table",
+	"constructable": true,
+	"type": "Production",
+	"build_mats": {
+		"Wood Log": [1, 10]
+	},
+	"droped_items": {
+		"Crafting Table": 1.0
+	},
+	"atlas_loc": [0,0]
+}

@@ -22,7 +22,7 @@ func physics_update() -> void:
 		if block_broke:
 			scene_manager.order_work("Haul", [character.goal_pos, 0])
 			exit()
-			return
+		return
 	if character.goal_pos == null:
 		return
 	var next_node = pathfinding.next_node(character.global_position)

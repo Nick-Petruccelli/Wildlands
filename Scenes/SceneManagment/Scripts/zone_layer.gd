@@ -31,9 +31,10 @@ func put_in_stockpile(loc: Vector2i, item_id: int) -> void:
 			for e in row:
 				if e[0] == loc:
 					e[1] = item_id
-					var item = preload("res://Scenes/Wall.tscn").instantiate()
+					var item = preload("res://Scenes/GameObjects/ground_item.tscn").instantiate()
 					var game = get_tree().root
 					game.add_child(item)
+					item.load_item(item_id)
 					var tile_size = tile_set.tile_size
 					var x_off = tile_size.x/2
 					var y_off = tile_size.y/2

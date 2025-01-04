@@ -1,7 +1,11 @@
 {
 	"id": 2,
 	"name": "Wood Wall",
+	"type": "Structure",
 	"constructable": true,
+	"build_mats": {
+		"Wood Log": [1, 5]
+	},
 	"droped_items": {
 		"WoodWall": 1.0
 	},

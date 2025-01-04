@@ -1,7 +1,7 @@
 extends Task
 class_name Build
 
-var build_mat: int = -1
+var build: int = -1
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 @onready var character: CharacterBody2D = $"../../.."
 @onready var gather: Gather = $"../Gather"
@@ -9,10 +9,19 @@ var build_mat: int = -1
 
 func execute(args: Array) -> void:
 	character.goal_pos = args[0]
-	build_mat = args[1]
-	if character.inventory.count(build_mat) <= 0:
-		working.work_plan.push_front([gather, [build_mat]])
-		gather.execute([build_mat])
+	build = args[1]
+	var environment_data = get_tree().get_first_node_in_group("gamedata").environment_data
+	var build_mats = environment_data[build]["build_mats"]
+	print("inv: ", character.inventory)
+	for mat_name in build_mats:
+		var build_mat = build_mats[mat_name]
+		print("build_mat: ", build_mat)
+		var mat_id = int(build_mat[0])
+		var mat_count = int(build_mat[1])
+		if character.inventory.count(mat_id) < mat_count:
+			print("hit not in inv")
+			working.work_plan.push_front([gather, [mat_id]])
+			gather.execute([mat_id])
 
 func physics_update() -> void:
 	if character.goal_pos == null:
@@ -22,10 +31,20 @@ func physics_update() -> void:
 	character.velocity = vel
 	character.move_with_vel()
 	if character.global_position.distance_to(character.goal_pos) < 18:
-		character.scene_manager.build_layer.place_build(character.goal_pos, build_mat)
-		character.inventory.erase(build_mat)
+		character.scene_manager.build_layer.place_build(character.goal_pos, build)
+		remove_mats_from_inventory()
 		exit()
 
 func exit():
 	character.goal_pos = null
 	done_executing.emit()
+
+func remove_mats_from_inventory() -> void:
+	var environment_data = get_tree().get_first_node_in_group("gamedata").environment_data
+	var build_mats = environment_data[build]["build_mats"]
+	for mat_name in build_mats:
+		var build_mat = build_mats[mat_name]
+		var mat_id = int(build_mat[0])
+		var mat_count = int(build_mat[1])
+		for i in range(mat_count):
+			character.inventory.erase(mat_id)

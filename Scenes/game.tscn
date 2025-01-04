@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c8wbxywbgtw3m"]
+[gd_scene load_steps=29 format=3 uid="uid://c8wbxywbgtw3m"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/action_state_machine.gd" id="2_8ycd8"]
 [ext_resource type="Script" path="res://Scenes/Scripts/camera_2d.gd" id="2_jn73j"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/build_btn.gd" id="3_d7i6g"]
-[ext_resource type="Script" path="res://Scenes/build_select_btn.gd" id="3_dij7t"]
+[ext_resource type="Script" path="res://Scenes/Scripts/UI/ConstructionMenu/build_select_btn.gd" id="3_dij7t"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ConstructionMenu/construction_menu.gd" id="3_hnrea"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/mouse_select_state.gd" id="3_iu413"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ActionBar/work_btn.gd" id="4_5gdg3"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/chop_btn.gd" id="6_6brmd"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/zone_placing_state.gd" id="6_lqyr2"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/mine_state.gd" id="8_t4tpu"]
+[ext_resource type="Script" path="res://Scenes/Scripts/UI/ConstructionMenu/production_select_btn.gd" id="9_t6hea"]
 [ext_resource type="PackedScene" uid="uid://cb21hux3mwctf" path="res://Scenes/SceneManagment/scene_manager.tscn" id="10_wpc2i"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/PeopleMenu/character_select.gd" id="12_xin6s"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/chop_state.gd" id="13_6iyp2"]
@@ -108,6 +109,11 @@ script = ExtResource("3_dij7t")
 layout_mode = 2
 text = "Storage"
 script = ExtResource("4_btnwp")
+
+[node name="Production" type="Button" parent="UI/ConstructionMenu/MarginContainer/ConstructionListContainer/HBoxContainer"]
+layout_mode = 2
+text = "Production"
+script = ExtResource("9_t6hea")
 
 [node name="ConstructionList" type="VBoxContainer" parent="UI/ConstructionMenu/MarginContainer/ConstructionListContainer"]
 layout_mode = 2

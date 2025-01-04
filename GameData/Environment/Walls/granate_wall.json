@@ -1,7 +1,11 @@
 {
 	"id": 0,
 	"name": "Granate Wall",
+	"type": "Structure",
 	"constructable": true,
+	"build_mats": {
+		"Granate Chunk": [0, 1]
+	},
 	"droped_items": {
 		"GranateWall": 1.0
 	},
