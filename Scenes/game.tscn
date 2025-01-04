@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c8wbxywbgtw3m"]
+[gd_scene load_steps=28 format=3 uid="uid://c8wbxywbgtw3m"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://Scenes/character_display.gd" id="13_ne33j"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ConstructionMenu/construction_list.gd" id="18_j10s6"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/mine_btn.gd" id="21_12qct"]
+[ext_resource type="Script" path="res://Scenes/Scripts/game_data.gd" id="27_rl22o"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_xnwmn")
@@ -263,3 +264,6 @@ script = ExtResource("1_5k2rc")
 
 [node name="SceneManager" parent="." instance=ExtResource("10_wpc2i")]
 unique_name_in_owner = true
+
+[node name="GameData" type="Node2D" parent="."]
+script = ExtResource("27_rl22o")

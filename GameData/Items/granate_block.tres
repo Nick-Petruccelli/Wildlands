@@ -1,9 +1,0 @@
-[gd_resource type="JSON" format=3 uid="uid://838bpqrxvbqw"]
-
-[resource]
-data = {
-"id": 0.0,
-"name": "granate_block",
-"sprite": "res://Assets/WallItem.png",
-"weight": 60.0
-}
