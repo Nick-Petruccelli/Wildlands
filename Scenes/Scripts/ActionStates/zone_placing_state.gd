@@ -17,13 +17,14 @@ func exit() -> void:
 	
 func update(_delta: float) -> void:
 	if Input.is_action_just_pressed("cancel"):
-		transitioned.emit(self, 'mouseselectstate')
+		transitioned.emit(self, 'mouseselectstate', [])
 	if Input.is_action_just_pressed("click"):
 		down_pos = get_global_mouse_position()
 	if Input.is_action_just_released("click") and !hovering_ui:
 		if down_pos == null:
 			return
 		#TODO this needs to eventualy work for more than just stockpile but that comes later
+		print(Cords.get_map_from_global(get_global_mouse_position()))
 		zone_layer.add_stockpile(down_pos, get_global_mouse_position())
 	
 func physics_update(_delta: float) -> void:

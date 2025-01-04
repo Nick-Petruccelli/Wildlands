@@ -16,7 +16,7 @@ func exit() -> void:
 	
 func update(_delta: float) -> void:
 	if Input.is_action_just_pressed("cancel"):
-		transitioned.emit(self, 'mouseselectstate')
+		transitioned.emit(self, 'mouseselectstate', [])
 	if Input.is_action_just_pressed('click'):
 		mouse_down = get_global_mouse_position()
 	if Input.is_action_just_released('click') and !hovering_ui:

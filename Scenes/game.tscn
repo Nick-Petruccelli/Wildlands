@@ -155,6 +155,7 @@ script = ExtResource("6_6brmd")
 
 [node name="PeopleMenu" type="Panel" parent="UI"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -262,4 +263,3 @@ script = ExtResource("1_5k2rc")
 
 [node name="SceneManager" parent="." instance=ExtResource("10_wpc2i")]
 unique_name_in_owner = true
-position = Vector2(-18, 13)
