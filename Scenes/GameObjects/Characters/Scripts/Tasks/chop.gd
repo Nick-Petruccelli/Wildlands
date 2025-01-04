@@ -13,7 +13,7 @@ func execute(args: Array) -> void:
 	
 func update() -> void:
 	pass
-	
+
 func physics_update() -> void:
 	if character.goal_pos == null:
 		return

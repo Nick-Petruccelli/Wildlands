@@ -5,6 +5,7 @@ extends Node2D
 @onready var build_layer: TileMapLayer = $BuildLayer
 @onready var stone_layer: TileMapLayer = $StoneLayer
 @onready var plants: Node2D = $Plants
+@onready var constructions: Node2D = $Constructions
 @onready var characters: Node2D = $Characters
 
 
@@ -65,3 +66,15 @@ func get_item(item_id: int) -> Vector2i:
 		if item == item_id:
 			return Cords.get_global_from_map(items_on_ground[item])
 	return Vector2i(-1,-1)
+
+func build(cords: Vector2i, build_id: int) -> void:
+	var build_data = get_tree().get_first_node_in_group("gamedata").environment_data[build_id]
+	if build_data["type"].to_lower() == "structure":
+		build_layer.place_build(cords, build_id)
+	else:
+		var item = preload("res://Scenes/Environment/production_station.tscn").instantiate()
+		constructions.add_child(item)
+		item.load_data(build_id)
+		var offset = Vector2i((item.sprite_2d.texture.get_size().x/2)-8, 0)
+		item.global_position = cords + offset
+	

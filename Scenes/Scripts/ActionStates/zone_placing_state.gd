@@ -12,7 +12,6 @@ func enter(args: Array) -> void:
 	hovering_ui = true
 	
 func exit() -> void:
-	print("hit exit")
 	cur_zone_type = null
 	
 func update(_delta: float) -> void:
@@ -24,7 +23,6 @@ func update(_delta: float) -> void:
 		if down_pos == null:
 			return
 		#TODO this needs to eventualy work for more than just stockpile but that comes later
-		print(Cords.get_map_from_global(get_global_mouse_position()))
 		zone_layer.add_stockpile(down_pos, get_global_mouse_position())
 	
 func physics_update(_delta: float) -> void:

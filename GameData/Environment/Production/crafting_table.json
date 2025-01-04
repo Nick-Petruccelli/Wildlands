@@ -4,10 +4,10 @@
 	"constructable": true,
 	"type": "Production",
 	"build_mats": {
-		"Wood Log": [1, 10]
+		"Wood Log": [1, 2]
 	},
 	"droped_items": {
 		"Crafting Table": 1.0
 	},
-	"atlas_loc": [0,0]
+	"texture": "res://Assets/crafting_table.png",
 }

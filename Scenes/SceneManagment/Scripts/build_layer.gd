@@ -59,7 +59,7 @@ func order_deconstuction(down_pos: Vector2, up_pos: Vector2) -> void:
 func place_build(cords: Vector2, tile_id: int) -> void:
 	var selected_obj = tile_map[tile_id]
 	var map_cords = Cords.get_map_from_global(cords)
-	scene_manager.build_layer.set_cell(map_cords, 1, selected_obj)
+	set_cell(map_cords, 1, selected_obj)
 	placed_build[map_cords.x][map_cords.y] = tile_id
 	build_placed.emit()
 	

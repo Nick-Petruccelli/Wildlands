@@ -223,6 +223,8 @@ position = Vector2(216, 88)
 [node name="Tree10" parent="Plants" instance=ExtResource("9_ryiur")]
 position = Vector2(104, 224)
 
+[node name="Constructions" type="Node2D" parent="."]
+
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="Character" parent="Characters" instance=ExtResource("9_4fv67")]

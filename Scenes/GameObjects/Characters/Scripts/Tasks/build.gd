@@ -12,14 +12,11 @@ func execute(args: Array) -> void:
 	build = args[1]
 	var environment_data = get_tree().get_first_node_in_group("gamedata").environment_data
 	var build_mats = environment_data[build]["build_mats"]
-	print("inv: ", character.inventory)
 	for mat_name in build_mats:
 		var build_mat = build_mats[mat_name]
-		print("build_mat: ", build_mat)
 		var mat_id = int(build_mat[0])
 		var mat_count = int(build_mat[1])
 		if character.inventory.count(mat_id) < mat_count:
-			print("hit not in inv")
 			working.work_plan.push_front([gather, [mat_id]])
 			gather.execute([mat_id])
 
@@ -31,7 +28,7 @@ func physics_update() -> void:
 	character.velocity = vel
 	character.move_with_vel()
 	if character.global_position.distance_to(character.goal_pos) < 18:
-		character.scene_manager.build_layer.place_build(character.goal_pos, build)
+		character.scene_manager.build(character.goal_pos, build)
 		remove_mats_from_inventory()
 		exit()
 
