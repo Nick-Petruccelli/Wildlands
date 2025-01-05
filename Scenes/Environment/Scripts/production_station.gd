@@ -39,6 +39,14 @@ func load_menu() -> void:
 	var prod_menu = get_tree().get_first_node_in_group("productionmenu")
 	prod_menu.open_ui()
 	
+func add_mats(character: Character, item_mats: Dictionary):
+	for mat_name in item_mats:
+		var mat_id = int(item_mats[mat_name][0])
+		var mat_count = int(item_mats[mat_name][1])
+		for i in range(mat_count):
+			character.inventory.erase(mat_id)
+			inventory.append(mat_id)
+
 func remove_mats_from_inventory(item_mats: Dictionary) -> void:
 	for mat_name in item_mats:
 		var mat_id = int(item_mats[mat_name][0])

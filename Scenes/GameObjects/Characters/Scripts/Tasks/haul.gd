@@ -7,10 +7,13 @@ class_name Haul
 var has_item: bool = false
 var item_id: int = -1
 var storage_loc: Vector2i = Vector2i(-1,-1)
+var start_inventory = null
 
 func execute(args: Array) -> void:
 	character.goal_pos = args[0]
 	item_id = args[1]
+	if args.size() == 3:
+		start_inventory = args[2]
 	var stock_piles = character.scene_manager.zone_layer.get_stockpiles()
 	if stock_piles.is_empty():
 		exit()
@@ -21,7 +24,7 @@ func execute(args: Array) -> void:
 			for tile in row:
 				if tile[1] != -1:
 					continue
-				var dist = character.global_position.distance_to(Cords.get_global_from_map(tile[0]))
+				var dist = character.goal_pos.distance_to(Cords.get_global_from_map(tile[0]))
 				if dist < min_dist:
 					min_dist = dist
 					closest = tile
@@ -42,14 +45,18 @@ func physics_update() -> void:
 	var vel = character.global_position.direction_to(next_node)
 	character.velocity = vel
 	character.move_with_vel()
-	if character.global_position.distance_to(character.goal_pos) < 18:
+	print("Haul: ", character.global_position.distance_to(character.goal_pos))
+	if character.global_position.distance_to(character.goal_pos) < 20:
 		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
 		if has_item:
 			scene_manager.zone_layer.put_in_stockpile(storage_loc, item_id)
 			character.inventory.erase(item_id)
 			exit()
 			return
-		scene_manager.remove_ground_item(Cords.get_map_from_global(character.goal_pos), item_id)
+		if start_inventory == null:
+			scene_manager.remove_ground_item(Cords.get_map_from_global(character.goal_pos), item_id)
+		else:
+			start_inventory.inventory.erase(item_id)
 		character.inventory.append(item_id)
 		character.goal_pos = Cords.get_global_from_map(storage_loc)
 		has_item = true

@@ -29,17 +29,18 @@ func physics_update() -> void:
 	if character.goal_pos == null:
 		return
 	print(character.global_position.distance_to(character.goal_pos))
-	if character.global_position.distance_to(character.goal_pos) < 18:
+	if character.global_position.distance_to(character.goal_pos) < 20:
 		if craft_start_time == -1:
 			craft_start_time = Time.get_ticks_msec()
+			station.add_mats(character, item["craft_mats"])
 			print("started crafting")
 		var craft_dur = item["craft_dur"]
 		if Time.get_ticks_msec() - craft_start_time < craft_dur:
-			#station.remove_mats_from_inventory(item["craft_mats"])
+			station.remove_mats_from_inventory(item["craft_mats"])
 			station.inventory.append(item["id"])
 			print("crafted ", item["name"])
 			var scene_manager = get_tree().get_first_node_in_group('scenemanager')
-			#scene_manager.order_work("Haul", [character.goal_pos, item["id"]])
+			scene_manager.order_work("Haul", [station.global_position, item["id"], station])
 			exit()
 		return
 	var next_node = pathfinding.next_node(character.global_position)
