@@ -35,7 +35,7 @@ func physics_update() -> void:
 			station.add_mats(character, item["craft_mats"])
 			print("started crafting")
 		var craft_dur = item["craft_dur"]
-		if Time.get_ticks_msec() - craft_start_time < craft_dur:
+		if Time.get_ticks_msec() - craft_start_time > craft_dur:
 			station.remove_mats_from_inventory(item["craft_mats"])
 			station.inventory.append(item["id"])
 			print("crafted ", item["name"])
