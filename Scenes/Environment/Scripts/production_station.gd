@@ -38,3 +38,10 @@ func load_menu() -> void:
 		print("btn initialized")
 	var prod_menu = get_tree().get_first_node_in_group("productionmenu")
 	prod_menu.open_ui()
+	
+func remove_mats_from_inventory(item_mats: Dictionary) -> void:
+	for mat_name in item_mats:
+		var mat_id = int(item_mats[mat_name][0])
+		var mat_count = int(item_mats[mat_name][1])
+		for i in range(mat_count):
+			inventory.erase(mat_id)

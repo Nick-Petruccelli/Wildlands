@@ -7,4 +7,5 @@
 	"craft_mats": {
 		"Wood Log": [1, 2]
 	},
+	"craft_dur": 5000
 }
