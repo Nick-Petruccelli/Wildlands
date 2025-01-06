@@ -1,0 +1,9 @@
+{
+	"id": 4,
+	"name": "Grass",
+	"type": "Floor",
+	"constructable": false,
+	"destructable": false,
+	"terrain_set": 0,
+	"terrain_id": 0
+}

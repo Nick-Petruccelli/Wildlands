@@ -1,0 +1,13 @@
+{
+	"id": 3,
+	"name": "Raw Cotten",
+	"weight": 0.5,
+	"texture": "res://Assets/WallItem.png",
+	"equipable": false,
+	"farmable": true,
+	"farm_stats": {
+		"grow_floor": 5,
+		"grow_time": 5000,
+		"harvest_droprate": [2,4],
+	},
+}

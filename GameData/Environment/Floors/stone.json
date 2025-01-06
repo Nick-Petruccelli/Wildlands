@@ -1,0 +1,9 @@
+{
+	"id": 6,
+	"name": "Stone",
+	"type": "Floor",
+	"constructable": false,
+	"destructable": false,
+	"terrain_set": 0,
+	"terrain_id": 0
+}

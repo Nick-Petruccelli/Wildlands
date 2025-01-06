@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c8wbxywbgtw3m"]
+[gd_scene load_steps=32 format=3 uid="uid://c8wbxywbgtw3m"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ProductionMenu/Scripts/production_menu.gd" id="17_vhxf6"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ConstructionMenu/construction_list.gd" id="18_j10s6"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/mine_btn.gd" id="21_12qct"]
+[ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/farm_state.gd" id="27_5ig0f"]
 [ext_resource type="Script" path="res://Scenes/Scripts/game_data.gd" id="27_rl22o"]
 
 [node name="Game" type="Node2D"]
@@ -367,6 +368,9 @@ script = ExtResource("6_lqyr2")
 
 [node name="MineState" type="Node2D" parent="ActionStateMachine"]
 script = ExtResource("8_t4tpu")
+
+[node name="FarmState" type="Node2D" parent="ActionStateMachine"]
+script = ExtResource("27_5ig0f")
 
 [node name="ChopState" type="Node2D" parent="ActionStateMachine"]
 script = ExtResource("13_6iyp2")

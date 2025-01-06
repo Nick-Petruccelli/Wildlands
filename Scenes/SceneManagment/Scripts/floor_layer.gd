@@ -1,11 +1,15 @@
 extends TileMapLayer
 
-var scene_manager: Node2D
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var farm_land: Array[Vector2i] = []
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func set_floor_tile(pos: Vector2i, terrain_set: int, terrain_id: int) -> void:
+	var used_tiles = get_used_cells()
+	var terrain_tiles = [pos]
+	for tile in used_tiles:
+		var tile_data = get_cell_tile_data(tile)
+		if terrain_set == tile_data.terrain_set and terrain_id == tile_data.terrain:
+			terrain_tiles.append(tile)
+	print("terrain tile: ", terrain_tiles)
+	print("terrain_set: ", terrain_set)
+	print("terrain_id: ", terrain_id)
+	set_cells_terrain_connect(terrain_tiles, terrain_set, terrain_id)

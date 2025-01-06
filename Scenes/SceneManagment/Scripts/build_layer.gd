@@ -13,10 +13,8 @@ var placed_build = []
 var active_stockpiles = []
 var build_queue = []
 var minning_queue = []
-var tile_map = {}
 
 func _ready() -> void:
-	set_tileset_sources()
 	init_map()
 
 func _process(_delta: float) -> void:
@@ -58,7 +56,6 @@ func order_deconstuction(down_pos: Vector2, up_pos: Vector2) -> void:
 	
 func place_build(cords: Vector2, tile_id: int) -> void:
 	var terrain_id = get_tree().get_first_node_in_group("gamedata").environment_data[tile_id]["terrain_id"]
-	var selected_obj = tile_map[tile_id]
 	var map_cords = Cords.get_map_from_global(cords)
 	placed_build[map_cords.y][map_cords.x] = tile_id
 	var terain_tiles = []
@@ -81,20 +78,6 @@ func deconstruct_build(cords: Vector2) -> void:
 	placed_build[map_cords.x][map_cords.y] = -1
 	scene_manager.add_ground_item(map_cords, 0)
 
-func set_tileset_sources() -> void:
-	var wall_data_path = 'res://GameData/Environment/Walls/'
-	var data_dir = open_dir(wall_data_path)
-	if data_dir == null:
-		return
-	var data_files = data_dir.get_files()
-	for file_name in data_files:
-		var file = FileAccess.open(wall_data_path+file_name, FileAccess.READ)
-		var data = JSON.parse_string(file.get_as_text())
-		add_to_tileset(data)
-		
-func add_to_tileset(data: Dictionary) -> void:
-	var atlas_loc = Vector2i(data["atlas_loc"][0], data["atlas_loc"][1])
-	tile_map[int(data["id"])] = atlas_loc
 
 func open_dir(path: String) -> DirAccess:
 	var dir = DirAccess.open(path)

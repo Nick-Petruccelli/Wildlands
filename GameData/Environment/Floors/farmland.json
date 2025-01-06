@@ -1,0 +1,9 @@
+{
+	"id": 5,
+	"name": "Farmland",
+	"type": "Floor",
+	"constructable": false,
+	"destructable": false,
+	"terrain_set": 0,
+	"terrain_id": 1
+}
