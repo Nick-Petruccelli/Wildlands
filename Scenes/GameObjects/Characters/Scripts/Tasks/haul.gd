@@ -66,4 +66,5 @@ func exit() -> void:
 	item_id = -1
 	has_item = false
 	storage_loc = Vector2i(-1,-1)
+	start_inventory = null
 	done_executing.emit()

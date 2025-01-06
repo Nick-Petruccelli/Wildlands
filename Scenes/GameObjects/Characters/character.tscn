@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvar6b65bvlfe"]
+[gd_scene load_steps=20 format=3 uid="uid://bvar6b65bvlfe"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
 [ext_resource type="Texture2D" uid="uid://osh5afn0s3r3" path="res://Assets/dude16x16.png" id="2_4ox6i"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/mine.gd" id="10_uwbjx"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/haul.gd" id="11_ynclf"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/stats.gd" id="15_1y54e"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Characters/equipment.gd" id="17_sale4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qulpi"]
 animations = [{
@@ -110,3 +111,6 @@ script = ExtResource("7_mbta5")
 
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("15_1y54e")
+
+[node name="Equipment" type="Node2D" parent="."]
+script = ExtResource("17_sale4")
