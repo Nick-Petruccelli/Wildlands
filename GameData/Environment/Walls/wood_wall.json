@@ -9,5 +9,5 @@
 	"droped_items": {
 		"WoodWall": 1.0
 	},
-	"atlas_loc": [0,0]
+	"terrain_id": 0
 }

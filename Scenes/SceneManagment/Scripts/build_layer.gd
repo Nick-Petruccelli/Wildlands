@@ -57,16 +57,16 @@ func order_deconstuction(down_pos: Vector2, up_pos: Vector2) -> void:
 	minning_ordered.emit()
 	
 func place_build(cords: Vector2, tile_id: int) -> void:
+	var terrain_id = get_tree().get_first_node_in_group("gamedata").environment_data[tile_id]["terrain_id"]
 	var selected_obj = tile_map[tile_id]
 	var map_cords = Cords.get_map_from_global(cords)
 	placed_build[map_cords.y][map_cords.x] = tile_id
 	var terain_tiles = []
 	for y in range(map_height):
 		for x in range(map_width):
-			if placed_build[y][x] == -1:
-				continue
-			terain_tiles.append(Vector2i(x, y))
-	set_cells_terrain_connect(terain_tiles, 0, 0)
+			if placed_build[y][x] == tile_id:
+				terain_tiles.append(Vector2i(x, y))
+	set_cells_terrain_connect(terain_tiles, 0, terrain_id)
 	build_placed.emit()
 	
 func get_next_minning():
