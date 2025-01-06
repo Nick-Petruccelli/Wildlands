@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cb21hux3mwctf"]
+[gd_scene load_steps=19 format=4 uid="uid://cb21hux3mwctf"]
 
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/scene_manager.gd" id="1_xlhlg"]
 [ext_resource type="Texture2D" uid="uid://dcnt8m61mxeuw" path="res://Assets/tilesheet16x16.png" id="2_ug6df"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/build_layer.gd" id="5_xupfu"]
 [ext_resource type="Texture2D" uid="uid://cdihsxas0jv4c" path="res://Assets/granate_wall_tilesheet.png" id="6_axqd0"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/stone_layer.gd" id="7_014o3"]
-[ext_resource type="PackedScene" uid="uid://qgc5x5rnnxpv" path="res://Scenes/Wall.tscn" id="8_e1xrf"]
 [ext_resource type="PackedScene" uid="uid://bvar6b65bvlfe" path="res://Scenes/GameObjects/Characters/character.tscn" id="9_4fv67"]
 [ext_resource type="PackedScene" uid="uid://c5appamp605p4" path="res://Scenes/Environment/Plants/tree.tscn" id="9_ryiur"]
 
@@ -420,6 +419,8 @@ script = ExtResource("7_014o3")
 
 [node name="Plants" type="Node2D" parent="."]
 
+[node name="Farms" type="Node2D" parent="Plants"]
+
 [node name="Tree" parent="Plants" instance=ExtResource("9_ryiur")]
 position = Vector2(56, 72)
 
@@ -470,8 +471,6 @@ wall_min_slide_angle = 0.0
 speed = 20
 
 [node name="Items" type="Node2D" parent="."]
-
-[node name="Wall" parent="Items" instance=ExtResource("8_e1xrf")]
 
 [node name="Query_Work_Timer" type="Timer" parent="."]
 wait_time = 2.0

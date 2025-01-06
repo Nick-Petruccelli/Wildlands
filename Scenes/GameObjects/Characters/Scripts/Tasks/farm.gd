@@ -1,8 +1,15 @@
 extends Task
 class_name Farm
 
+enum FarmTask {
+	TILL,
+	PLANT,
+	HARVEST,
+}
+
 var crop_id: int = -1
-var task: String = ""
+var task: FarmTask
+
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 @onready var character: CharacterBody2D = $"../../.."
 @onready var gather: Gather = $"../Gather"
@@ -12,25 +19,31 @@ func execute(args: Array) -> void:
 	var tile = args[0]
 	crop_id = args[1]
 	if is_correct_floor(tile):
-		character.goal_pos = tile
-		task = "Harvest"
-		character.goal_pos = tile
+		var farms = get_tree().get_first_node_in_group("scenemanager").farms
+		if farms.tile_planted(tile):
+			task = FarmTask.HARVEST
+			character.goal_pos = Cords.get_global_from_map(tile)
+			return
+		task = FarmTask.PLANT
+		character.goal_pos = Cords.get_global_from_map(tile)
 		return
 	#if character.inventory.count(2) < 1:
 		#working.work_plan.push_front([gather, [2]])
 		#gather.execute([2])
 	character.goal_pos = Cords.get_global_from_map(tile)
-	
-	task = "Till"
+	task = FarmTask.TILL
 
 func physics_update() -> void:
 	if character.goal_pos == null:
 		return
 	if character.global_position.distance_to(character.goal_pos) < 18:
-		if task == "Till":
-			till(Cords.get_map_from_global(character.goal_pos))
-		else:
-			pass
+		match task:
+			FarmTask.TILL:
+				till(Cords.get_map_from_global(character.goal_pos))
+			FarmTask.PLANT:
+				plant(Cords.get_map_from_global(character.goal_pos))
+			FarmTask.HARVEST:
+				harvest(Cords.get_map_from_global(character.goal_pos))
 		exit()
 		return
 	var next_node = pathfinding.next_node(character.global_position)
@@ -63,3 +76,11 @@ func till(tile: Vector2i) -> void:
 	var terrain_id = grow_tile_data["terrain_id"]
 	var tile_data = floor_layer.get_cell_tile_data(tile)
 	floor_layer.set_floor_tile(tile, terrain_set, terrain_id)
+
+func plant(tile: Vector2i) -> void:
+	var farms = get_tree().get_first_node_in_group("scenemanager").farms
+	farms.plant(tile, crop_id)
+
+func harvest(tile: Vector2i) -> void:
+	var farms = get_tree().get_first_node_in_group("scenemanager").farms
+	farms.harvest(tile, crop_id)

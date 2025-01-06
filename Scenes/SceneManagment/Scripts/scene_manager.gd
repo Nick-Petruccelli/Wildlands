@@ -7,6 +7,7 @@ extends Node2D
 @onready var plants: Node2D = $Plants
 @onready var constructions: Node2D = $Constructions
 @onready var characters: Node2D = $Characters
+@onready var farms: Node2D = $Plants/Farms
 
 
 var items_on_ground = {}

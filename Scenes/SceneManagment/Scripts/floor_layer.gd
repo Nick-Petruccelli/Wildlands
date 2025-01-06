@@ -9,7 +9,4 @@ func set_floor_tile(pos: Vector2i, terrain_set: int, terrain_id: int) -> void:
 		var tile_data = get_cell_tile_data(tile)
 		if terrain_set == tile_data.terrain_set and terrain_id == tile_data.terrain:
 			terrain_tiles.append(tile)
-	print("terrain tile: ", terrain_tiles)
-	print("terrain_set: ", terrain_set)
-	print("terrain_id: ", terrain_id)
 	set_cells_terrain_connect(terrain_tiles, terrain_set, terrain_id)
