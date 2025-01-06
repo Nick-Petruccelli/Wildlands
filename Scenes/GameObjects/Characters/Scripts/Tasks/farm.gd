@@ -83,4 +83,4 @@ func plant(tile: Vector2i) -> void:
 
 func harvest(tile: Vector2i) -> void:
 	var farms = get_tree().get_first_node_in_group("scenemanager").farms
-	farms.harvest(tile, crop_id)
+	farms.harvest(tile)
