@@ -19,7 +19,6 @@ func load_data(id: int) -> void:
 	var tex = load(data["texture"])
 	sprite_2d.texture = tex
 	collision_shape_2d.shape.set("size", tex.get_size())
-	load_menu()
 
 func load_menu() -> void:
 	var item_data = get_tree().get_first_node_in_group("gamedata").item_data

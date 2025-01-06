@@ -2,5 +2,6 @@
 	"id": 1,
 	"name": "Wood Log",
 	"weight": 5,
-	"texture": "res://Assets/wood_log.png"
+	"texture": "res://Assets/wood_log.png",
+	"equipable": false,
 }

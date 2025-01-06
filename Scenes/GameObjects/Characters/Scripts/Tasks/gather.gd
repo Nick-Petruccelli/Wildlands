@@ -8,6 +8,7 @@ var item_to_gather: int = -1
 
 func execute(args: Array) -> void:
 	item_to_gather = args[0]
+	print("gathering item: ", item_to_gather)
 	var zone_layer = character.scene_manager.get_child(1)
 	var mat_loc = zone_layer.get_mat(item_to_gather)
 	character.goal_pos = mat_loc
@@ -35,6 +36,7 @@ func physics_update() -> void:
 			character.goal_pos = mat_loc
 			return
 		character.inventory.append(item_to_gather)
+		print("gathered item: ", item_to_gather)
 		exit()
 
 func exit() -> void:

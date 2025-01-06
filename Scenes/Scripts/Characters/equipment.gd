@@ -58,3 +58,20 @@ func unequip_item(equip_stats: Dictionary) -> void:
 		if !character_skills.has(stat):
 			continue
 		character_skills[stat] -= equip_stats[stat]
+
+func equip_best_gear(stat: String) -> void:
+	var stockpiles = get_tree().get_first_node_in_group("scenemanager").zone_layer.active_stockpiles
+	var best_gear = _equipment.duplicate()
+	var item_data = get_tree().get_first_node_in_group("gamedata").item_data
+	for pile in stockpiles:
+		for row in pile:
+			for e in row:
+				var item_id = e[1]
+				var item = item_data[item_id]
+				if !item["equipable"]:
+					continue
+				print("found hoe")
+				var gather: Gather = $"../StateMachine/Working/Gather"
+				character.working_state_nodes.work_plan.push_front([gather, [item["id"]]])
+				gather.execute([item["id"]])
+				return

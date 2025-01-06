@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c8wbxywbgtw3m"]
+[gd_scene load_steps=31 format=3 uid="uid://c8wbxywbgtw3m"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/chop_state.gd" id="13_6iyp2"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/PeopleMenu/people_menu.gd" id="13_caglq"]
 [ext_resource type="Script" path="res://Scenes/character_display.gd" id="13_ne33j"]
+[ext_resource type="Script" path="res://Scenes/Scripts/UI/WorkMenu/farm_btn.gd" id="14_3noi5"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ProductionMenu/Scripts/production_menu.gd" id="17_vhxf6"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ConstructionMenu/construction_list.gd" id="18_j10s6"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/mine_btn.gd" id="21_12qct"]
@@ -160,6 +161,12 @@ z_index = 10
 layout_mode = 2
 text = "Chop"
 script = ExtResource("6_6brmd")
+
+[node name="FarmBtn" type="Button" parent="UI/WorkMenu/MarginContainer/ConstructionListContainer"]
+z_index = 10
+layout_mode = 2
+text = "Farm"
+script = ExtResource("14_3noi5")
 
 [node name="PeopleMenu" type="Panel" parent="UI"]
 unique_name_in_owner = true

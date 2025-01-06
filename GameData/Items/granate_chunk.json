@@ -2,5 +2,6 @@
 	"id": 0,
 	"name": "Granate Chunk",
 	"weight": 30,
-	"texture": "res://Assets/WallItem.png"
+	"texture": "res://Assets/WallItem.png",
+	"equipable": false,
 }

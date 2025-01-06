@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bvar6b65bvlfe"]
+[gd_scene load_steps=21 format=3 uid="uid://bvar6b65bvlfe"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
 [ext_resource type="Texture2D" uid="uid://osh5afn0s3r3" path="res://Assets/dude16x16.png" id="2_4ox6i"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/craft.gd" id="10_qo1q0"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/mine.gd" id="10_uwbjx"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/haul.gd" id="11_ynclf"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/farm.gd" id="12_h07tb"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/stats.gd" id="15_1y54e"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Characters/equipment.gd" id="17_sale4"]
 
@@ -94,17 +95,20 @@ script = ExtResource("9_yp4im")
 [node name="Craft" type="Node2D" parent="StateMachine/Working"]
 script = ExtResource("10_qo1q0")
 
-[node name="Gather" type="Node2D" parent="StateMachine/Working"]
-script = ExtResource("8_fjgvi")
-
 [node name="Deconstruct" type="Node2D" parent="StateMachine/Working"]
 script = ExtResource("9_ifwck")
 
-[node name="Mine" type="Node2D" parent="StateMachine/Working"]
-script = ExtResource("10_uwbjx")
+[node name="Farm" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("12_h07tb")
+
+[node name="Gather" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("8_fjgvi")
 
 [node name="Haul" type="Node2D" parent="StateMachine/Working"]
 script = ExtResource("11_ynclf")
+
+[node name="Mine" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("10_uwbjx")
 
 [node name="Recreation" type="Node2D" parent="StateMachine"]
 script = ExtResource("7_mbta5")

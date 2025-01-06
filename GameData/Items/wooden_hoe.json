@@ -7,7 +7,7 @@
 	"equip_stats": {
 		"slot": "two_handed",
 		"damage": 10,
-		"farming": 15,
+		"farming": 3,
 	},
 	"prod_station": 3,
 	"craft_mats": {
