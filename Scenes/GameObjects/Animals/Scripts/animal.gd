@@ -24,6 +24,8 @@ func init() -> void:
 func _physics_process(delta: float) -> void:
 	if stats == {}:
 		init()
+	if is_dead():
+		return
 	if !paniced:
 		wander()
 	else:
@@ -34,7 +36,7 @@ func wander() -> void:
 		move_dir = get_rand_dir()
 		move_dir_last_change = Time.get_ticks_msec()
 	velocity  = move_dir * stats["speed"]
-	move_and_slide()
+	#move_and_slide()
 	
 func flee() -> void:
 	var characters: Array[Node] = get_tree().get_first_node_in_group("scenemanager").characters.get_children()

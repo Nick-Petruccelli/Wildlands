@@ -81,16 +81,16 @@ func get_main_hand_damage() -> int:
 	if _equipment["main_hand"] < 0:
 		return 5
 	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[_equipment["main_hand"]]
-	if item_data["equip_stats"]["cooldown"] < Time.get_ticks_msec() - last_main_hand_attack:
+	if Time.get_ticks_msec() - last_main_hand_attack < item_data["equip_stats"]["cooldown"]:
 		return 0
 	last_main_hand_attack = Time.get_ticks_msec()
 	return item_data["equip_stats"]["damage"]
 
 func get_off_hand_damage() -> int:
-	if _equipment["main_hand"] < 0:
+	if _equipment["off_hand"] < 0:
 		return 0
 	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[_equipment["off_hand"]]
-	if item_data["equip_stats"]["cooldown"] < Time.get_ticks_msec() - last_main_hand_attack:
+	if Time.get_ticks_msec() - last_off_hand_attack < item_data["equip_stats"]["cooldown"]:
 		return 0
 	last_off_hand_attack = Time.get_ticks_msec()
 	return item_data["equip_stats"]["damage"]

@@ -7,6 +7,7 @@ class_name Hunt
 var wepon_range: int = 128
 var target: Animal = null
 func execute(args: Array) -> void:
+	get_ranged_wepon()
 	target = args[0]
 
 func update() -> void:
@@ -30,3 +31,12 @@ func physics_update() -> void:
 func exit() -> void:
 	character.goal_pos = null
 	done_executing.emit()
+
+func get_ranged_wepon() -> void:
+	if !character.equipment.is_main_hand_ranged():
+		if character.equipment.equip(4):
+			return
+		print("getting bow")
+		var gather: Gather = $"../Gather"
+		character.working_state_nodes.work_plan.push_front([gather, [4]])
+		gather.execute([4])
