@@ -43,19 +43,41 @@ func query_work() -> void:
 	for colonist in characters.get_children():
 		colonist.get_work_order(work_queue)
 
-func add_ground_item(map_cords: Vector2i, item_id: int):
+func add_ground_item(map_cords: Vector2i, item_id: int) -> Vector2i:
+	var drop_cords = get_free_tile(map_cords)
 	var item = preload("res://Scenes/GameObjects/ground_item.tscn").instantiate()
 	game.add_child(item)
 	item.load_item(item_id)
 	var tile_size = floor_layer.tile_set.tile_size
 	var x_off = tile_size.x/2
 	var y_off = tile_size.y/2
-	var pos = Vector2i(map_cords.x*tile_size.x + x_off, map_cords.y*tile_size.y + y_off)
+	var pos = Vector2i(drop_cords.x*tile_size.x + x_off, drop_cords.y*tile_size.y + y_off)
 	item.global_position = pos
 	if !items_on_ground.has(item_id):
 		items_on_ground[item_id] = []
-	items_on_ground[item_id].append([map_cords, item])
+	items_on_ground[item_id].append([drop_cords, item])
+	return drop_cords
 	
+func is_tile_empty(map_cords: Vector2i) -> bool:
+	for item_type in items_on_ground:
+		for loc in items_on_ground[item_type]:
+			if loc[0] == map_cords:
+				return false
+	return true
+	
+func get_free_tile(map_cords: Vector2i) -> Vector2i:
+	if is_tile_empty(map_cords):
+		return map_cords
+	var layer = 1
+	for i in range(5):
+		for x in range(-layer, layer):
+			for y in range(-layer, layer):
+				var drop_cords = map_cords + Vector2i(x, y)
+				if is_tile_empty(drop_cords):
+					return drop_cords
+			layer += 1
+	return Vector2i(-1,-1)
+
 func remove_ground_item(map_cords: Vector2i, item_id: int) -> void:
 	for item in items_on_ground[item_id]:
 		if item[0] == map_cords:

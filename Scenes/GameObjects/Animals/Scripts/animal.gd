@@ -6,6 +6,8 @@ class_name Animal
 
 var animal_id: int = 0
 var stats: Dictionary
+var feild_dress_time: int
+var drops: Dictionary
 var move_dir: Vector2
 var move_dir_last_change: int = 0
 var paniced: bool = false
@@ -16,6 +18,8 @@ func init() -> void:
 		return
 	animal_data = animal_data[animal_id]
 	stats = animal_data["stats"]
+	feild_dress_time = animal_data["feild_dress_time"]
+	drops = animal_data["drops"]
 	var tex = load(animal_data["texture"])
 	sprite_2d.texture = tex
 	collision_shape_2d.shape.set("size", tex.get_size())
@@ -49,7 +53,7 @@ func flee() -> void:
 		paniced = false
 	move_dir = avoid_vec.normalized()
 	velocity = move_dir * stats["speed"]
-	move_and_slide()
+	#move_and_slide()
 	
 func take_damage(damage: int) -> void:
 	stats["health"] -= damage

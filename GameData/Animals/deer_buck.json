@@ -6,6 +6,7 @@
 		"health": 120,
 		"speed": 35,
 	},
+	"feild_dress_time": 10000,
 	"drops": {
 		"deer_skin": [6, [1,1]],
 		"deer_meet": [7, [25,30]],

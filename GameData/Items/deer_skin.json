@@ -1,0 +1,7 @@
+{
+	"id": 7,
+	"name": "Deer Skin",
+	"weight": 5,
+	"texture": "res://Assets/wood_log.png",
+	"equipable": false,
+}

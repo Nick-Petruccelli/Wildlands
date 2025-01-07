@@ -5,6 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1w14j"]
 
 [node name="Animal" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_mvdt5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

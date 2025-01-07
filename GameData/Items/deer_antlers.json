@@ -1,0 +1,7 @@
+{
+	"id": 8,
+	"name": "Deer Antlers",
+	"weight": 5,
+	"texture": "res://Assets/wooden_hoe.png",
+	"equipable": false,
+}
