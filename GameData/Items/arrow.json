@@ -1,14 +1,14 @@
 {
-	"id": 2,
-	"name": "Wooden Hoe",
+	"id": 5,
+	"name": "Arrow",
 	"weight": 2,
 	"texture": "res://Assets/wooden_hoe.png",
 	"equipable": true,
 	"equip_stats": {
 		"slot": "two_handed",
-		"damage": 15,
-		"cooldown": 750,
-		"farming": 3,
+		"damage": 10,
+		"is_ranged": true,
+		"projectile": 5,
 	},
 	"prod_station": 3,
 	"craft_mats": {

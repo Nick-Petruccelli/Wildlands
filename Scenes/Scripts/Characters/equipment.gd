@@ -9,7 +9,8 @@ var _equipment: Dictionary = {
 	'main_hand': -1,
 	'off_hand': -1,
 }
-
+var last_main_hand_attack: int = -1000
+var last_off_hand_attack: int = -1000
 func equip(item_id: int) -> bool:
 	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[item_id]
 	if !item_data["equipable"]:
@@ -75,3 +76,21 @@ func equip_best_gear(stat: String) -> void:
 				character.working_state_nodes.work_plan.push_front([gather, [item["id"]]])
 				gather.execute([item["id"]])
 				return
+
+func get_main_hand_damage() -> int:
+	if _equipment["main_hand"] < 0:
+		return 5
+	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[_equipment["main_hand"]]
+	if item_data["equip_stats"]["cooldown"] < Time.get_ticks_msec() - last_main_hand_attack:
+		return 0
+	last_main_hand_attack = Time.get_ticks_msec()
+	return item_data["equip_stats"]["damage"]
+
+func get_off_hand_damage() -> int:
+	if _equipment["main_hand"] < 0:
+		return 0
+	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[_equipment["off_hand"]]
+	if item_data["equip_stats"]["cooldown"] < Time.get_ticks_msec() - last_main_hand_attack:
+		return 0
+	last_off_hand_attack = Time.get_ticks_msec()
+	return item_data["equip_stats"]["damage"]

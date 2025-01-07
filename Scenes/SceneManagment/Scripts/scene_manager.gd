@@ -5,6 +5,7 @@ extends Node2D
 @onready var build_layer: TileMapLayer = $BuildLayer
 @onready var stone_layer: TileMapLayer = $StoneLayer
 @onready var plants: Node2D = $Plants
+@onready var animals: Node2D = $Animals
 @onready var constructions: Node2D = $Constructions
 @onready var characters: Node2D = $Characters
 @onready var farms: Node2D = $Plants/Farms

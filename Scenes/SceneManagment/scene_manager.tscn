@@ -1,16 +1,17 @@
-[gd_scene load_steps=20 format=4 uid="uid://cb21hux3mwctf"]
+[gd_scene load_steps=21 format=4 uid="uid://cb21hux3mwctf"]
 
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/scene_manager.gd" id="1_xlhlg"]
-[ext_resource type="Texture2D" uid="uid://dcnt8m61mxeuw" path="res://Assets/tilesheet16x16.png" id="2_ug6df"]
-[ext_resource type="Texture2D" uid="uid://lokinw6eqwh0" path="res://Assets/StockpileZone.png" id="3_66mkn"]
+[ext_resource type="Texture2D" uid="uid://ckjim8xbcuohd" path="res://Assets/tilesheet16x16.png" id="2_ug6df"]
+[ext_resource type="Texture2D" uid="uid://cpkt3gblgie5i" path="res://Assets/StockpileZone.png" id="3_66mkn"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/zone_layer.gd" id="4_7hjf3"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/floor_layer.gd" id="4_tmlwu"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/build_layer.gd" id="5_xupfu"]
-[ext_resource type="Texture2D" uid="uid://cdihsxas0jv4c" path="res://Assets/granate_wall_tilesheet.png" id="6_axqd0"]
+[ext_resource type="Texture2D" uid="uid://drblm6pkedqg2" path="res://Assets/granate_wall_tilesheet.png" id="6_axqd0"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/stone_layer.gd" id="7_014o3"]
 [ext_resource type="PackedScene" uid="uid://bvar6b65bvlfe" path="res://Scenes/GameObjects/Characters/character.tscn" id="9_4fv67"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/farms.gd" id="9_rgs4f"]
 [ext_resource type="PackedScene" uid="uid://c5appamp605p4" path="res://Scenes/Environment/Plants/tree.tscn" id="9_ryiur"]
+[ext_resource type="PackedScene" uid="uid://c77md1o48p3jn" path="res://Scenes/GameObjects/Animals/animal.tscn" id="11_jqdr7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i1yev"]
 texture = ExtResource("2_ug6df")
@@ -452,6 +453,11 @@ position = Vector2(216, 88)
 
 [node name="Tree10" parent="Plants" instance=ExtResource("9_ryiur")]
 position = Vector2(104, 224)
+
+[node name="Animals" type="Node2D" parent="."]
+
+[node name="Animal" parent="Animals" instance=ExtResource("11_jqdr7")]
+position = Vector2(600, 88)
 
 [node name="Constructions" type="Node2D" parent="."]
 

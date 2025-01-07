@@ -53,3 +53,13 @@ func act_on_loc(loc: Vector2) -> void:
 func move_with_vel() -> void:
 	velocity  = velocity * speed * speed_mod
 	move_and_slide()
+
+func attack(target) -> void:
+	var main_hand_damage = equipment.get_main_hand_damage()
+	var off_hand_damage = equipment.get_off_hand_damage()
+	var damage = get_final_damage(main_hand_damage, off_hand_damage)
+	target.take_damage(damage)
+	
+	
+func get_final_damage(main_hand_damage, off_hand_damage) -> int:
+	return main_hand_damage + off_hand_damage

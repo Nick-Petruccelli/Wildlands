@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do8ahg12bhtvk"
-path="res://.godot/imported/WallItem.png-cbefc6072265e5b63872157e367c77f1.ctex"
+uid="uid://bymkjw4e8pxts"
+path="res://.godot/imported/deer_buck.png-89c054a66423475fc1262127de6eba06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/WallItem.png"
-dest_files=["res://.godot/imported/WallItem.png-cbefc6072265e5b63872157e367c77f1.ctex"]
+source_file="res://Assets/deer_buck.png"
+dest_files=["res://.godot/imported/deer_buck.png-89c054a66423475fc1262127de6eba06.ctex"]
 
 [params]
 

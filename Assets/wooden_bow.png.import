@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do8ahg12bhtvk"
-path="res://.godot/imported/WallItem.png-cbefc6072265e5b63872157e367c77f1.ctex"
+uid="uid://dglsxn51fxhhv"
+path="res://.godot/imported/wooden_bow.png-d484315001f2a33517c14047e1de456d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/WallItem.png"
-dest_files=["res://.godot/imported/WallItem.png-cbefc6072265e5b63872157e367c77f1.ctex"]
+source_file="res://Assets/wooden_bow.png"
+dest_files=["res://.godot/imported/wooden_bow.png-d484315001f2a33517c14047e1de456d.ctex"]
 
 [params]
 
