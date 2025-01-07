@@ -94,3 +94,14 @@ func get_off_hand_damage() -> int:
 		return 0
 	last_off_hand_attack = Time.get_ticks_msec()
 	return item_data["equip_stats"]["damage"]
+
+func is_main_hand_ranged() -> bool:
+	if _equipment["main_hand"] < 0:
+		return false
+	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[_equipment["main_hand"]]
+	return item_data["equip_stats"].has("ranged")
+func is_off_hand_ranged() -> bool:
+	if _equipment["off_hand"] < 0:
+		return false
+	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[_equipment["off_hand"]]
+	return item_data["equip_stats"].has("ranged")

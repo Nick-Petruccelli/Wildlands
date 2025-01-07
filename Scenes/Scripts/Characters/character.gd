@@ -58,8 +58,21 @@ func attack(target) -> void:
 	var main_hand_damage = equipment.get_main_hand_damage()
 	var off_hand_damage = equipment.get_off_hand_damage()
 	var damage = get_final_damage(main_hand_damage, off_hand_damage)
+	print("damage: ", damage)
 	target.take_damage(damage)
 	
 	
-func get_final_damage(main_hand_damage, off_hand_damage) -> int:
+func get_final_damage(main_hand_damage: int, off_hand_damage: int) -> int:
+	var main_hand_ranged = equipment.is_main_hand_ranged()
+	print("predamage: ", main_hand_damage)
+	var off_hand_ranged = equipment.is_off_hand_ranged()
+	print("modifier: ", (stats.skills["ranged"] / 5.0))
+	if main_hand_ranged:
+		main_hand_damage = main_hand_damage * (stats.skills["ranged"] / 5.0)
+	else:
+		main_hand_damage = main_hand_damage * (stats.skills["melee"] / 5.0)
+	if off_hand_ranged:
+		off_hand_damage = off_hand_damage * (stats.skills["ranged"] / 5.0)
+	else:
+		off_hand_damage = off_hand_damage * (stats.skills["melee"] / 5.0)
 	return main_hand_damage + off_hand_damage
