@@ -6,7 +6,7 @@
 	"equipable": true,
 	"equip_stats": {
 		"slot": "two_handed",
-		"damage": 5,
+		"damage": 40,
 		"cooldown": 1000,
 		"is_ranged": true,
 		"projectile": 5,

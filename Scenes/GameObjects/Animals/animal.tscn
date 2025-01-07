@@ -1,29 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c77md1o48p3jn"]
+[gd_scene load_steps=3 format=3 uid="uid://c77md1o48p3jn"]
 
 [ext_resource type="Script" path="res://Scenes/GameObjects/Animals/Scripts/animal.gd" id="1_mvdt5"]
-[ext_resource type="Texture2D" uid="uid://bymkjw4e8pxts" path="res://Assets/deer_buck.png" id="1_pqb20"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_6x0a6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_pqb20")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_86vvu"]
-radius = 8.00797
-height = 25.9992
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1w14j"]
 
 [node name="Animal" type="CharacterBody2D"]
 script = ExtResource("1_mvdt5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_6x0a6")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.57869
-shape = SubResource("CapsuleShape2D_86vvu")
+shape = SubResource("RectangleShape2D_1w14j")

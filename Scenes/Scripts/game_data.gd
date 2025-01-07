@@ -2,10 +2,12 @@ extends Node2D
 
 var item_data: Dictionary = {}
 var environment_data: Dictionary = {}
+var animal_data: Dictionary = {}
 
 func _ready() -> void:
 	load_item_data()
 	load_environment_data()
+	load_animal_data()
 
 func load_item_data() -> void:
 	var item_data_path = "res://GameData/Items/"
@@ -46,6 +48,26 @@ func add_to_environment_data(data: Dictionary) -> void:
 		print("Error: loading item data, item id alredy in use.")
 		return
 	environment_data[int(data["id"])] = data
+	
+func load_animal_data() -> void:
+	var animal_data_path = "res://GameData/Animals/"
+	var data_dir = open_dir(animal_data_path)
+	if data_dir == null:
+		return
+	var data_files = data_dir.get_files()
+	for file_name in data_files:
+		var file = FileAccess.open(animal_data_path+file_name, FileAccess.READ)
+		var data = JSON.parse_string(file.get_as_text())
+		if data == null:
+			print("Error: "+animal_data_path+file_name+", failed to load.")
+			continue
+		add_to_animal_data(data)
+	
+func add_to_animal_data(data: Dictionary) -> void:
+	if environment_data.has(data["id"]):
+		print("Error: loading item data, item id alredy in use.")
+		return
+	animal_data[int(data["id"])] = data
 	
 func open_dir(path: String) -> DirAccess:
 	var dir = DirAccess.open(path)

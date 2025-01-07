@@ -1,0 +1,14 @@
+{
+	"id": 0,
+	"texture": "res://Assets/deer_buck.png",
+	"stats": {
+		"max_health": 120,
+		"health": 120,
+		"speed": 35,
+	},
+	"drops": {
+		"deer_skin": [6, [1,1]],
+		"deer_meet": [7, [25,30]],
+		"deer_antlers": [8, [2,2]]
+	}
+}

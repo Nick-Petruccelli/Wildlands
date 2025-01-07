@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bvar6b65bvlfe" path="res://Scenes/GameObjects/Characters/character.tscn" id="9_4fv67"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/farms.gd" id="9_rgs4f"]
 [ext_resource type="PackedScene" uid="uid://c5appamp605p4" path="res://Scenes/Environment/Plants/tree.tscn" id="9_ryiur"]
-[ext_resource type="PackedScene" uid="uid://c77md1o48p3jn" path="res://Scenes/GameObjects/Animals/animal.tscn" id="11_jqdr7"]
+[ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/animals.gd" id="11_1kn2g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i1yev"]
 texture = ExtResource("2_ug6df")
@@ -455,9 +455,7 @@ position = Vector2(216, 88)
 position = Vector2(104, 224)
 
 [node name="Animals" type="Node2D" parent="."]
-
-[node name="Animal" parent="Animals" instance=ExtResource("11_jqdr7")]
-position = Vector2(600, 88)
+script = ExtResource("11_1kn2g")
 
 [node name="Constructions" type="Node2D" parent="."]
 
