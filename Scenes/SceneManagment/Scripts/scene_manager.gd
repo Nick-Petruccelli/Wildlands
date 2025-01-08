@@ -9,13 +9,13 @@ extends Node2D
 @onready var constructions: Node2D = $Constructions
 @onready var characters: Node2D = $Characters
 @onready var farms: Node2D = $Plants/Farms
-
+@onready var ground_items: Node2D = $GroundItems
 
 var items_on_ground = {}
 var colonists = []
 var work_queue = []
 var stock_piels = []
-@onready var map_size = floor_layer.get_used_rect()
+@onready var map_size = floor_layer.get_used_rect().size
 @onready var query_work_timer: Timer = $Query_Work_Timer
 
 func _ready():
@@ -29,6 +29,7 @@ func _ready():
 		if "scene_manager" in node:
 			node.scene_manager = self
 	query_work_timer.timeout.connect(query_work)
+	ground_items.init(map_size.x, map_size.y)
 	
 func _on_character_work_done(character: Character) -> void:
 	character.get_work_order(work_queue)

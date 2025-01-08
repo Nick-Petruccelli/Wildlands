@@ -2,6 +2,7 @@
 	"id": 3,
 	"name": "Raw Cotten",
 	"weight": 0.5,
+	"stack_count": 100,
 	"texture": "res://Assets/WallItem.png",
 	"equipable": false,
 	"farmable": true,

@@ -56,7 +56,7 @@ func feild_dress(target: Animal) -> bool:
 	var scene_manager = get_tree().get_first_node_in_group("scenemanager")
 	for drop in target.drops:
 		var drop_id = target.drops[drop][0]
-		var drop_cords = scene_manager.add_ground_item(Cords.get_map_from_global(target.global_position), drop_id)
+		var drop_cords = scene_manager.ground_items.add(Cords.get_map_from_global(target.global_position), drop_id)
 		scene_manager.order_work("Haul", [Cords.get_global_from_map(drop_cords), drop_id])
 	target.queue_free()
 	return true

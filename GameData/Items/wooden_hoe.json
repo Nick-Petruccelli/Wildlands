@@ -2,6 +2,7 @@
 	"id": 2,
 	"name": "Wooden Hoe",
 	"weight": 2,
+	"stack_count": 1,
 	"texture": "res://Assets/wooden_hoe.png",
 	"equipable": true,
 	"equip_stats": {

@@ -53,7 +53,7 @@ func physics_update() -> void:
 			exit()
 			return
 		if start_inventory == null:
-			scene_manager.remove_ground_item(Cords.get_map_from_global(character.goal_pos), item_id)
+			scene_manager.ground_items.remove(Cords.get_map_from_global(character.goal_pos))
 		else:
 			start_inventory.inventory.erase(item_id)
 		character.inventory.append(item_id)

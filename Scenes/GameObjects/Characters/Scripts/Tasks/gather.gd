@@ -36,7 +36,6 @@ func physics_update() -> void:
 			character.goal_pos = mat_loc
 			return
 		character.inventory.append(item_to_gather)
-		print("gathered item: ", item_to_gather)
 		exit()
 
 func exit() -> void:

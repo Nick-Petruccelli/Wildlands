@@ -21,6 +21,6 @@ func mine(loc: Vector2i, character_stats: Dictionary) -> bool:
 	if tile_data[map_cords.y][map_cords.x] <= 0:
 		erase_cell(map_cords)
 		stone_removed.emit(map_cords)
-		scene_manager.add_ground_item(map_cords, 0)
+		scene_manager.ground_items.add(map_cords, 0)
 		return true
 	return false

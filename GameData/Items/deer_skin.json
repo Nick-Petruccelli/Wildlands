@@ -2,6 +2,7 @@
 	"id": 7,
 	"name": "Deer Skin",
 	"weight": 5,
+	"stack_count": 100,
 	"texture": "res://Assets/wood_log.png",
 	"equipable": false,
 }

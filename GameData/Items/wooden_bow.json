@@ -2,6 +2,7 @@
 	"id": 4,
 	"name": "Wooden Bow",
 	"weight": 2,
+	"stack_count": 1,
 	"texture": "res://Assets/wooden_bow.png",
 	"equipable": true,
 	"equip_stats": {

@@ -19,5 +19,5 @@ func harvest() -> void:
 	if Time.get_ticks_msec() - time_planted < crop_data["farm_stats"]["grow_time"]:
 		return
 	var scene_manager = get_tree().get_first_node_in_group("scenemanager")
-	scene_manager.add_ground_item(map_pos, crop_id)
+	scene_manager.ground_items.add(map_pos, crop_id)
 	queue_free()

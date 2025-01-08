@@ -73,10 +73,9 @@ func get_next_minning():
 	
 func deconstruct_build(cords: Vector2) -> void:
 	var map_cords = Cords.get_map_from_global(cords)
-	#child 0 is floorlayer
 	set_cell(map_cords, 0, Vector2i(0, 0))
 	placed_build[map_cords.x][map_cords.y] = -1
-	scene_manager.add_ground_item(map_cords, 0)
+	scene_manager.ground_items.add(map_cords, 0)
 
 
 func open_dir(path: String) -> DirAccess:

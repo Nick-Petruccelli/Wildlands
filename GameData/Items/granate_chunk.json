@@ -2,6 +2,7 @@
 	"id": 0,
 	"name": "Granate Chunk",
 	"weight": 30,
+	"stack_count": 1,
 	"texture": "res://Assets/WallItem.png",
 	"equipable": false,
 }

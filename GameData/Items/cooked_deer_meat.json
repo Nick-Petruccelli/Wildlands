@@ -2,6 +2,7 @@
 	"id": 9,
 	"name": "Cooked Deer Meat",
 	"weight": 5,
+	"stack_count": 100,
 	"texture": "res://Assets/WallItem.png",
 	"equipable": false,
 	"prod_station": 6,
