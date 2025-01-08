@@ -27,7 +27,6 @@ func update(_delta: float) -> void:
 		
 		chop_in_area(down_pos, get_global_mouse_position())
 		var farm_tiles = get_farm_tiles(down_pos, get_global_mouse_position())
-		print(farm_tiles)
 		for tile in farm_tiles:
 			scene_manager.order_work("Farm", [tile, crop_id])
 

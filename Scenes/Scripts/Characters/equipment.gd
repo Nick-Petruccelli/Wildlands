@@ -71,7 +71,6 @@ func equip_best_gear(stat: String) -> void:
 				var item = item_data[item_id]
 				if !item["equipable"]:
 					continue
-				print("found hoe")
 				var gather: Gather = $"../StateMachine/Working/Gather"
 				character.working_state_nodes.work_plan.push_front([gather, [item["id"]]])
 				gather.execute([item["id"]])

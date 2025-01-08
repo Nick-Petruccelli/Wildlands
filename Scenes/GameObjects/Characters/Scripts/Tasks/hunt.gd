@@ -42,7 +42,6 @@ func get_ranged_wepon() -> void:
 	if !character.equipment.is_main_hand_ranged():
 		if character.equipment.equip(4):
 			return
-		print("getting bow")
 		var gather: Gather = $"../Gather"
 		character.working_state_nodes.work_plan.push_front([gather, [4]])
 		gather.execute([4])

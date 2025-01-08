@@ -10,29 +10,18 @@ var storage_loc: Vector2i = Vector2i(-1,-1)
 var start_inventory = null
 
 func execute(args: Array) -> void:
-	character.goal_pos = args[0]
+	character.goal_pos = Cords.get_global_from_map(args[0])
 	item_id = args[1]
 	if args.size() == 3:
 		start_inventory = args[2]
-	var stock_piles = character.scene_manager.zone_layer.get_stockpiles()
-	if stock_piles.is_empty():
-		exit()
-	var closest = null
-	var min_dist = 999999999999999.9
-	for pile in stock_piles:
-		for row in pile:
-			for tile in row:
-				if tile[1] != -1:
-					continue
-				var dist = character.goal_pos.distance_to(Cords.get_global_from_map(tile[0]))
-				if dist < min_dist:
-					min_dist = dist
-					closest = tile
-	if closest == null:
+	var ground_items = character.scene_manager.ground_items
+	storage_loc = ground_items.get_item_loc(item_id)
+	if storage_loc == Vector2i(-1,-1):
+		storage_loc = ground_items.get_free_stockpile_space()
+	if storage_loc == Vector2i(-1,-1):
 		exit()
 		return
-	storage_loc = closest[0]
-	closest[1] = -2
+	ground_items.reserve_stockpile_space(storage_loc, item_id)
 	has_item = false
 
 func update() -> void:
@@ -48,7 +37,7 @@ func physics_update() -> void:
 	if character.global_position.distance_to(character.goal_pos) < 21:
 		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
 		if has_item:
-			scene_manager.zone_layer.put_in_stockpile(storage_loc, item_id)
+			scene_manager.ground_items.add_to_stockpile(storage_loc, item_id)
 			character.inventory.erase(item_id)
 			exit()
 			return

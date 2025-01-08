@@ -1,4 +1,5 @@
 extends Node2D
+class_name GroundItem
 
 var id: int
 @onready var sprite_2d: Sprite2D = $Sprite2D

@@ -34,7 +34,6 @@ func load_menu() -> void:
 		btn.station = self
 		producables_list.add_child(btn)
 		btn.init()
-		print("btn initialized")
 	var prod_menu = get_tree().get_first_node_in_group("productionmenu")
 	prod_menu.open_ui()
 	

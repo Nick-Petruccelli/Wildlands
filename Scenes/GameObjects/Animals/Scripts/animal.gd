@@ -57,7 +57,6 @@ func flee() -> void:
 	
 func take_damage(damage: int) -> void:
 	stats["health"] -= damage
-	print("health: ", stats["health"])
 	paniced = true
 
 func is_dead() -> bool:

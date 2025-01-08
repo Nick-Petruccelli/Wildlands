@@ -58,7 +58,6 @@ func attack(target) -> void:
 	var main_hand_damage = equipment.get_main_hand_damage()
 	var off_hand_damage = equipment.get_off_hand_damage()
 	var damage = get_final_damage(main_hand_damage, off_hand_damage)
-	print("damage: ", damage)
 	target.take_damage(damage)
 	
 	
