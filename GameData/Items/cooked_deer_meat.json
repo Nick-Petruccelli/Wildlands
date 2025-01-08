@@ -1,0 +1,12 @@
+{
+	"id": 9,
+	"name": "Cooked Deer Meat",
+	"weight": 5,
+	"texture": "res://Assets/WallItem.png",
+	"equipable": false,
+	"prod_station": 6,
+	"craft_mats": {
+		"Deer Meat": [6, 1]
+	},
+	"craft_dur": 1000,
+}

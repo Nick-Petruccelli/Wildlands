@@ -1,0 +1,13 @@
+{
+	"id": 6,
+	"name": "Campfire",
+	"constructable": true,
+	"type": "Production",
+	"build_mats": {
+		"Wood Log": [1, 2]
+	},
+	"droped_items": {
+		"Campfire": 1.0
+	},
+	"texture": "res://Assets/campfire.png",
+}
