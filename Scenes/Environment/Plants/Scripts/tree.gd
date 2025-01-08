@@ -6,7 +6,7 @@ func _ready() -> void:
 
 func cut_down(character_stats: Dictionary) -> bool:
 	var arbory_mod = character_stats["skills"]["arbory"] / 10.0
-	health -= 10 + (character_stats["strength"] * arbory_mod)
+	health -= 150 + (character_stats["strength"] * arbory_mod)
 	if health <= 0:
 		drop_mats()
 		queue_free()

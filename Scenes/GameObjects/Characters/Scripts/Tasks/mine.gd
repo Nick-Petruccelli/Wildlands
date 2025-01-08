@@ -20,7 +20,7 @@ func physics_update() -> void:
 		var block_broke = scene_manager.stone_layer.mine(character.goal_pos, character.stats.stats)
 		last_swing = Time.get_ticks_msec()
 		if block_broke:
-			scene_manager.order_work("Haul", [character.goal_pos, 0])
+			scene_manager.order_work("Haul", [Cords.get_map_from_global(character.goal_pos), 0])
 			exit()
 		return
 	if character.goal_pos == null:

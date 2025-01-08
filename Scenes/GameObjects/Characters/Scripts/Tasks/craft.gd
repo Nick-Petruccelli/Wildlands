@@ -37,7 +37,7 @@ func physics_update() -> void:
 			station.remove_mats_from_inventory(item["craft_mats"])
 			station.inventory.append(item["id"])
 			var scene_manager = get_tree().get_first_node_in_group('scenemanager')
-			scene_manager.order_work("Haul", [station.global_position, item["id"], station])
+			scene_manager.order_work("Haul", [Cords.get_map_from_global(station.global_position), item["id"], station])
 			exit()
 		return
 	var next_node = pathfinding.next_node(character.global_position)

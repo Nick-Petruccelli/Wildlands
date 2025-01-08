@@ -75,8 +75,19 @@ func add_to_stockpile(tile_pos: Vector2i, item_id: int) -> void:
 			continue
 		var item = add(tile_pos, item_id)
 		pile.add(item)
+		
+func remove_from_stockpile(tile_pos: Vector2i, item_id: int) -> void:
+	var item = tiles[tile_pos.y][tile_pos.x]
+	if item.id != item_id:
+		print("Item not at tile pos")
 		return
-
+	for pile in stockpiles:
+		if !pile.is_within_zone(tile_pos):
+			continue
+		var out = remove(tile_pos)
+		if out:
+			pile.remove(item)
+			
 func get_free_stockpile_space() -> Vector2i:
 	for pile in stockpiles:
 		var free_space = pile.get_free_space()

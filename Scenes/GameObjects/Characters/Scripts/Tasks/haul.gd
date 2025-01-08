@@ -51,8 +51,17 @@ func physics_update() -> void:
 		else:
 			start_inventory.inventory.erase(item_id)
 			character.inventory.append(item_id)
+		var task = get_nearby_haul_task()
+		if task != []:
+			var loc = task[1][0]
+			var item_id = task[1][1]
+			character.working_state_nodes.work_plan.push_back([self, [loc, item_id]])
+			exit()
+			return
 		character.goal_pos = Cords.get_global_from_map(storage_loc)
 		has_item = true
+		var ground_items = character.scene_manager.ground_items
+		ground_items.reserve_stockpile_space(storage_loc, item_id)
 
 func exit() -> void:
 	character.goal_pos = null
@@ -61,3 +70,15 @@ func exit() -> void:
 	storage_loc = Vector2i(-1,-1)
 	start_inventory = null
 	done_executing.emit()
+
+func get_nearby_haul_task() -> Array:
+	var work_queue = get_tree().get_first_node_in_group("scenemanager").work_queue
+	for i in range(work_queue.size()):
+		var task = work_queue[i]
+		if task[0] != "Haul":
+			continue
+		if Cords.get_global_from_map(task[1][0]).distance_to(global_position) > 500:
+			continue
+		var out = work_queue.pop_at(i)
+		return out
+	return []

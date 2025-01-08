@@ -30,6 +30,8 @@ func get_item_loc(item_id: int) -> Vector2i:
 				continue
 			if item is int and item == item_id:
 				return Vector2i(x, y)
+			if item is int:
+				continue
 			if item.id != item_id:
 				continue
 			return Vector2i(x, y)

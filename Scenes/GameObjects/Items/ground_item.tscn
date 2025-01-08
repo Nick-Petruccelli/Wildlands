@@ -6,6 +6,7 @@
 script = ExtResource("1_v671k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 
 [node name="CountLabel" type="Label" parent="."]
 offset_right = 8.0

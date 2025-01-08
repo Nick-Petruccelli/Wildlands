@@ -73,6 +73,12 @@ func drop_mats() -> void:
 		var drop_id = drops[drop][0]
 		var drop_range = drops[drop][1]
 		var drop_count = randi_range(drop_range[0], drop_range[1])
+		var drop_cords = []
 		for i in range(drop_count):
-			var drop_cords = scene_manager.ground_items.add(Cords.get_map_from_global(global_position), drop_id)
-			scene_manager.order_work("Haul", [Cords.get_global_from_map(drop_cords), drop_id])
+			var ground_item = scene_manager.ground_items.add(Cords.get_map_from_global(global_position), drop_id)
+			var drop_cord = Cords.get_map_from_global(ground_item.global_position)
+			if !drop_cords.has(drop_cord):
+				drop_cords.append(drop_cord)
+		for cords in drop_cords:
+			print(cords)
+			scene_manager.order_work("Haul", [cords, drop_id])

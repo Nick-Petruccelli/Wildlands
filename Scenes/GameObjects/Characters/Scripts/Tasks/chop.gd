@@ -25,7 +25,6 @@ func physics_update() -> void:
 		if !cut_down:
 			return
 		var scene_manager = get_tree().get_first_node_in_group('scenemanager')
-		scene_manager.order_work("Haul", [character.goal_pos, target.item_id])
 		exit()
 		return
 	var next_node = pathfinding.next_node(character.global_position)

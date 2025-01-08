@@ -8,9 +8,9 @@ var item_to_gather: int = -1
 
 func execute(args: Array) -> void:
 	item_to_gather = args[0]
-	var zone_layer = character.scene_manager.get_child(1)
-	var mat_loc = zone_layer.get_mat(item_to_gather)
-	character.goal_pos = mat_loc
+	var ground_items = character.scene_manager.ground_items
+	var mat_loc = ground_items.get_item_loc(item_to_gather)
+	character.goal_pos = Cords.get_global_from_map(mat_loc)
 	
 
 func update() -> void:
@@ -25,15 +25,8 @@ func physics_update() -> void:
 	character.move_with_vel()
 	if character.global_position.distance_to(character.goal_pos) < 18:
 		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
-		var ret = scene_manager.zone_layer.remove_from_stockpile(Cords.get_map_from_global(character.goal_pos), item_to_gather)
-		if ret == -1:
-			var zone_layer = character.scene_manager.get_child(1)
-			var mat_loc = zone_layer.get_mat(item_to_gather)
-			if mat_loc == Vector2i(-1,-1):
-				exit()
-				return
-			character.goal_pos = mat_loc
-			return
+		var ground_items = scene_manager.ground_items
+		ground_items.remove_from_stockpile(Cords.get_map_from_global(character.goal_pos), item_to_gather)
 		character.inventory.append(item_to_gather)
 		exit()
 
