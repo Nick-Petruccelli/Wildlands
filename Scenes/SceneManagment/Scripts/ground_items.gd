@@ -21,7 +21,7 @@ func add(tile_pos: Vector2i, item_id: int) -> Vector2i:
 		var y_off = tile_size.y/2
 		var pos = Vector2i(drop_cords.x*tile_size.x + x_off, drop_cords.y*tile_size.y + y_off)
 		item.global_position = pos
-		tiles[tile_pos.y][tile_pos.x] = item
+		tiles[drop_cords.y][drop_cords.x] = item
 	tiles[drop_cords.y][drop_cords.x].add_count(1)
 	return drop_cords
 	

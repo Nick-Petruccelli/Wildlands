@@ -10,6 +10,6 @@
 	"drops": {
 		"deer_skin": [6, [1,1]],
 		"deer_meet": [7, [25,30]],
-		"deer_antlers": [8, [2,2]]
+		"deer_antlers": [8, [0,1]]
 	}
 }

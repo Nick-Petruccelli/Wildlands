@@ -67,3 +67,13 @@ func get_rand_dir() -> Vector2:
 	var x = randf_range(-.25, .25)
 	var y = randf_range(-.25, .25)
 	return Vector2(x, y)
+
+func drop_mats() -> void:
+	var scene_manager = get_tree().get_first_node_in_group("scenemanager")
+	for drop in drops:
+		var drop_id = drops[drop][0]
+		var drop_range = drops[drop][1]
+		var drop_count = randi_range(drop_range[0], drop_range[1])
+		for i in range(drop_count):
+			var drop_cords = scene_manager.ground_items.add(Cords.get_map_from_global(global_position), drop_id)
+			scene_manager.order_work("Haul", [Cords.get_global_from_map(drop_cords), drop_id])

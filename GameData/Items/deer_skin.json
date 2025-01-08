@@ -3,6 +3,6 @@
 	"name": "Deer Skin",
 	"weight": 5,
 	"stack_count": 100,
-	"texture": "res://Assets/wood_log.png",
+	"texture": "res://Assets/deer_skin.png",
 	"equipable": false,
 }

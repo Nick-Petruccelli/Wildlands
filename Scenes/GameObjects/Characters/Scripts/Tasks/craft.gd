@@ -28,7 +28,6 @@ func update() -> void:
 func physics_update() -> void:
 	if character.goal_pos == null:
 		return
-	print(character.global_position.distance_to(character.goal_pos))
 	if character.global_position.distance_to(character.goal_pos) < 21:
 		if craft_start_time == -1:
 			craft_start_time = Time.get_ticks_msec()

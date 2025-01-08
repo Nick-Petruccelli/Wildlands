@@ -3,6 +3,6 @@
 	"name": "Deer Antlers",
 	"weight": 5,
 	"stack_count": 100,
-	"texture": "res://Assets/wooden_hoe.png",
+	"texture": "res://Assets/deer_antlers.png",
 	"equipable": false,
 }

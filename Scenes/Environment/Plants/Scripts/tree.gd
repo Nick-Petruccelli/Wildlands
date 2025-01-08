@@ -17,3 +17,4 @@ func drop_mats() -> void:
 	var scene_manager = get_tree().get_first_node_in_group("scenemanager")
 	for i in range(15):
 		scene_manager.ground_items.add(Cords.get_map_from_global(self.global_position), item_id)
+		scene_manager.order_work("Haul", [Cords.get_map_from_global(self.global_position), item_id])

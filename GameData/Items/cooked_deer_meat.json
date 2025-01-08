@@ -3,7 +3,7 @@
 	"name": "Cooked Deer Meat",
 	"weight": 5,
 	"stack_count": 100,
-	"texture": "res://Assets/WallItem.png",
+	"texture": "res://Assets/cooked_deer_meat.png",
 	"equipable": false,
 	"prod_station": 6,
 	"craft_mats": {

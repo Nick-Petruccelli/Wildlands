@@ -3,6 +3,6 @@
 	"name": "Deer Meat",
 	"weight": 5,
 	"stack_count": 100,
-	"texture": "res://Assets/WallItem.png",
+	"texture": "res://Assets/raw_deer_meat.png",
 	"equipable": false,
 }
