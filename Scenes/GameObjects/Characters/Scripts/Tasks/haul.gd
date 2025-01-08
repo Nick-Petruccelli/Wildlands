@@ -37,15 +37,20 @@ func physics_update() -> void:
 	if character.global_position.distance_to(character.goal_pos) < 21:
 		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
 		if has_item:
-			scene_manager.ground_items.add_to_stockpile(storage_loc, item_id)
-			character.inventory.erase(item_id)
+			while character.inventory.has(item_id):
+				scene_manager.ground_items.add_to_stockpile(storage_loc, item_id)
+				character.inventory.erase(item_id)
 			exit()
 			return
 		if start_inventory == null:
-			scene_manager.ground_items.remove(Cords.get_map_from_global(character.goal_pos))
+			var done = scene_manager.ground_items.remove(Cords.get_map_from_global(character.goal_pos))
+			character.inventory.append(item_id)
+			while !done:
+				done = scene_manager.ground_items.remove(Cords.get_map_from_global(character.goal_pos))
+				character.inventory.append(item_id)
 		else:
 			start_inventory.inventory.erase(item_id)
-		character.inventory.append(item_id)
+			character.inventory.append(item_id)
 		character.goal_pos = Cords.get_global_from_map(storage_loc)
 		has_item = true
 

@@ -34,7 +34,8 @@ func remove(tile_pos: Vector2i) -> bool:
 	if item.count <= 0:
 		item.queue_free()
 		tiles[tile_pos.y][tile_pos.x] = null
-	return true
+		return true
+	return false
 
 func can_hold(tile_pos: Vector2i, item_id: int) -> bool:
 	var item_at_pos = tiles[tile_pos.y][tile_pos.x]
