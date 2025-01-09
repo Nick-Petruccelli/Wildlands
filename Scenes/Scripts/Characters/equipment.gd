@@ -104,3 +104,8 @@ func is_off_hand_ranged() -> bool:
 		return false
 	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[_equipment["off_hand"]]
 	return item_data["equip_stats"].has("ranged")
+
+func weild_wepons() -> void:
+	if _equipment["main_hand"] == -1 and _equipment["off_hand"] == -1:
+		return
+	

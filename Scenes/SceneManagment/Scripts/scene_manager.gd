@@ -17,6 +17,7 @@ var work_queue = []
 var stock_piels = []
 @onready var map_size = floor_layer.get_used_rect().size
 @onready var query_work_timer: Timer = $Query_Work_Timer
+var in_dev_mode = false
 
 func _ready():
 	add_to_group("scenemanager")

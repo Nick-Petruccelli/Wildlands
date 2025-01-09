@@ -1,7 +1,7 @@
 extends Node2D
 class_name CharacterStats
 
-var hunger_tick_rate: int = 500
+var hunger_tick_rate: int = 10000
 var last_hunger_tick: int = 0
 var skills: Dictionary = {
 	"construction": 5,

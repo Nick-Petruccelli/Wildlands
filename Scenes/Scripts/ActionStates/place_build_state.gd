@@ -1,7 +1,6 @@
 extends State
 class_name PlaceBuildState
 
-@onready var build_layer: TileMapLayer = $"../../SceneManager/BuildLayer"
 @onready var scene_manager: Node2D = %SceneManager
 var cur_material = null
 var mouse_down = null
@@ -25,6 +24,9 @@ func update(_delta: float) -> void:
 		#build_layer.order_build(mouse_down, get_global_mouse_position(), cur_material)
 		var build_tiles =  get_build_tiles(mouse_down, get_global_mouse_position())	
 		for tile in build_tiles:
+			if scene_manager.in_dev_mode:
+				scene_manager.build(tile, cur_material)
+				continue
 			scene_manager.order_work("Build", [tile, cur_material])
 			
 func get_build_tiles(down_pos: Vector2i, up_pos: Vector2i):
@@ -35,7 +37,7 @@ func get_build_tiles(down_pos: Vector2i, up_pos: Vector2i):
 	var out = []
 	for y in range(top_left.y, bot_right.y+1):
 		for x in range(top_left.x, bot_right.x+1):
-			if build_layer.placed_build[x][y] != -1:
+			if scene_manager.build_layer.placed_build[x][y] != -1:
 				continue
 			out.push_back(Cords.get_global_from_map(Vector2i(x,y)))
 	return out
