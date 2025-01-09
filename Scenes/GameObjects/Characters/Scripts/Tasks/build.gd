@@ -44,4 +44,4 @@ func remove_mats_from_inventory() -> void:
 		var mat_id = int(build_mat[0])
 		var mat_count = int(build_mat[1])
 		for i in range(mat_count):
-			character.inventory.erase(mat_id)
+			character.inventory.remove(mat_id)

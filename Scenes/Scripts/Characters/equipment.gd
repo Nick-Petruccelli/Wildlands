@@ -33,11 +33,11 @@ func is_slot_empty(slot: String) -> bool:
 func equip_item(item_id: int, equip_stats: Dictionary) -> void:
 	var slot = equip_stats["slot"]
 	if slot == "two_handed":
-		character.inventory.erase(item_id)
+		character.inventory.remove(item_id)
 		_equipment["main_hand"] = item_id
 		_equipment["off_hand"] = -2
 	else:
-		character.inventory.erase(item_id)
+		character.inventory.remove(item_id)
 		_equipment[slot] = item_id
 	var character_skills = character.stats.skills
 	for stat in equip_stats:
@@ -48,11 +48,11 @@ func equip_item(item_id: int, equip_stats: Dictionary) -> void:
 func unequip_item(equip_stats: Dictionary) -> void:
 	var slot = equip_stats["slot"]
 	if slot == "two_handed":
-		character.inventory.append(_equipment["main_hand"])
+		character.inventory.add(_equipment["main_hand"])
 		_equipment["main_hand"] = -1
 		_equipment["off_hand"] = -1
 	else:
-		character.inventory.append(_equipment[slot])
+		character.inventory.add(_equipment[slot])
 		_equipment[slot] = -1
 	var character_skills = character.stats.skills
 	for stat in equip_stats:

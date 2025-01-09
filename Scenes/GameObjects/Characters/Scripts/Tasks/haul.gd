@@ -39,18 +39,21 @@ func physics_update() -> void:
 		if has_item:
 			while character.inventory.has(item_id):
 				scene_manager.ground_items.add_to_stockpile(storage_loc, item_id)
-				character.inventory.erase(item_id)
+				character.inventory.remove(item_id)
 			exit()
 			return
 		if start_inventory == null:
 			var done = scene_manager.ground_items.remove(Cords.get_map_from_global(character.goal_pos))
-			character.inventory.append(item_id)
-			while !done:
+			var inv_full = !character.inventory.add(item_id)
+			while !done and !inv_full:
 				done = scene_manager.ground_items.remove(Cords.get_map_from_global(character.goal_pos))
-				character.inventory.append(item_id)
+				inv_full = !character.inventory.add(item_id)
+			if inv_full:
+				scene_manager.ground_items.add(Cords.get_map_from_global(character.goal_pos), item_id)
+				scene_manager.order_work("Haul", [Cords.get_map_from_global(character.goal_pos), item_id])
 		else:
 			start_inventory.inventory.erase(item_id)
-			character.inventory.append(item_id)
+			character.inventory.add(item_id)
 		var task = get_nearby_haul_task()
 		if task != []:
 			var loc = task[1][0]

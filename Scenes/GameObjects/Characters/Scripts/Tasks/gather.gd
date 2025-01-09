@@ -27,7 +27,7 @@ func physics_update() -> void:
 		var scene_manager = get_tree().get_first_node_in_group("scenemanager")
 		var ground_items = scene_manager.ground_items
 		ground_items.remove_from_stockpile(Cords.get_map_from_global(character.goal_pos), item_to_gather)
-		character.inventory.append(item_to_gather)
+		character.inventory.add(item_to_gather)
 		exit()
 
 func exit() -> void:

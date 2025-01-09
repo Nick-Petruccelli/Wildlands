@@ -108,3 +108,11 @@ func get_item_loc(mat: int) -> Vector2i:
 			continue
 		return item_loc
 	return Vector2i(-1, -1)
+
+func get_item_with_trait(property: String) -> GroundItem:
+	for pile in stockpiles:
+		var item = pile.get_item_with_trait(property)
+		if item == null:
+			continue
+		return item
+	return null

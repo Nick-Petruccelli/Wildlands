@@ -13,6 +13,7 @@ var speed_mod = 1
 @onready var working_state_nodes: Working = $StateMachine/Working
 @onready var stats: CharacterStats = $Stats
 @onready var equipment: Equipment = $Equipment
+@onready var inventory: Inventory = $Inventory
 
 signal work_done
 
@@ -21,7 +22,7 @@ var cur_block = null
 var cur_work = null
 var cur_path = PackedVector2Array()
 var cur_plan = []
-var inventory = []
+#var inventory = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

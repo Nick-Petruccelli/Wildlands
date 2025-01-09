@@ -31,16 +31,19 @@ func get_rand_vel() -> Vector2:
 	return Vector2(x, y)
 
 func eat() -> void:
-	if !character.inventory.has(9):
+	if character.inventory.get_item_with_trait("consumable") == -1:
 		var ground_items = get_tree().get_first_node_in_group("scenemanager").ground_items
-		if ground_items.get_item_loc(9) == Vector2i(-1,-1):
+		var consumable = ground_items.get_item_with_trait("consumable")
+		if consumable == null:
 			return
 		print("hit gathering food")
 		var gather = $"../Working/Gather"
-		character.cur_work = [gather, [9]]
+		character.cur_work = [gather, [consumable.id]]
 		return
+	var consumeable = character.inventory.get_item_with_trait("consumable")
 	print("hit eating food")
-	var consume_effects = get_tree().get_first_node_in_group("gamedata").item_data[9]["consume_effects"]
+	var consume_effects = get_tree().get_first_node_in_group("gamedata").item_data[consumeable]["consume_effects"]
+	character.inventory.remove(consumeable)
 	for stat in consume_effects["instant"]:
 		if stat in character.stats.stats:
 			character.stats.stats[stat] += consume_effects["instant"][stat]

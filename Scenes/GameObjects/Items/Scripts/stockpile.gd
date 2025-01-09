@@ -37,6 +37,21 @@ func get_item_loc(item_id: int) -> Vector2i:
 			return Vector2i(x, y)
 	return Vector2i(-1,-1)
 	
+func get_item_with_trait(property: String) -> GroundItem:
+	var item_data = get_tree().get_first_node_in_group("gamedata").item_data
+	for y in range(top_left.y, bot_right.y+1):
+		for x in range(top_left.x, bot_right.x+1):
+			var item = items[Vector2i(x,y)]
+			if item == null:
+				continue
+			if item is int:
+				continue
+			var items_data = item_data[item.id]
+			if !items_data.has[property]:
+				continue
+			return item
+	return null
+
 func get_free_space() -> Vector2i:
 	for y in range(top_left.y, bot_right.y+1):
 		for x in range(top_left.x, bot_right.x+1):
