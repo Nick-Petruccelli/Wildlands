@@ -15,9 +15,7 @@ func execute(args: Array) -> void:
 	if args.size() == 3:
 		start_inventory = args[2]
 	var ground_items = character.scene_manager.ground_items
-	storage_loc = ground_items.get_item_loc(item_id)
-	if storage_loc == Vector2i(-1,-1):
-		storage_loc = ground_items.get_free_stockpile_space()
+	storage_loc = ground_items.get_free_stockpile_space(item_id)
 	if storage_loc == Vector2i(-1,-1):
 		exit()
 		return

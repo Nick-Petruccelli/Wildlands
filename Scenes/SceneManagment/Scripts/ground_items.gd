@@ -88,9 +88,9 @@ func remove_from_stockpile(tile_pos: Vector2i, item_id: int) -> void:
 		if out:
 			pile.remove(item)
 			
-func get_free_stockpile_space() -> Vector2i:
+func get_free_stockpile_space(item_id: int) -> Vector2i:
 	for pile in stockpiles:
-		var free_space = pile.get_free_space()
+		var free_space = pile.get_free_space(item_id)
 		if free_space == Vector2i(-1,-1):
 			continue
 		return free_space

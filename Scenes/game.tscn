@@ -224,7 +224,7 @@ script = ExtResource("15_7fmpp")
 [node name="HaulBtn" type="Button" parent="UI/WorkMenu/MarginContainer/GridContainer"]
 z_index = 10
 layout_mode = 2
-text = "Hunt"
+text = "Haul"
 script = ExtResource("19_bmou6")
 
 [node name="PeopleMenu" type="Panel" parent="UI"]

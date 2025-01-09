@@ -17,6 +17,10 @@ func load_item(item_id) -> void:
 	weight = item_data["weight"]
 	item_name = item_data["name"]
 
+func stack_full() -> bool:
+	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[id]
+	return count >= item_data["stack_count"]
+	
 func add_count(n: int) -> void:
 	count += n
 	count_label.text = str(count)

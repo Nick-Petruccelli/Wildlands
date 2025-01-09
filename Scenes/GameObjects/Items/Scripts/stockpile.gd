@@ -52,11 +52,15 @@ func get_item_with_trait(property: String) -> GroundItem:
 			return item
 	return null
 
-func get_free_space() -> Vector2i:
+func get_free_space(item_id: int) -> Vector2i:
 	for y in range(top_left.y, bot_right.y+1):
 		for x in range(top_left.x, bot_right.x+1):
 			var item = items[Vector2i(x,y)]
 			if item == null:
+				return Vector2i(x,y)
+			if item is int :
+				continue
+			if item.id == item_id and !item.stack_full():
 				return Vector2i(x,y)
 	return Vector2i(-1, -1)
 
