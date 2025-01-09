@@ -9,6 +9,7 @@ input_pickable = true
 script = ExtResource("1_11vdt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ndr7y")

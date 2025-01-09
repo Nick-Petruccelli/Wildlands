@@ -8,8 +8,8 @@
 	},
 	"feild_dress_time": 10000,
 	"drops": {
-		"deer_skin": [6, [1,1]],
-		"deer_meet": [7, [25,30]],
+		"deer_skin": [7, [1,1]],
+		"deer_meet": [6, [25,30]],
 		"deer_antlers": [8, [0,1]]
 	}
 }

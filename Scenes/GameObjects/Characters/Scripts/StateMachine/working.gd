@@ -7,14 +7,17 @@ var work_plan: Array = []
 var in_task: bool = false
 var job_done = false
 
+func _ready() -> void:
+	for task in get_children():
+		task_dict[task.name.to_lower()] = task
+		task.done_executing.connect(_on_done_executing)
+
 func enter() -> void:
 	character.velocity = Vector2()
 	character.cur_plan = []
 	character.cur_path = PackedVector2Array()
 	job_done = false
-	for task in get_children():
-		task_dict[task.name.to_lower()] = task
-		task.done_executing.connect(_on_done_executing)
+	
 
 func exit() -> void:
 	character.velocity = Vector2()

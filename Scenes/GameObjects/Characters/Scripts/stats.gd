@@ -1,6 +1,8 @@
 extends Node2D
 class_name CharacterStats
 
+var hunger_tick_rate: int = 5000
+var last_hunger_tick: int = 0
 var skills: Dictionary = {
 	"construction": 5,
 	"mining": 5,
@@ -16,6 +18,7 @@ var skills: Dictionary = {
 var stats: Dictionary = {
 	"max_health": 100,
 	"cur_health": 100,
+	"hunger": 100,
 	"speed": 20,
 	"strength": 5,
 	"constitution": 5,
@@ -36,4 +39,9 @@ func _ready() -> void:
 	for skill in skills:
 		var val = rng.randfn(5, 1.5) 
 		skills[skill] = int(clamp(val, 0, 10))
+	
+func _process(_delta) -> void:
+	if Time.get_ticks_msec() - last_hunger_tick > hunger_tick_rate:
+		stats["hunger"] -= 1
+		last_hunger_tick = Time.get_ticks_msec()
 	

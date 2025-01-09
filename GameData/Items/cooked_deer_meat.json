@@ -9,5 +9,15 @@
 	"craft_mats": {
 		"Deer Meat": [6, 1]
 	},
+	"consumable": true,
+	"consume_effects": {
+		"instant": {
+			"hunger": 30,
+		},
+		"active": {
+			
+		}
+		
+	},
 	"craft_dur": 1000,
 }
