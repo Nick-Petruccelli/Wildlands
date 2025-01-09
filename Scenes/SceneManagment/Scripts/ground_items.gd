@@ -116,3 +116,12 @@ func get_item_with_trait(property: String) -> GroundItem:
 			continue
 		return item
 	return null
+
+func get_item_at(tile_pos: Vector2i) -> GroundItem:
+	return tiles[tile_pos.y][tile_pos.x]
+
+func is_in_stockpile(tile_pos: Vector2i) -> bool:
+	for pile in stockpiles:
+		if pile.is_within_zone(tile_pos):
+			return true
+	return false

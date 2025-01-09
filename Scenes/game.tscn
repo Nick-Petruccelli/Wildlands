@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c8wbxywbgtw3m"]
+[gd_scene load_steps=39 format=3 uid="uid://c8wbxywbgtw3m"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/game_controler.gd" id="1_5k2rc"]
 [ext_resource type="PackedScene" uid="uid://drmeakysc6ucp" path="res://action_state_machine.tscn" id="1_fxhci"]
@@ -32,10 +32,12 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/WorkMenu/hunt_btn.gd" id="15_7fmpp"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ProductionMenu/Scripts/production_menu.gd" id="17_vhxf6"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/ConstructionMenu/construction_list.gd" id="18_j10s6"]
+[ext_resource type="Script" path="res://Scenes/Scripts/UI/WorkMenu/haul_btn.gd" id="19_bmou6"]
 [ext_resource type="Script" path="res://Scenes/Scripts/UI/WorkMenu/mine_btn.gd" id="21_12qct"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/farm_state.gd" id="27_5ig0f"]
 [ext_resource type="Script" path="res://Scenes/Scripts/game_data.gd" id="27_rl22o"]
 [ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/place_item_state.gd" id="28_eja6o"]
+[ext_resource type="Script" path="res://Scenes/Scripts/ActionStates/haul_state.gd" id="35_wqbj3"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_xnwmn")
@@ -185,38 +187,45 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ConstructionListContainer" type="VBoxContainer" parent="UI/WorkMenu/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="UI/WorkMenu/MarginContainer"]
 layout_mode = 2
+columns = 4
 
-[node name="DeconstructBtn" type="Button" parent="UI/WorkMenu/MarginContainer/ConstructionListContainer"]
+[node name="DeconstructBtn" type="Button" parent="UI/WorkMenu/MarginContainer/GridContainer"]
 z_index = 10
 layout_mode = 2
 text = "Decon"
 script = ExtResource("5_gxxrw")
 
-[node name="MineBtn" type="Button" parent="UI/WorkMenu/MarginContainer/ConstructionListContainer"]
+[node name="MineBtn" type="Button" parent="UI/WorkMenu/MarginContainer/GridContainer"]
 z_index = 10
 layout_mode = 2
 text = "Mine"
 script = ExtResource("21_12qct")
 
-[node name="ChopBtn" type="Button" parent="UI/WorkMenu/MarginContainer/ConstructionListContainer"]
+[node name="ChopBtn" type="Button" parent="UI/WorkMenu/MarginContainer/GridContainer"]
 z_index = 10
 layout_mode = 2
 text = "Chop"
 script = ExtResource("6_6brmd")
 
-[node name="FarmBtn" type="Button" parent="UI/WorkMenu/MarginContainer/ConstructionListContainer"]
+[node name="FarmBtn" type="Button" parent="UI/WorkMenu/MarginContainer/GridContainer"]
 z_index = 10
 layout_mode = 2
 text = "Farm"
 script = ExtResource("14_3noi5")
 
-[node name="HuntBtn" type="Button" parent="UI/WorkMenu/MarginContainer/ConstructionListContainer"]
+[node name="HuntBtn" type="Button" parent="UI/WorkMenu/MarginContainer/GridContainer"]
 z_index = 10
 layout_mode = 2
 text = "Hunt"
 script = ExtResource("15_7fmpp")
+
+[node name="HaulBtn" type="Button" parent="UI/WorkMenu/MarginContainer/GridContainer"]
+z_index = 10
+layout_mode = 2
+text = "Hunt"
+script = ExtResource("19_bmou6")
 
 [node name="PeopleMenu" type="Panel" parent="UI"]
 unique_name_in_owner = true
@@ -427,6 +436,9 @@ script = ExtResource("27_5ig0f")
 
 [node name="ChopState" type="Node2D" parent="ActionStateMachine"]
 script = ExtResource("13_6iyp2")
+
+[node name="HaulState" type="Node2D" parent="ActionStateMachine"]
+script = ExtResource("35_wqbj3")
 
 [node name="GameControler" type="Node2D" parent="."]
 unique_name_in_owner = true
