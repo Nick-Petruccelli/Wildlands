@@ -47,7 +47,7 @@ func get_item_with_trait(property: String) -> GroundItem:
 			if item is int:
 				continue
 			var items_data = item_data[item.id]
-			if !items_data.has[property]:
+			if !items_data.has(property):
 				continue
 			return item
 	return null
