@@ -23,6 +23,7 @@ var cur_work = null
 var cur_path = PackedVector2Array()
 var cur_plan = []
 #var inventory = []
+var combat_target = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -11,7 +11,6 @@ func load_items() -> void:
 	var game_data = %GameData
 	var item_data = game_data.item_data
 	for item in item_data:
-		print(item)
 		add_item_to_list(item_data[item])
 	
 func add_item_to_list(data: Dictionary) -> void:

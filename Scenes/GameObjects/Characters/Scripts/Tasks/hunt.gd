@@ -1,7 +1,7 @@
 extends Task
 class_name Hunt
 
-@onready var character: CharacterBody2D = $"../../.."
+@onready var character: Character = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
 var wepon_range: int = 128
@@ -11,6 +11,8 @@ var feild_dress_start_time: int = -1
 func execute(args: Array) -> void:
 	get_ranged_wepon()
 	target = args[0]
+	character.combat_target = args[0]
+	character.equipment.weild_wepons()
 
 func update() -> void:
 	pass

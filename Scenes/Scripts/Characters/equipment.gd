@@ -2,6 +2,9 @@ extends Node
 class_name Equipment
 
 @onready var character: Character = $".."
+@onready var main_hand_wepon: WeponObject = $MainHandWepon
+@onready var off_hand_wepon: WeponObject = $OffHandWepon
+
 var _equipment: Dictionary = {
 	'head': -1,
 	'body': -1,
@@ -11,6 +14,11 @@ var _equipment: Dictionary = {
 }
 var last_main_hand_attack: int = -1000
 var last_off_hand_attack: int = -1000
+
+func _ready() -> void:
+	main_hand_wepon.link_character(character)
+	off_hand_wepon.link_character(character)
+	
 func equip(item_id: int) -> bool:
 	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[item_id]
 	if !item_data["equipable"]:
@@ -106,6 +114,10 @@ func is_off_hand_ranged() -> bool:
 	return item_data["equip_stats"].has("ranged")
 
 func weild_wepons() -> void:
-	if _equipment["main_hand"] == -1 and _equipment["off_hand"] == -1:
+	if _equipment["main_hand"] > -1:
+		var item_data = get_tree().get_first_node_in_group("gamedata").item_data[_equipment["main_hand"]]
+		var tex = load(item_data["texture"])
+		main_hand_wepon.sprite_2d.texture = tex
 		return
-	
+	if _equipment["off_hand"] > -1:
+		return

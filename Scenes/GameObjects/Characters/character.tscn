@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bvar6b65bvlfe"]
+[gd_scene load_steps=24 format=3 uid="uid://bvar6b65bvlfe"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
 [ext_resource type="Texture2D" uid="uid://bec83snkdytau" path="res://Assets/dude16x16.png" id="2_4ox6i"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/stats.gd" id="15_1y54e"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/hunt.gd" id="15_t02o7"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Characters/equipment.gd" id="17_sale4"]
+[ext_resource type="PackedScene" uid="uid://1kkf1c64d0ma" path="res://Scenes/GameObjects/Characters/wepon_object.tscn" id="20_130ad"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/inventory.gd" id="20_fovvr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qulpi"]
@@ -123,6 +124,10 @@ script = ExtResource("15_1y54e")
 
 [node name="Equipment" type="Node2D" parent="."]
 script = ExtResource("17_sale4")
+
+[node name="MainHandWepon" parent="Equipment" instance=ExtResource("20_130ad")]
+
+[node name="OffHandWepon" parent="Equipment" instance=ExtResource("20_130ad")]
 
 [node name="Inventory" type="Node2D" parent="."]
 script = ExtResource("20_fovvr")
