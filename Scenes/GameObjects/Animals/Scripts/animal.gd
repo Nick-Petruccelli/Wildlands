@@ -80,5 +80,4 @@ func drop_mats() -> void:
 			if !drop_cords.has(drop_cord):
 				drop_cords.append(drop_cord)
 		for cords in drop_cords:
-			print(cords)
 			scene_manager.order_work("Haul", [cords, drop_id])

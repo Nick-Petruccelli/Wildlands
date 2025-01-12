@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var character: CharacterBody2D = $".."
+@onready var character: Character = $".."
 
 func _ready() -> void:
 	connect("area_entered", _on_area_entered)

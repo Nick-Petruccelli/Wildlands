@@ -20,7 +20,6 @@ func init(proj_id: int, pos: Vector2, direction: Vector2, wep_dam: int, acc: int
 	collision_shape_2d.shape.set("size", tex.get_size())
 	global_position = pos + sprite_2d.texture.get_size().x * direction
 	transform = Transform2D(direction.angle(), pos)
-	print("projectile loaded")
 	
 func _physics_process(delta: float) -> void:
 	global_position += velocity
@@ -29,7 +28,7 @@ func _physics_process(delta: float) -> void:
 func check_collision() -> void:
 	var collisions = get_overlapping_bodies()
 	for body in collisions:
-		if body is Animal:
+		if body is Animal or Character:
 			body.take_damage(wep_damage)
 			queue_free()
 			return
@@ -37,5 +36,5 @@ func check_collision() -> void:
 		return
 
 func hit_environment() -> void:
-	#queue_free()
+	queue_free()
 	return

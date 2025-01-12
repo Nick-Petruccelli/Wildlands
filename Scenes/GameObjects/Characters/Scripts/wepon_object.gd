@@ -22,7 +22,6 @@ func unequip() -> void:
 func attack(target: Vector2i) -> void:
 	if Time.get_ticks_msec() - last_attack < wepon_data["equip_stats"]["cooldown"]:
 		return
-	print("attack hit")
 	last_attack = Time.get_ticks_msec()
 	var projectiles = get_tree().get_first_node_in_group("scenemanager").projectiles
 	var damage = wepon_data["equip_stats"]["damage"]

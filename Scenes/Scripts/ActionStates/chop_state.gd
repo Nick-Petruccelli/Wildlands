@@ -16,7 +16,7 @@ func update(_delta: float) -> void:
 		transitioned.emit(self, 'mouseselectstate')
 	if Input.is_action_just_pressed("click"):
 		down_pos = get_global_mouse_position()
-	if Input.is_action_just_released("click") and !hovering_ui:
+	if Input.is_action_just_released("click"):
 		if down_pos == null:
 			return
 		chop_in_area(down_pos, get_global_mouse_position())

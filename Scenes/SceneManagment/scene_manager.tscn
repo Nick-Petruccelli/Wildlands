@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/build_layer.gd" id="5_xupfu"]
 [ext_resource type="Texture2D" uid="uid://drblm6pkedqg2" path="res://Assets/granate_wall_tilesheet.png" id="6_axqd0"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/stone_layer.gd" id="7_014o3"]
-[ext_resource type="PackedScene" uid="uid://bvar6b65bvlfe" path="res://Scenes/GameObjects/Characters/character.tscn" id="9_4fv67"]
+[ext_resource type="PackedScene" uid="uid://dino4qmt2tmdd" path="res://Scenes/GameObjects/Characters/colonist.tscn" id="9_4fv67"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/farms.gd" id="9_rgs4f"]
 [ext_resource type="PackedScene" uid="uid://c5appamp605p4" path="res://Scenes/Environment/Plants/tree.tscn" id="9_ryiur"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/animals.gd" id="11_1kn2g"]
@@ -463,20 +463,8 @@ script = ExtResource("11_1kn2g")
 
 [node name="Characters" type="Node2D" parent="."]
 
-[node name="Character" parent="Characters" instance=ExtResource("9_4fv67")]
-position = Vector2(840, 80)
-wall_min_slide_angle = 0.0
-speed = 20
-
-[node name="Character2" parent="Characters" instance=ExtResource("9_4fv67")]
-position = Vector2(120, 120)
-wall_min_slide_angle = 0.0
-speed = 20
-
-[node name="Character3" parent="Characters" instance=ExtResource("9_4fv67")]
-position = Vector2(168, 104)
-wall_min_slide_angle = 0.0
-speed = 20
+[node name="Colonist" parent="Characters" instance=ExtResource("9_4fv67")]
+position = Vector2(128, 128)
 
 [node name="GroundItems" type="Node2D" parent="."]
 script = ExtResource("13_cv2yj")

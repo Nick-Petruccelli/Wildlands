@@ -16,7 +16,7 @@ func get_item_with_trait(property: String) -> int:
 
 func has(item: int) -> bool:
 	return items.has(item)
-	
+
 func count(item: int) -> int:
 	return items.count(item)
 

@@ -1,7 +1,7 @@
 extends Task
 class_name Gather
 
-@onready var character: CharacterBody2D = $"../../.."
+@onready var character: Character = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
 var item_to_gather: int = -1

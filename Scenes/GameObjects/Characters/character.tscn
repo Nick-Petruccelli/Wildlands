@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://bvar6b65bvlfe"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/Characters/character.gd" id="1_6f447"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Colonists/colonist.gd" id="1_6f447"]
 [ext_resource type="Texture2D" uid="uid://bec83snkdytau" path="res://Assets/dude16x16.png" id="2_4ox6i"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/character_collision_handler.gd" id="3_88c83"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/pathfinding.gd" id="3_hknuf"]
@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/farm.gd" id="12_h07tb"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/stats.gd" id="15_1y54e"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/hunt.gd" id="15_t02o7"]
-[ext_resource type="Script" path="res://Scenes/Scripts/Characters/equipment.gd" id="17_sale4"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/equipment.gd" id="17_sale4"]
 [ext_resource type="PackedScene" uid="uid://1kkf1c64d0ma" path="res://Scenes/GameObjects/Characters/wepon_object.tscn" id="20_130ad"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/inventory.gd" id="20_fovvr"]
 

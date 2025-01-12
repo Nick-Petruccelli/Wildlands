@@ -1,7 +1,7 @@
 extends CharacterState
 class_name Idel
 
-@onready var character: CharacterBody2D = $"../.."
+@onready var character: Character = $"../.."
 @onready var timer: Timer = $Timer
 
 func enter() -> void:
@@ -36,12 +36,10 @@ func eat() -> void:
 		var consumable = ground_items.get_item_with_trait("consumable")
 		if consumable == null:
 			return
-		print("hit gathering food")
 		var gather = $"../Working/Gather"
 		character.cur_work = [gather, [consumable.id]]
 		return
 	var consumeable = character.inventory.get_item_with_trait("consumable")
-	print("hit eating food")
 	var consume_effects = get_tree().get_first_node_in_group("gamedata").item_data[consumeable]["consume_effects"]
 	character.inventory.remove(consumeable)
 	for stat in consume_effects["instant"]:

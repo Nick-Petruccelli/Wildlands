@@ -1,7 +1,7 @@
 extends Task
 class_name Deconsturct
 
-@onready var character: CharacterBody2D = $"../../.."
+@onready var character: Colonist = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
 var time_to_decon = 2000

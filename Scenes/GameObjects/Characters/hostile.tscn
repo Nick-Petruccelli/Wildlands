@@ -1,0 +1,133 @@
+[gd_scene load_steps=24 format=3 uid="uid://ce58dwejgmdel"]
+
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Colonists/colonist.gd" id="1_ne2sq"]
+[ext_resource type="Texture2D" uid="uid://bec83snkdytau" path="res://Assets/dude16x16.png" id="2_m4jdl"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/character_collision_handler.gd" id="3_jb5bi"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/pathfinding.gd" id="4_5w1dg"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/state_machine.gd" id="5_bpga1"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/idel.gd" id="6_8e1sx"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/working.gd" id="7_kndei"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/build.gd" id="8_fjl2e"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/chop.gd" id="9_bblef"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/craft.gd" id="10_wmrw3"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/deconstruct.gd" id="11_wkg2s"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/farm.gd" id="12_m2w7w"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/gather.gd" id="13_qp7i1"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/haul.gd" id="14_k68dp"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/hunt.gd" id="15_v1s0w"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/mine.gd" id="16_gt8ol"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/recreation.gd" id="17_mabph"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/stats.gd" id="18_egut0"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/equipment.gd" id="19_5bbj1"]
+[ext_resource type="PackedScene" uid="uid://1kkf1c64d0ma" path="res://Scenes/GameObjects/Characters/wepon_object.tscn" id="20_t11cj"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/inventory.gd" id="21_p58jj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qulpi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m4jdl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5egs"]
+radius = 4.0
+height = 16.0
+
+[node name="Character" type="CharacterBody2D"]
+collision_layer = 2
+input_pickable = true
+motion_mode = 1
+script = ExtResource("1_ne2sq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_qulpi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_t5egs")
+
+[node name="CharacterCollisionHandler" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_jb5bi")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterCollisionHandler"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_t5egs")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 50.4
+debug_enabled = true
+
+[node name="Pathfinding" type="Node2D" parent="."]
+script = ExtResource("4_5w1dg")
+
+[node name="Timer" type="Timer" parent="Pathfinding"]
+wait_time = 0.578
+autostart = true
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("init_state")]
+script = ExtResource("5_bpga1")
+init_state = NodePath("Idel")
+
+[node name="Idel" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_8e1sx")
+
+[node name="Timer" type="Timer" parent="StateMachine/Idel"]
+wait_time = 2.0
+autostart = true
+
+[node name="Working" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_kndei")
+
+[node name="Build" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("8_fjl2e")
+
+[node name="Chop" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("9_bblef")
+
+[node name="Craft" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("10_wmrw3")
+
+[node name="Deconstruct" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("11_wkg2s")
+
+[node name="Farm" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("12_m2w7w")
+
+[node name="Gather" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("13_qp7i1")
+
+[node name="Haul" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("14_k68dp")
+
+[node name="Hunt" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("15_v1s0w")
+
+[node name="Mine" type="Node2D" parent="StateMachine/Working"]
+script = ExtResource("16_gt8ol")
+
+[node name="Recreation" type="Node2D" parent="StateMachine"]
+script = ExtResource("17_mabph")
+
+[node name="Stats" type="Node2D" parent="."]
+script = ExtResource("18_egut0")
+
+[node name="Equipment" type="Node2D" parent="."]
+script = ExtResource("19_5bbj1")
+
+[node name="MainHandWepon" parent="Equipment" instance=ExtResource("20_t11cj")]
+
+[node name="OffHandWepon" parent="Equipment" instance=ExtResource("20_t11cj")]
+
+[node name="Inventory" type="Node2D" parent="."]
+script = ExtResource("21_p58jj")

@@ -3,7 +3,7 @@ class_name Build
 
 var build: int = -1
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
-@onready var character: CharacterBody2D = $"../../.."
+@onready var character: Character = $"../../.."
 @onready var gather: Gather = $"../Gather"
 @onready var working: Working = $".."
 

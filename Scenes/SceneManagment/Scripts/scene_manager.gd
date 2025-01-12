@@ -33,7 +33,7 @@ func _ready():
 	query_work_timer.timeout.connect(query_work)
 	ground_items.init(map_size.x, map_size.y)
 	
-func _on_character_work_done(character: Character) -> void:
+func _on_character_work_done(character: Colonist) -> void:
 	character.get_work_order(work_queue)
 
 func order_work(task: String, args: Array):
@@ -43,8 +43,10 @@ func order_work(task: String, args: Array):
 func query_work() -> void:
 	if work_queue.is_empty():
 		return
-	for colonist in characters.get_children():
-		colonist.get_work_order(work_queue)
+	for character in characters.get_children():
+		if character is not Colonist:
+			continue
+		character.get_work_order(work_queue)
 
 func build(cords: Vector2i, build_id: int) -> void:
 	var build_data = get_tree().get_first_node_in_group("gamedata").environment_data[build_id]

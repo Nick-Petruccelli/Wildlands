@@ -1,7 +1,7 @@
 extends Task
 class_name Chop
 
-@onready var character: CharacterBody2D = $"../../.."
+@onready var character: Colonist = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
 var target: Plant = null
@@ -24,7 +24,6 @@ func physics_update() -> void:
 		last_swing = Time.get_ticks_msec()
 		if !cut_down:
 			return
-		var scene_manager = get_tree().get_first_node_in_group('scenemanager')
 		exit()
 		return
 	var next_node = pathfinding.next_node(character.global_position)

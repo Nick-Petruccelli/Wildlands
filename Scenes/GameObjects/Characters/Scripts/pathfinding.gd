@@ -1,7 +1,7 @@
 extends Node2D
 class_name Pathfinding
 
-@onready var character: CharacterBody2D = $".."
+@onready var character: Character = $".."
 @onready var timer: Timer = $Timer
 
 var scene_manager: Node2D = null

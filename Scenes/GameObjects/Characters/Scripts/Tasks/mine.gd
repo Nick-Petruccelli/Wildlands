@@ -1,7 +1,7 @@
 extends Task
 class_name Mine
 
-@onready var character: CharacterBody2D = $"../../.."
+@onready var character: Colonist = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
 var swing_cooldown = 1000
