@@ -29,7 +29,9 @@ func attack(target: Vector2i) -> void:
 	var direction = global_position.direction_to(target)
 	var projectile_id = wepon_data["equip_stats"]["projectile"]
 	var accuracy = character.stats.skills["ranged"]
-	projectiles.add(projectile_id, global_position, direction,damage , accuracy)
+	var wepon_length = sprite_2d.texture.get_size().x
+	var pos = global_position + wepon_length * direction
+	projectiles.add(projectile_id, pos, direction,damage , accuracy)
 
 func _process(delta: float) -> void:
 	if sprite_2d.texture == null:

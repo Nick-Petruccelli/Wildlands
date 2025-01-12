@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
@@ -22,3 +22,18 @@ func init(proj_id: int, pos: Vector2, direction: Vector2, wep_dam: int, acc: int
 	
 func _physics_process(delta: float) -> void:
 	global_position += velocity
+	check_collision()
+	
+func check_collision() -> void:
+	var collisions = get_overlapping_bodies()
+	for body in collisions:
+		if body is Animal:
+			body.take_damage(wep_damage)
+			queue_free()
+			return
+		hit_environment()
+		return
+
+func hit_environment() -> void:
+	#queue_free()
+	return
