@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cb21hux3mwctf"]
+[gd_scene load_steps=23 format=4 uid="uid://cb21hux3mwctf"]
 
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/scene_manager.gd" id="1_xlhlg"]
 [ext_resource type="Texture2D" uid="uid://ckjim8xbcuohd" path="res://Assets/tilesheet16x16.png" id="2_ug6df"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c5appamp605p4" path="res://Scenes/Environment/Plants/tree.tscn" id="9_ryiur"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/animals.gd" id="11_1kn2g"]
 [ext_resource type="Script" path="res://Scenes/SceneManagment/Scripts/ground_items.gd" id="13_cv2yj"]
+[ext_resource type="Script" path="res://Scenes/SceneManagment/Projectiles/Scripts/projectiles.gd" id="14_x8s8c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i1yev"]
 texture = ExtResource("2_ug6df")
@@ -479,6 +480,9 @@ speed = 20
 
 [node name="GroundItems" type="Node2D" parent="."]
 script = ExtResource("13_cv2yj")
+
+[node name="Projectiles" type="Node2D" parent="."]
+script = ExtResource("14_x8s8c")
 
 [node name="Query_Work_Timer" type="Timer" parent="."]
 wait_time = 2.0

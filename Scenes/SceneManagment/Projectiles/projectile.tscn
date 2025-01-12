@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvcua4dlif5ru"]
+
+[ext_resource type="Script" path="res://Scenes/SceneManagment/Projectiles/Scripts/projectile.gd" id="1_wnmw4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5mnt"]
+
+[node name="Projectile" type="StaticBody2D"]
+script = ExtResource("1_wnmw4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g5mnt")

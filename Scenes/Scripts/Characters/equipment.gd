@@ -118,6 +118,11 @@ func weild_wepons() -> void:
 		var item_data = get_tree().get_first_node_in_group("gamedata").item_data[_equipment["main_hand"]]
 		var tex = load(item_data["texture"])
 		main_hand_wepon.sprite_2d.texture = tex
+		main_hand_wepon.equip(_equipment["main_hand"])
 		return
 	if _equipment["off_hand"] > -1:
 		return
+
+func sheath_wepons() -> void:
+	main_hand_wepon.sprite_2d.texture = null
+	off_hand_wepon.sprite_2d.texture = null

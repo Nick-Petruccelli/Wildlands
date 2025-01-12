@@ -4,7 +4,7 @@ class_name Hunt
 @onready var character: Character = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
-var wepon_range: int = 128
+var wepon_range: int = 220
 var target: Animal = null
 var feild_dress_start_time: int = -1
 
@@ -20,6 +20,8 @@ func update() -> void:
 func physics_update() -> void:
 	character.goal_pos = target.global_position
 	if target.is_dead():
+		character.equipment.sheath_wepons()
+		character.combat_target = null
 		if character.global_position.distance_to(character.goal_pos) < 18:
 			var done = feild_dress(target)
 			if done:

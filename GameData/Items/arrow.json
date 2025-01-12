@@ -3,13 +3,11 @@
 	"name": "Arrow",
 	"weight": 2,
 	"stack_count": 100,
-	"texture": "res://Assets/wooden_hoe.png",
-	"equipable": true,
-	"equip_stats": {
-		"slot": "two_handed",
+	"ammo": true,
+	"ammo_stats": {
 		"damage": 10,
-		"is_ranged": true,
-		"projectile": 5,
+		"speed": 5,
+		"texture": "res://Assets/arrow.png",
 	},
 	"prod_station": 3,
 	"craft_mats": {

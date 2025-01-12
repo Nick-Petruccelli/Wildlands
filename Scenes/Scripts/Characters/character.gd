@@ -57,12 +57,13 @@ func move_with_vel() -> void:
 	move_and_slide()
 
 func attack(target) -> void:
-	var main_hand_damage = equipment.get_main_hand_damage()
-	var off_hand_damage = equipment.get_off_hand_damage()
-	var damage = get_final_damage(main_hand_damage, off_hand_damage)
-	target.take_damage(damage)
+	#var main_hand_damage = equipment.get_main_hand_damage()
+	#var off_hand_damage = equipment.get_off_hand_damage()
+	#var damage = get_final_damage(main_hand_damage, off_hand_damage)
+	#target.take_damage(damage)
+	equipment.main_hand_wepon.attack(target.global_position)
 	
-	
+
 func get_final_damage(main_hand_damage: int, off_hand_damage: int) -> int:
 	var main_hand_ranged = equipment.is_main_hand_ranged()
 	print("predamage: ", main_hand_damage)

@@ -10,6 +10,7 @@ extends Node2D
 @onready var characters: Node2D = $Characters
 @onready var farms: Node2D = $Plants/Farms
 @onready var ground_items: Node2D = $GroundItems
+@onready var projectiles: Node2D = $Projectiles
 
 var items_on_ground = {}
 var colonists = []
