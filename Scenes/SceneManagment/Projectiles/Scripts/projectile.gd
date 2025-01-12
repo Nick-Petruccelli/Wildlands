@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var id: int = -1
 var wep_damage: int = 0
@@ -16,7 +17,8 @@ func init(proj_id: int, pos: Vector2, direction: Vector2, wep_dam: int, acc: int
 	velocity = direction * projectile_speed
 	var tex = load(proj_data["texture"])
 	sprite_2d.texture = tex
-	global_position = pos
+	collision_shape_2d.shape.set("size", tex.get_size())
+	global_position = pos + sprite_2d.texture.get_size().x * direction
 	transform = Transform2D(direction.angle(), pos)
 	print("projectile loaded")
 	
