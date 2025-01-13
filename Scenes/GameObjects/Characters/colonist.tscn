@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dino4qmt2tmdd"]
+[gd_scene load_steps=26 format=3 uid="uid://dino4qmt2tmdd"]
 
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Colonists/colonist.gd" id="1_psnip"]
 [ext_resource type="Texture2D" uid="uid://bec83snkdytau" path="res://Assets/dude16x16.png" id="2_6pj4s"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/hunt.gd" id="15_f7m1r"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/mine.gd" id="16_fl75k"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/recreation.gd" id="17_5dayn"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/combat.gd" id="18_2381g"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/stats.gd" id="18_apfnq"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/equipment.gd" id="19_388ob"]
 [ext_resource type="PackedScene" uid="uid://1kkf1c64d0ma" path="res://Scenes/GameObjects/Characters/wepon_object.tscn" id="20_rhmel"]
@@ -36,6 +37,9 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5egs"]
 radius = 4.0
 height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_84iqp"]
+radius = 12.6195
 
 [node name="Colonist" type="CharacterBody2D"]
 collision_layer = 2
@@ -121,6 +125,9 @@ script = ExtResource("16_fl75k")
 [node name="Recreation" type="Node2D" parent="StateMachine"]
 script = ExtResource("17_5dayn")
 
+[node name="Combat" type="Node2D" parent="StateMachine"]
+script = ExtResource("18_2381g")
+
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("18_apfnq")
 
@@ -133,3 +140,11 @@ script = ExtResource("19_388ob")
 
 [node name="Inventory" type="Node2D" parent="."]
 script = ExtResource("21_jjulp")
+
+[node name="DetectionZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
+scale = Vector2(39.8589, 39.9559)
+shape = SubResource("CircleShape2D_84iqp")
