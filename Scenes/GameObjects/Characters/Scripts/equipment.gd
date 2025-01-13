@@ -9,8 +9,8 @@ var _equipment: Dictionary = {
 	'head': -1,
 	'body': -1,
 	'legs': -1,
-	'main_hand': -1,
-	'off_hand': -1,
+	'main_hand': 4,
+	'off_hand': -2,
 }
 var last_main_hand_attack: int = -1000
 var last_off_hand_attack: int = -1000

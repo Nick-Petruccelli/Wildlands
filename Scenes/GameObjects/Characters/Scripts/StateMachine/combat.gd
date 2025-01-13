@@ -3,11 +3,26 @@ extends CharacterState
 @onready var detection_zone: Area2D = $"../../DetectionZone"
 @onready var character: Character = $"../.."
 
-func _physics_process(delta: float) -> void:
-	var closest = get_closest_hostile()
-	print(closest)
-	if closest == null:
+var target: Character = null
+
+func enter() -> void:
+	character.velocity = Vector2()
+	character.equipment.weild_wepons()
+	target = get_closest_hostile()
+	character.combat_target = target
+
+func exit() -> void:
+	character.velocity = Vector2()
+	
+func update(_delta: float) -> void:
+	pass
+	
+func physics_update(_delta: float) -> void:
+	target = get_closest_hostile()
+	if target == null:
+		transitioned.emit(self, "idel")
 		return
+	character.attack(target)
 	
 	
 func get_closest_hostile() -> Character:
@@ -16,7 +31,11 @@ func get_closest_hostile() -> Character:
 		return null
 	var closest = null
 	var closest_dist = 999999999999999999.9
+	print("hit getting target")
 	for det_char in characters:
+		if det_char.is_dead:
+			print("hit target is dead")
+			continue
 		if !character.is_hostile(det_char):
 			continue
 		if closest == null:

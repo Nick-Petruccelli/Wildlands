@@ -45,3 +45,8 @@ func _process(_delta) -> void:
 		stats["hunger"] -= 1
 		last_hunger_tick = Time.get_ticks_msec()
 	
+func take_damage(damage: int) -> bool:
+	stats["cur_health"] -= damage
+	if stats["cur_health"] <= 0:
+		return true
+	return false

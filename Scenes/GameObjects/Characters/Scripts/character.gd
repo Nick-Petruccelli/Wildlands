@@ -26,6 +26,7 @@ var cur_work = null
 var cur_plan = []
 var cur_path: PackedVector2Array
 var combat_target = null
+var is_dead = false
 @export var colony_relationship: ColonyRelationship = ColonyRelationship.NEUTRAL
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,6 +46,14 @@ func move_with_vel() -> void:
 func attack(target) -> void:
 	equipment.main_hand_wepon.attack(target.global_position)
 	
+func take_damage(damage) -> void:
+	var dead = stats.take_damage(damage)
+	if dead:
+		die()
+	
+func die() -> void:
+	is_dead = true
+	animated_sprite_2d.transform = animated_sprite_2d.transform.rotated(deg_to_rad(90))
 
 func get_final_damage(main_hand_damage: int, off_hand_damage: int) -> int:
 	var main_hand_ranged = equipment.is_main_hand_ranged()

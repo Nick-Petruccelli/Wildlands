@@ -2,6 +2,7 @@ extends CharacterState
 class_name Idel
 
 @onready var character: Character = $"../.."
+@onready var detection_zone: Area2D = $"../../DetectionZone"
 @onready var timer: Timer = $Timer
 
 func enter() -> void:
@@ -16,6 +17,8 @@ func exit() -> void:
 func update(_delta: float) -> void:
 	if character.stats.stats["hunger"] <= 70:
 		eat()
+	if detection_zone != null and detection_zone.has_overlapping_bodies():
+		transitioned.emit(self, 'combat')
 	if character.cur_work != null:
 		transitioned.emit(self, 'working')
 	
