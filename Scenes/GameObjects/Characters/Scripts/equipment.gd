@@ -12,12 +12,16 @@ var _equipment: Dictionary = {
 	'main_hand': 4,
 	'off_hand': -2,
 }
+var armor_val: int = 0
 var last_main_hand_attack: int = -1000
 var last_off_hand_attack: int = -1000
 
 func _ready() -> void:
 	main_hand_wepon.link_character(character)
 	off_hand_wepon.link_character(character)
+	
+func get_armor() -> int:
+	return armor_val
 	
 func equip(item_id: int) -> bool:
 	var item_data = get_tree().get_first_node_in_group("gamedata").item_data[item_id]
@@ -47,6 +51,8 @@ func equip_item(item_id: int, equip_stats: Dictionary) -> void:
 	else:
 		character.inventory.remove(item_id)
 		_equipment[slot] = item_id
+	if equip_stats.has("armor"):
+		armor_val += equip_stats["armor"]
 	var character_skills = character.stats.skills
 	for stat in equip_stats:
 		if !character_skills.has(stat):
@@ -62,6 +68,8 @@ func unequip_item(equip_stats: Dictionary) -> void:
 	else:
 		character.inventory.add(_equipment[slot])
 		_equipment[slot] = -1
+	if equip_stats.has("armor"):
+		armor_val -= equip_stats["armor"]
 	var character_skills = character.stats.skills
 	for stat in equip_stats:
 		if !character_skills.has(stat):
@@ -117,12 +125,12 @@ func weild_wepons() -> void:
 	if _equipment["main_hand"] > -1:
 		var item_data = get_tree().get_first_node_in_group("gamedata").item_data[_equipment["main_hand"]]
 		var tex = load(item_data["texture"])
-		main_hand_wepon.sprite_2d.texture = tex
+		main_hand_wepon.wepon_sprite.texture = tex
 		main_hand_wepon.equip(_equipment["main_hand"])
 		return
 	if _equipment["off_hand"] > -1:
 		return
 
 func sheath_wepons() -> void:
-	main_hand_wepon.sprite_2d.texture = null
-	off_hand_wepon.sprite_2d.texture = null
+	main_hand_wepon.wepon_sprite.texture = null
+	off_hand_wepon.wepon_sprite.texture = null

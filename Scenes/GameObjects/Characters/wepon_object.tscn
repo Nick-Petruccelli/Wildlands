@@ -5,6 +5,8 @@
 [node name="WeponObject" type="Node2D"]
 script = ExtResource("1_d6xxs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="WeponSprite" type="Sprite2D" parent="."]
 texture_filter = 1
 flip_h = true
+
+[node name="AttackTimeDisplay" type="Sprite2D" parent="."]

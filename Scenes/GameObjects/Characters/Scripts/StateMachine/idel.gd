@@ -5,11 +5,12 @@ class_name Idel
 @onready var detection_zone: Area2D = $"../../DetectionZone"
 @onready var timer: Timer = $Timer
 
+func _ready() -> void:
+	timer.timeout.connect(_on_timeout)
 func enter() -> void:
 	character.velocity = get_rand_vel()
 	character.cur_plan = []
 	character.cur_path = PackedVector2Array()
-	timer.timeout.connect(_on_timeout)
 
 func exit() -> void:
 	character.velocity = Vector2()

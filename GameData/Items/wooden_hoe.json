@@ -8,7 +8,7 @@
 	"equip_stats": {
 		"slot": "two_handed",
 		"damage": 15,
-		"cooldown": 750,
+		"attack_time": 750,
 		"farming": 3,
 	},
 	"prod_station": 3,

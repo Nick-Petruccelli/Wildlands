@@ -1,6 +1,8 @@
 extends Node2D
 class_name CharacterStats
 
+@onready var character: Character = $".."
+
 var hunger_tick_rate: int = 10000
 var last_hunger_tick: int = 0
 var skills: Dictionary = {
@@ -46,7 +48,11 @@ func _process(_delta) -> void:
 		last_hunger_tick = Time.get_ticks_msec()
 	
 func take_damage(damage: int) -> bool:
+	print("Before: ", damage)
+	damage -= stats["constitution"] + character.equipment.get_armor()
 	stats["cur_health"] -= damage
+	print("After: ", damage)
 	if stats["cur_health"] <= 0:
+		stats["cur_health"] = 0
 		return true
 	return false

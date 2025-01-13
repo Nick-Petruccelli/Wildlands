@@ -31,10 +31,8 @@ func get_closest_hostile() -> Character:
 		return null
 	var closest = null
 	var closest_dist = 999999999999999999.9
-	print("hit getting target")
 	for det_char in characters:
 		if det_char.is_dead:
-			print("hit target is dead")
 			continue
 		if !character.is_hostile(det_char):
 			continue
