@@ -19,9 +19,16 @@ func equip(wepon_id: int) -> void:
 
 func unequip() -> void:
 	wepon_sprite.texture = null
+	attack_time_display.texture = null
 	wepon_data = {}
 
+func is_in_attack_range(target: Vector2) -> bool:
+	if wepon_data == {}:
+		return false
+	return global_position.distance_to(target) <= wepon_data["equip_stats"]["range"]
+
 func attack(target: Vector2i) -> void:
+	attack_time_display.texture = null
 	if !attacking:
 		attack_start = Time.get_ticks_msec()
 		attacking = true
@@ -38,7 +45,6 @@ func attack(target: Vector2i) -> void:
 	var wepon_length = wepon_sprite.texture.get_size().x
 	var pos = global_position + wepon_length * direction
 	projectiles.add(projectile_id, pos, direction,damage , accuracy)
-	print("hit")
 	attack_time_display.texture = null
 	attacking = false
 
@@ -76,7 +82,6 @@ func display_attack_time(proportion_remain: float) -> void:
 	if proportion_remain < .10:
 		tex = null
 	elif proportion_remain < .33:
-		print("hit 2")
 		tex = load("res://Assets/attack_time_full.png")
 	elif proportion_remain < .66:
 		tex = load("res://Assets/attack_time_two_third.png")

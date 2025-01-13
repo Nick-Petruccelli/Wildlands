@@ -10,6 +10,7 @@
 		"damage": 90,
 		"attack_time": 2000,
 		"is_ranged": true,
+		"range": 250,
 		"projectile": 5,
 	},
 	"prod_station": 3,

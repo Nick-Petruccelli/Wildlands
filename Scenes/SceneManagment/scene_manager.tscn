@@ -468,7 +468,7 @@ script = ExtResource("11_1kn2g")
 position = Vector2(128, 128)
 
 [node name="Character" parent="Characters" instance=ExtResource("13_2mc3a")]
-position = Vector2(128, 64)
+position = Vector2(128, 624)
 speed = 30
 colony_relationship = 3
 

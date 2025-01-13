@@ -39,7 +39,7 @@ radius = 4.0
 height = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2bwu5"]
-radius = 4.68257
+radius = 12.6195
 
 [node name="Character" type="CharacterBody2D"]
 collision_layer = 2

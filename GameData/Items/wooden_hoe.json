@@ -9,6 +9,7 @@
 		"slot": "two_handed",
 		"damage": 15,
 		"attack_time": 750,
+		"range": 10,
 		"farming": 3,
 	},
 	"prod_station": 3,

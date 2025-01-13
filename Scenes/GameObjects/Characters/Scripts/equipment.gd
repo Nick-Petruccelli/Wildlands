@@ -110,6 +110,9 @@ func get_off_hand_damage() -> int:
 	last_off_hand_attack = Time.get_ticks_msec()
 	return item_data["equip_stats"]["damage"]
 
+func is_in_attack_range(target: Vector2) -> bool:
+	return main_hand_wepon.is_in_attack_range(target) or off_hand_wepon.is_in_attack_range(target)
+	
 func is_main_hand_ranged() -> bool:
 	if _equipment["main_hand"] < 0:
 		return false
@@ -133,4 +136,6 @@ func weild_wepons() -> void:
 
 func sheath_wepons() -> void:
 	main_hand_wepon.wepon_sprite.texture = null
+	main_hand_wepon.attack_time_display.texture = null
 	off_hand_wepon.wepon_sprite.texture = null
+	off_hand_wepon.attack_time_display.texture = null

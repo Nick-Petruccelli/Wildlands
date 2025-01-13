@@ -13,6 +13,8 @@ func enter() -> void:
 
 func exit() -> void:
 	character.velocity = Vector2()
+	print("hit shith")
+	character.equipment.sheath_wepons()
 	
 func update(_delta: float) -> void:
 	pass
@@ -21,6 +23,9 @@ func physics_update(_delta: float) -> void:
 	target = get_closest_hostile()
 	if target == null:
 		transitioned.emit(self, "idel")
+		return
+	var moving = move()
+	if moving:
 		return
 	character.attack(target)
 	
@@ -46,3 +51,13 @@ func get_closest_hostile() -> Character:
 		closest = det_char
 		closest_dist = dist_to_char
 	return closest
+
+func move() -> bool:
+	if character.equipment.is_in_attack_range(target.global_position):
+		return false
+	character.goal_pos = target.global_position
+	var next_node = character.pathfinding.next_node(character.global_position)
+	var vel = global_position.direction_to(next_node)
+	character.velocity = vel
+	character.move_with_vel()
+	return true
