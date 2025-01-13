@@ -1,7 +1,7 @@
 extends Task
 class_name Craft
 
-@onready var character: Colonist = $"../../.."
+@onready var character: Character = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 @onready var working: Working = $".."
 @onready var gather: Gather = $"../Gather"

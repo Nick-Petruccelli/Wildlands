@@ -1,7 +1,7 @@
 extends CharacterState
 class_name Working
 
-@onready var character: Colonist = $"../.."
+@onready var character: Character = $"../.."
 var task_dict: Dictionary = {}
 var work_plan: Array = []
 var in_task: bool = false

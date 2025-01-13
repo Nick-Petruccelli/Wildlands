@@ -24,7 +24,8 @@ func _ready():
 	add_to_group("scenemanager")
 	for character in characters.get_children():
 		character.scene_manager = self
-		character.work_done.connect(_on_character_work_done)
+		if character is Colonist:
+			character.work_done.connect(_on_character_work_done)
 	for node in get_children():
 		if node is not TileMapLayer:
 			continue

@@ -1,7 +1,7 @@
 extends Task
 class_name Chop
 
-@onready var character: Colonist = $"../../.."
+@onready var character: Character = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
 var target: Plant = null

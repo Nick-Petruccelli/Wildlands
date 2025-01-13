@@ -1,6 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://bvar6b65bvlfe"]
+[gd_scene load_steps=26 format=3 uid="uid://bvar6b65bvlfe"]
 
-[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Colonists/colonist.gd" id="1_6f447"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/character.gd" id="1_6f447"]
 [ext_resource type="Texture2D" uid="uid://bec83snkdytau" path="res://Assets/dude16x16.png" id="2_4ox6i"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/character_collision_handler.gd" id="3_88c83"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/pathfinding.gd" id="3_hknuf"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/stats.gd" id="15_1y54e"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/Tasks/hunt.gd" id="15_t02o7"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/equipment.gd" id="17_sale4"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/StateMachine/combat.gd" id="18_gctat"]
 [ext_resource type="PackedScene" uid="uid://1kkf1c64d0ma" path="res://Scenes/GameObjects/Characters/wepon_object.tscn" id="20_130ad"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/Scripts/inventory.gd" id="20_fovvr"]
 
@@ -36,6 +37,9 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5egs"]
 radius = 4.0
 height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2bwu5"]
+radius = 4.68257
 
 [node name="Character" type="CharacterBody2D"]
 collision_layer = 2
@@ -119,6 +123,9 @@ script = ExtResource("10_uwbjx")
 [node name="Recreation" type="Node2D" parent="StateMachine"]
 script = ExtResource("7_mbta5")
 
+[node name="Combat" type="Node2D" parent="StateMachine"]
+script = ExtResource("18_gctat")
+
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("15_1y54e")
 
@@ -131,3 +138,11 @@ script = ExtResource("17_sale4")
 
 [node name="Inventory" type="Node2D" parent="."]
 script = ExtResource("20_fovvr")
+
+[node name="DetectionZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
+scale = Vector2(39.8589, 39.9559)
+shape = SubResource("CircleShape2D_2bwu5")

@@ -1,7 +1,7 @@
 extends Task
 class_name Haul
 
-@onready var character: Colonist = $"../../.."
+@onready var character: Character = $"../../.."
 @onready var pathfinding: Pathfinding = $"../../../Pathfinding"
 
 var has_item: bool = false

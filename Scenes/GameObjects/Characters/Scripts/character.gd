@@ -14,14 +14,19 @@ var speed_mod = 1
 @onready var equipment: Equipment = $Equipment
 @onready var inventory: Inventory = $Inventory
 
+enum ColonyRelationship {
+	MEMBER,
+	FREIND,
+	NEUTRAL,
+	HOSTILE,
+}
 var goal_pos = null
 var cur_block = null
 var cur_work = null
 var cur_plan = []
 var cur_path: PackedVector2Array
-#var inventory = []
 var combat_target = null
-
+@export var colony_relationship: ColonyRelationship = ColonyRelationship.NEUTRAL
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connect("mouse_entered", _on_mouse_entered)
@@ -55,3 +60,11 @@ func get_final_damage(main_hand_damage: int, off_hand_damage: int) -> int:
 	else:
 		off_hand_damage = off_hand_damage * (stats.skills["melee"] / 5.0)
 	return main_hand_damage + off_hand_damage
+
+func is_hostile(character: Character) -> bool:
+	#TODO This function will eventualy use faction system to determine hostility between characters
+	if colony_relationship == ColonyRelationship.MEMBER and character.colony_relationship == ColonyRelationship.HOSTILE:
+		return true
+	if colony_relationship == ColonyRelationship.HOSTILE and character.colony_relationship == ColonyRelationship.MEMBER:
+		return true
+	return false
